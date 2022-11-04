@@ -14,13 +14,15 @@ export class MovieCard extends React.Component {
   render() {
     const { movie, onMovieClick } = this.props;
     return (
-      <Card>
+      <Card bg="light" border="light">
         <Card.Img variant="top" crossOrigin="anonymous" src={movie.ImagePath} />
         <Card.Body>
           <Card.Title>{movie.Title}</Card.Title>
           <Card.Text>{movie.Description.substring(0, 50)}... </Card.Text>
           <Link to={`/movies/${movie._id}`}>
-            <Button variant="link">Open</Button>
+            <Button type="button" className="btn btn-secondary">
+              Open
+            </Button>
           </Link>
         </Card.Body>
       </Card>
