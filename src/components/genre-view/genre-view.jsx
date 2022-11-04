@@ -1,46 +1,45 @@
-import React from "react";
-import { Button, Container, Col, Row } from "react-bootstrap";
+import React, { useState, useEffect } from "react";
+
+import { useParams, Link, useNavigate, useLocation } from "react-router-dom";
+
+import { Container, Col, Row, Button, Card } from "react-bootstrap";
+
 import { MovieCard } from "../movie-card/movie-card";
+
 import PropTypes from "prop-types";
 
-export class GenreView extends React.Component {
-  render() {
-    const { genre, onBackClick, genreMovies } = this.props;
+export function GenreView(props) {
+  const { name } = useParams();
+  let navigate = useNavigate();
+  // Here I'm telling state to useLocation which allows it to see the value being passed from MovieView
+  // and then telling director to equal the state (movie array) from MovieView
+  const { state } = useLocation();
+  const { genre } = state;
 
-    return (
-      <div>
-        <Container className="genre-view">
-          <Row>
-            <Col className="value">
+  let [setDirector, movie, movies, directorList] = useState({});
+
+  return (
+    <Container className="genre-view">
+      <Card>
+        <Row>
+          <Col className="value">
+            <Card.Header>
               <h1>{genre.Genre.Name}</h1>
-            </Col>
-          </Row>
-          <Row>
-            <p className="value">{genre.Genre.Description}</p>
-          </Row>
-          <Row>
-            <Col className="label">
-              <h3>Other {genre.Genre.Name} films: </h3>
-              {genreMovies.map((movie) => (
-                <Col lg={3}>
-                  <MovieCard key={movie._id} movie={movie}>
-                    {movie.Title}
-                  </MovieCard>
-                </Col>
-              ))}
-            </Col>
-          </Row>
+            </Card.Header>
+            <p className="value">Description: {genre.Genre.Description}</p>
+          </Col>
+        </Row>
 
-          <Button
-            className="mt-4"
-            onClick={() => {
-              onBackClick();
-            }}
+        <Card.Footer>
+          <button
+            type="button"
+            className="btn btn-secondary"
+            onClick={() => navigate("/", { replace: true })}
           >
-            Back
-          </Button>
-        </Container>
-      </div>
-    );
-  }
+            go back
+          </button>
+        </Card.Footer>
+      </Card>
+    </Container>
+  );
 }
