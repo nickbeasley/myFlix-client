@@ -1,5 +1,7 @@
 .movie-view {
   text-align: center;
+  background-color: lightgray;
+  padding: 15px;
 }
 .movie-title {
   font-size: larger;
@@ -8,7 +10,14 @@
   font-size: large;
 }
 button {
-  color: #0000ff;
-  background-color: lightgray;
   cursor: pointer;
+}
+.movie-title {
+  text-decoration: underline;
+}
+.movie-view-back-button {
+  padding: 10px;
+}
+.movie-view-favorite-button {
+  padding: 10px;
 }
