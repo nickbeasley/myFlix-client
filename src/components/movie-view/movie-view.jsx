@@ -72,15 +72,22 @@ export function MovieView(props) {
       <Row>
         <Col>
           <div className="movie-genre">
-            <span className="label">Genre:</span>
-            <Link to={`/genres/${movie.Genre?.Name}`}>
-              <Button type="button" variant="link">
-                {movie.Genre?.Name}
-              </Button>
-            </Link>
+            <span className="label">Genre: </span>
+            <Button
+              type="button"
+              variant="link"
+              onClick={() =>
+                navigate("/genres/:name", {
+                  state: { genre: movie },
+                })
+              }
+            >
+              {movie.Genre?.Name}
+            </Button>
           </div>
         </Col>
       </Row>
+
       {/* 
 link to DirectorView by sending it to the correct end point. 
 Line 95 is passing the value of "movie" (which is the current selected movie's  full array)
