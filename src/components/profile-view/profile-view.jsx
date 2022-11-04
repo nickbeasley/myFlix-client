@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { React, useState } from "react";
 import axios from "axios";
 import PropTypes from "prop-types";
 import { Container, Form, Button, Card, Col, Link } from "react-bootstrap";
@@ -7,16 +7,27 @@ import { Link } from "react-router-dom";
 
 import "./profile-view.scss";
 export function ProfileView(props) {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [email, setEmail] = useState("");
-  const [birthday, setBirthday] = useState("");
   // Declare hook for each input
-  const [usernameErr, setUsernameErr] = useState("");
-  const [passwordErr, setPasswordErr] = useState("");
-  const [emailErr, setEmailErr] = useState("");
-  const [birthdayErr, setBirthdayErr] = useState("");
-  const { user, movies, removeFavorite, onBackClick } = props;
+  const { user, movies, onBackClick } = props;
+
+  const [
+    username,
+    usernameErr,
+    setUsernameErr,
+    birthday,
+    setBirthday,
+    password,
+    email,
+    setEmail,
+    passwordErr,
+    setPasswordErr,
+    emailErr,
+    setEmailErr,
+    birthdayErr,
+    setBirthdayErr,
+    favoriteMovies,
+    addFavorite,
+  ] = useState({});
 
   // Validate user inputs
   const validate = () => {
@@ -99,20 +110,89 @@ export function ProfileView(props) {
     }
   };
 
+  // const favoriteMovie = favoriteMovies.map((movieId) =>
+  //   movies.find((movie) => movie._id === movieId)
+  // );
+
+  const removeFavorite = (m) => {
+    // e.preventDefault();
+    const username = localStorage.getItem("user");
+    const token = localStorage.getItem("token");
+    axios
+      .delete(
+        `https://nixflix.herokuapp.com/users/${username}/movies/${movieId}`,
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      )
+      .then((response) => {
+        console.log(response);
+        alert("Movie was removed");
+        this.componentDidMount();
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
+
+  const setUsername = (e) => {
+    e.preventDefault();
+    const username = localStorage.getItem("user");
+    const token = localStorage.getItem("token");
+    axios
+      .post(`https://nixflix.herokuapp.com/users/${username}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      .then((response) => {
+        console.log(response);
+        alert("Username updated");
+        this.componentDidMount();
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
+
+  const setPassword = (e) => {
+    e.preventDefault();
+    const password = localStorage.getItem("password");
+    const token = localStorage.getItem("token");
+    axios
+      .post(`https://nixflix.herokuapp.com/users/${username}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      .then((response) => {
+        console.log(response);
+        alert("Password updated");
+        this.componentDidMount();
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
+
   return (
     <Container className="profile-container">
-      <Card bg="dark" text="light" className="profile-card">
-        <Card.Header className="text-center" as="h5">
+      <Card bg="light" border="secondary" className="profile-card">
+        <Card.Header className="text-center bg-dark text-light" as="h5">
           Profile
         </Card.Header>
-        <Card.Body>Logged in as: {user.Username} </Card.Body>
-        <Card.Body>Email: {user.Email} </Card.Body>
-        <Card.Body>
-          <Card bg="dark" border="dark" text="light">
+        <Card.Body style={{ backgroundColor: "lightgray" }}>
+          <Card bg="dark" text="light">
+            Logged in as: {user.Username}
+          </Card>
+        </Card.Body>
+        <Card.Body style={{ backgroundColor: "lightgray" }}>
+          <Card bg="dark" text="light">
+            Email: {user.Email}{" "}
+          </Card>
+        </Card.Body>
+        <Card.Body style={{ backgroundColor: "lightgray" }}>
+          <Card bg="dark" text="light">
             <span className="label text-center headline-profile-update">
               Update profile information
             </span>
-            <Form>
+            <Form bg="secondary" border="secondary">
               <Form.Group
                 className="profile-form-group-username"
                 controlId="formGroupUsername"
@@ -121,8 +201,8 @@ export function ProfileView(props) {
                 <Form.Control
                   type="text"
                   value={username}
-                  onChange={(e) => setUsername(e.target.value)}
                   placeholder="Enter your username"
+                  onChange={(e) => setUsername(e)}
                   required
                 />
                 {usernameErr && <p>{usernameErr}</p>}
@@ -135,7 +215,7 @@ export function ProfileView(props) {
                 <Form.Control
                   type="password"
                   value={password}
-                  onChange={(e) => setPassword(e.target.value)}
+                  onChange={(e) => setPassword(e)}
                   placeholder="Your password must be 6 or more characters"
                   minLength="6"
                   required
@@ -169,24 +249,60 @@ export function ProfileView(props) {
                 />
                 {birthdayErr && <p>{birthdayErr}</p>}
               </Form.Group>
-              <Button
-                className="button-profile-view-update"
-                variant="secondary"
-                type="submit"
-                onClick={handleUpdate}
-              >
-                Update
-              </Button>
             </Form>
-            <span className="label headline-profile-mini-cards">
-              My favorite movies
-            </span>
           </Card>
-          <Card bg="dark" border="dark" text="light">
-            <span className="label text-center headline-profile-delete">
-              Delete account
-            </span>
-            <Col>
+          <Card
+            className="submit-button-card"
+            style={{ backgroundColor: "lightgray" }}
+          >
+            <Button
+              className="button-profile-view-update"
+              variant="secondary"
+              type="submit"
+              onClick={handleUpdate}
+            >
+              Update
+            </Button>
+          </Card>
+
+          <div className="favorite-div">
+            <Card bg="dark" text="light">
+              <span className="label headline-profile-mini-cards">
+                My favorite movies
+              </span>
+            </Card>
+          </div>
+
+          <Card className="h-100" bg="dark" text="light">
+            <Link to={`/movies/`} className="profile-movie-card-link">
+              <Card.Img
+                variant="top"
+                crossOrigin="anonymous | use-credentials"
+                alt="Card Img"
+              />
+              <Card.Body>
+                <Card.Title>Card title</Card.Title>
+              </Card.Body>
+            </Link>
+            <Button
+              className="button-profile-view-remove-favorite"
+              variant="outline-danger"
+              size="sm"
+              type="button"
+              onClick={() => removeFavorite()}
+            >
+              Remove
+            </Button>
+          </Card>
+        </Card.Body>
+        <Card.Body style={{ backgroundColor: "lightgray" }}>
+          <Card>
+            <Card.Header className="bg-dark text-light">
+              <span className="label text-center headline-profile-delete">
+                Delete account
+              </span>
+            </Card.Header>
+            <Col className="bg-dark">
               <Button
                 className="button button-profile-view-delete"
                 variant="danger"
@@ -197,43 +313,9 @@ export function ProfileView(props) {
               </Button>
             </Col>
           </Card>
-          {movies
-            .filter((item) => user.FavoriteMovies.includes(item._id))
-            .map((m) => (
-              <Col
-                md={6}
-                lg={3}
-                key={m._id}
-                className="profile-movie-card-mini"
-              >
-                <Card className="h-100" bg="dark" text="light">
-                  <Link
-                    to={`/movies/${m._id}`}
-                    className="profile-movie-card-link"
-                  >
-                    <Card.Img
-                      variant="top"
-                      crossOrigin="anonymous | use-credentials"
-                      src={m.ImagePath}
-                    />
-                    <Card.Body>
-                      <Card.Title>{m.Title}</Card.Title>
-                    </Card.Body>
-                  </Link>
-                  <Button
-                    className="button-profile-view-remove-favorite"
-                    variant="outline-danger"
-                    size="sm"
-                    type="button"
-                    onClick={() => removeFavorite(m._id)}
-                  >
-                    Remove
-                  </Button>
-                </Card>
-              </Col>
-            ))}
         </Card.Body>
-        <Card.Footer className="text-right">
+
+        <Card.Footer className="text-right bg-dark text-light">
           <Button
             className="button-profile-view-back"
             variant="secondary"
