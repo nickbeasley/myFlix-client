@@ -204,24 +204,26 @@ export class MainView extends React.Component {
                   }
                 />
               </Route>
+              <Route
+                path="/genres"
+                element={
+                  <Col>
+                    <GenreView />
+                  </Col>
+                }
+              />
               <Route path="/genres">
                 <Route
-                  path={`/genres:name`}
-                  element={({ match, history }) => {
+                  path=":name"
+                  element={
                     !user ? (
                       <Navigate to="/" replace />
                     ) : (
                       <Col>
-                        <GenreView
-                          genre={
-                            movies.find(
-                              (m) => m.Genre.Name == match.params.name
-                            ).Genre
-                          }
-                        />
+                        <GenreView />
                       </Col>
-                    );
-                  }}
+                    )
+                  }
                 />
               </Route>
             </Routes>
