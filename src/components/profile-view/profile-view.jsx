@@ -92,21 +92,26 @@ export function ProfileView(props) {
         });
     }
   };
-
+  //Works
   const handleDelete = (e) => {
-    e.preventDefault();
-    const token = localStorage.getItem("token");
-    if (confirm("Please confirm!")) {
+    const confirmDelete = window.confirm("Confirm to remove");
+
+    if (confirmDelete) {
+      const username = localStorage.getItem("user");
+      const token = localStorage.getItem("token");
       axios
-        .delete(`https://nixflix.herokuapp.com/users/${user}`, {
+        .delete(`https://nixflix.herokuapp.com/users/${user.Username}`, {
           headers: { Authorization: `Bearer ${token}` },
         })
-        .then((res) => {
-          alert(`Account has been deleted.`);
-          localStorage.clear();
-          window.open("/", "_self");
+        .then(() => {
+          localStorage.removeItem("user");
+          localStorage.removeItem("token");
+          alert("Profile successfully deleted");
+          window.location.pathname = "/";
         })
-        .catch((e) => console.log(e));
+        .catch((e) => {
+          console.log(e);
+        });
     }
   };
 
