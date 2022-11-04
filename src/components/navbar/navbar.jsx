@@ -1,7 +1,7 @@
-import React from "react";
-import { Navbar, Nav, Button, Container } from "react-bootstrap";
+import { React, useState } from "react";
+import { Navbar, Nav, Button, Container, NavbarBrand } from "react-bootstrap";
 import NavbarCollapse from "react-bootstrap/esm/NavbarCollapse";
-import { Link } from "react-router-dom";
+import { useParams, Link, useNavigate, useLocation } from "react-router-dom";
 import PropTypes from "prop-types";
 
 export function Menubar({ user }) {
@@ -9,6 +9,14 @@ export function Menubar({ user }) {
     localStorage.clear();
     window.open("/", "_self");
   };
+
+  //console.log("Movies from navbar: ", movie);
+
+  // const directors = movies.map((m) => {
+  //   return m.Director;
+  // });
+
+  let navigate = useNavigate();
 
   const isAuth = () => {
     if (typeof window == "undefined") {
@@ -20,36 +28,64 @@ export function Menubar({ user }) {
       return false;
     }
   };
+  const [expanded, setExpanded] = useState(false);
+
   return (
     <Navbar
-      className="main-nav"
+      expanded={expanded}
+      className="main-nav navbar-collapse"
       sticky="top"
       bg="dark"
       expand="lg"
       variant="dark"
     >
       <Container>
+        <Navbar.Brand>
+          <img
+            src="/images/nkblogoblue.svg"
+            height={50}
+            width={50}
+            alt="Logo"
+          ></img>
+        </Navbar.Brand>
         <Navbar.Brand className="navbar-logo" to="/" as={Link}>
           NixFlix
         </Navbar.Brand>
-        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+        <Navbar.Toggle
+          onClick={() => setExpanded(expanded ? false : "expanded")}
+          aria-controls="responsive-navbar-nav"
+        />
         <Navbar.Collapse id="resposive-navbar-nav">
           <Nav className="ml-auto">
-            <Nav.Link to="/" as={Link}>
+            <Nav.Link onClick={() => setExpanded(false)} to="/" as={Link}>
               Home
             </Nav.Link>
 
             {user && (
               <>
-                <Nav.Link to={`/users/${user.Username}`} as={Link}>
+                <Nav.Link
+                  onClick={() => setExpanded(false)}
+                  to={`/users/${user.Username}`}
+                  as={Link}
+                >
                   Profile
                 </Nav.Link>
 
-                <Nav.Link to="/directors" as={Link}>
+                <Nav.Link
+                  onClick={() =>
+                    navigate("/directors", {
+                      state: { director: movie },
+                    })
+                  }
+                >
                   Directors
                 </Nav.Link>
 
-                <Nav.Link to="/genres" as={Link}>
+                <Nav.Link
+                  onClick={() => setExpanded(false)}
+                  to="/genres"
+                  as={Link}
+                >
                   Genres
                 </Nav.Link>
 
@@ -60,10 +96,14 @@ export function Menubar({ user }) {
             )}
             {!user && (
               <>
-                <Nav.Link to="/" as={Link}>
+                <Nav.Link onClick={() => setExpanded(false)} to="/" as={Link}>
                   Sign-in
                 </Nav.Link>
-                <Nav.Link to="/register" as={Link}>
+                <Nav.Link
+                  onClick={() => setExpanded(false)}
+                  to="/register"
+                  as={Link}
+                >
                   Sign-up
                 </Nav.Link>
               </>
