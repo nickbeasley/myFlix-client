@@ -1,5 +1,7 @@
 .movie-view {
   text-align: center;
+  background-color: #d3d3d3;
+  padding: 15px;
 }
 
 .movie-title {
@@ -11,28 +13,59 @@
 }
 
 button {
-  color: #00f;
   cursor: pointer;
-  background-color: #d3d3d3;
+}
+
+.movie-title {
+  text-decoration: underline;
+}
+
+.movie-view-back-button, .movie-view-favorite-button {
+  padding: 10px;
 }
 
 
 
+.favorite-div, .delete-div {
+  margin: 25px;
+  padding: 25px;
+}
 
+span {
+  padding: 10px;
+}
+
+.delete-button {
+  padding: 15px;
+}
+
+.submit-button-card {
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 10px;
+}
 
 .main-view {
   text-align: center;
+  background-color: #789;
 }
 
 .movie-card {
   cursor: pointer;
-  border: 1px solid #000;
+  border: 1px solid #a9a9a9;
   margin: 5px;
   padding: 15px;
+  transition: all .3s;
+  box-shadow: 0 4px 8px #0003;
 }
 
-.my-flix {
-  color: #4682b4;
+.app-container {
+  background-color: #000;
+}
+
+.movie-card.col {
+  background-color: #d3d3d3;
 }
 
 /*# sourceMappingURL=index.5f1df611.css.map */
