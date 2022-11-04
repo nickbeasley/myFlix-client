@@ -5,8 +5,10 @@ import { Row, Col, Container } from "react-bootstrap";
 
 import {
   BrowserRouter as Router,
+  useParams,
   Route,
   Navigate,
+  useNavigate,
   Routes,
   Link,
 } from "react-router-dom";
@@ -98,13 +100,12 @@ export class MainView extends React.Component {
 
   render() {
     const { movies, movie, user, selectedMovie } = this.state;
-    console.log("Movies: ", movies);
-    console.log("User: ", user);
-    console.log("Director: ", movies.Director);
+    console.log("Movies from mainview: ", movies);
+    console.log("User from mainview: ", user);
 
     return (
       <Router>
-        <Menubar user={user} />
+        <Menubar user={user} movies={movies} />
         <Container>
           <Row className="main-view d-flex justify-content-center pb-5 px-3 pt-3">
             <Routes>
@@ -145,6 +146,18 @@ export class MainView extends React.Component {
                 }
               />
               <Route
+                path={`/users/`}
+                element={
+                  !user ? (
+                    <Navigate to="/" replace />
+                  ) : (
+                    <Col lg={8} md={8}>
+                      <ProfileView movies={movies} user={user} />
+                    </Col>
+                  )
+                }
+              />
+              <Route
                 path={`/users/:name`}
                 element={
                   !user ? (
@@ -156,55 +169,61 @@ export class MainView extends React.Component {
                   )
                 }
               />
+
               <Route path="/movies">
                 <Route
                   path=":movieId"
                   element={
                     <Col md={6}>
-                      <MovieView
-                        movies={movies}
-                        // onBackClick={() => history.goBack()}
-                      />
+                      <MovieView movies={movies} />
                     </Col>
                   }
                 />
               </Route>
+              {/* This route now looks pretty simple, its being used with the navigation 
+              link in MovieView and also receiving its information from MovieView */}
               <Route
-                path={`/genre:name`}
-                element={({ match, history }) => {
-                  !user ? (
-                    <Navigate to="/" replace />
-                  ) : (
-                    <Col lg={8} md={8}>
-                      <GenreView
-                        genre={
-                          movies.find((m) => m.Genre.Name === match.params.name)
-                            .Genre
-                        }
-                      />
-                    </Col>
-                  );
-                }}
+                path="/directors"
+                element={
+                  <Col>
+                    <DirectorView />
+                  </Col>
+                }
               />
-
-              <Route
-                path={`/director:name`}
-                element={({ match, history }) => {
-                  !user ? (
-                    <Navigate to="/" replace />
-                  ) : (
-                    <Col lg={8} md={8}>
-                      <DirectorView
-                        director={
-                          movies.find(
-                            (m) => m.Director.Name === match.params.name
-                          ).Director
-                        }
-                      />
-                    </Col>
-                  );
-                }}
-              />
+              <Route path="/directors">
+                <Route
+                  path=":name"
+                  element={
+                    !user ? (
+                      <Navigate to="/" replace />
+                    ) : (
+                      <Col>
+                        <DirectorView />
+                      </Col>
+                    )
+                  }
+                />
+              </Route>
+              <Route path="/genres">
+                <Route
+                  path={`/genres:name`}
+                  element={({ match, history }) => {
+                    !user ? (
+                      <Navigate to="/" replace />
+                    ) : (
+                      <Col>
+                        <GenreView
+                          genre={
+                            movies.find(
+                              (m) => m.Genre.Name == match.params.name
+                            ).Genre
+                          }
+                        />
+                      </Col>
+                    );
+                  }}
+                />
+              </Route>
             </Routes>
           </Row>
         </Container>
