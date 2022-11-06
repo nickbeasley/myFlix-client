@@ -15,83 +15,53 @@ export function ProfileView(props) {
     usernameErr,
     setUsernameErr,
     birthday,
-    setBirthday,
     password,
     email,
-    setEmail,
     passwordErr,
     setPasswordErr,
     emailErr,
     setEmailErr,
     birthdayErr,
-    setBirthdayErr,
     favoriteMovies,
-    addFavorite,
   ] = useState({});
 
   // Validate user inputs
   const validate = () => {
     let isReq = true;
     if (!username) {
-      setUsernameErr("Username required");
+      setUsernameErr(<span style={{ color: "red" }}>Username Required</span>);
       isReq = false;
-    } else if (username.length < 5) {
-      setUsernameErr("Username must be 5 or more characters");
+    } else if (username.length < 2) {
+      setUsernameErr(
+        <span style={{ color: "red" }}>
+          Username must have at least 2 characters
+        </span>
+      );
       isReq = false;
     }
     if (!password) {
-      setPasswordErr("Password required");
+      setPasswordErr(<span style={{ color: "red" }}>Password Required</span>);
       isReq = false;
     } else if (password.length < 6) {
-      setPasswordErr("Password must be 6 or more characters");
+      setPasswordErr(
+        <span style={{ color: "red" }}>
+          Password must have at least 6 characters
+        </span>
+      );
       isReq = false;
     }
     if (!email) {
-      setEmailErr("Email required");
+      setEmailErr(<span style={{ color: "red" }}>Email Required</span>);
       isReq = false;
     } else if (email.indexOf("@") === -1) {
-      setEmailErr("Email must be a valid email address");
+      setEmailErr(
+        <span style={{ color: "red" }}>Please enter correct email address</span>
+      );
       isReq = false;
     }
-
     return isReq;
   };
 
-  const handleUpdate = (e) => {
-    e.preventDefault();
-    const isReq = validate();
-    const token = localStorage.getItem("token");
-    console.log(user);
-    if (isReq && token !== null && user !== null) {
-      axios
-        .put(
-          `https://nixflix.herokuapp.com/users/${user}`,
-
-          {
-            Username: username,
-            Password: password,
-            Email: email,
-            Birthday: birthday,
-          },
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        )
-        .then((res) => {
-          const data = res.data;
-          console.log(data);
-          alert("Update successful");
-          localStorage.clear();
-          window.open("/", "_self");
-        })
-        .catch((e) => {
-          console.error(e);
-          alert("Unable to update user information");
-        });
-    }
-  };
   //Works
   const handleDelete = (e) => {
     const confirmDelete = window.confirm("Confirm to remove");
@@ -140,42 +110,6 @@ export function ProfileView(props) {
       });
   };
 
-  const setUsername = (e) => {
-    e.preventDefault();
-    const username = localStorage.getItem("user");
-    const token = localStorage.getItem("token");
-    axios
-      .post(`https://nixflix.herokuapp.com/users/${username}`, {
-        headers: { Authorization: `Bearer ${token}` },
-      })
-      .then((response) => {
-        console.log(response);
-        alert("Username updated");
-        this.componentDidMount();
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-  };
-
-  const setPassword = (e) => {
-    e.preventDefault();
-    const password = localStorage.getItem("password");
-    const token = localStorage.getItem("token");
-    axios
-      .post(`https://nixflix.herokuapp.com/users/${username}`, {
-        headers: { Authorization: `Bearer ${token}` },
-      })
-      .then((response) => {
-        console.log(response);
-        alert("Password updated");
-        this.componentDidMount();
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-  };
-
   return (
     <Container className="profile-container">
       <Card bg="light" border="secondary" className="profile-card">
@@ -205,9 +139,8 @@ export function ProfileView(props) {
                 <Form.Label>Username:</Form.Label>
                 <Form.Control
                   type="text"
-                  value={username}
                   placeholder="Enter your username"
-                  onChange={(e) => setUsername(e)}
+                  onChange={(e) => setUsername(e.target.value)}
                   required
                 />
                 {usernameErr && <p>{usernameErr}</p>}
@@ -219,8 +152,7 @@ export function ProfileView(props) {
                 <Form.Label>Password:</Form.Label>
                 <Form.Control
                   type="password"
-                  value={password}
-                  onChange={(e) => setPassword(e)}
+                  onChange={(e) => setPassword(e.target.value)}
                   placeholder="Your password must be 6 or more characters"
                   minLength="6"
                   required
@@ -234,7 +166,6 @@ export function ProfileView(props) {
                 <Form.Label>Email:</Form.Label>
                 <Form.Control
                   type="email"
-                  value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="Enter your email"
                   required
@@ -248,7 +179,6 @@ export function ProfileView(props) {
                 <Form.Label>Date of birth:</Form.Label>
                 <Form.Control
                   type="date"
-                  value={birthday}
                   onChange={(e) => setBirthday(e.target.value)}
                   placeholder="Enter your birthday"
                 />
@@ -264,7 +194,7 @@ export function ProfileView(props) {
               className="button-profile-view-update"
               variant="secondary"
               type="submit"
-              onClick={handleUpdate}
+              // onClick={handleUpdate}
             >
               Update
             </Button>
