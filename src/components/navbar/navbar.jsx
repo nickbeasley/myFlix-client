@@ -10,12 +10,6 @@ export function Menubar({ user }) {
     window.open("/", "_self");
   };
 
-  //console.log("Movies from navbar: ", movie);
-
-  // const directors = movies.map((m) => {
-  //   return m.Director;
-  // });
-
   let navigate = useNavigate();
 
   const isAuth = () => {
@@ -30,6 +24,7 @@ export function Menubar({ user }) {
   };
   const [expanded, setExpanded] = useState(false);
 
+  //console.log("From Navbar: ", movies);
   return (
     <Navbar
       expanded={expanded}
@@ -73,8 +68,8 @@ export function Menubar({ user }) {
 
                 <Nav.Link
                   onClick={() =>
-                    navigate("/directors", {
-                      state: { director: movie },
+                    navigate("/directors/", {
+                      state: { director: movies },
                     })
                   }
                 >
