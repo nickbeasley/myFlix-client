@@ -1,9 +1,8 @@
 import { React, useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { Button, Col, Row } from "react-bootstrap";
-
+import axios from "axios";
 import { useParams, Link, useNavigate } from "react-router-dom";
-
 import "./movie-view.scss";
 import { MovieCard } from "../movie-card/movie-card";
 
@@ -13,13 +12,6 @@ export function MovieView(props) {
 
   let [movie, setMovie] = useState({});
   console.log("Movies from movie-view: ", movie);
-
-  useEffect(() => {
-    let film = props.movies.find(function (m) {
-      return m._id == movieId;
-    });
-    setMovie(film);
-  }, []);
 
   function addFavorite(movieId) {
     const { movie } = props;
@@ -43,6 +35,14 @@ export function MovieView(props) {
         .catch((error) => console.error(error));
     };
   }
+
+  useEffect(() => {
+    let film = props.movies.find(function (m) {
+      return m._id == movieId;
+    });
+    setMovie(film);
+  }, []);
+
   return (
     <div className="movie-view">
       <Row>
@@ -54,7 +54,7 @@ export function MovieView(props) {
       </Row>
 
       <Row>
-        <Col>
+        <Col className="fs-2">
           <div className="movie-title">
             <span className="value">{movie.Title}</span>
           </div>
@@ -62,7 +62,15 @@ export function MovieView(props) {
       </Row>
 
       <Row>
-        <Col>
+        <Col className="fs-6">
+          <div className="movie-release-year">
+            <span className="value">{movie.ReleaseYear}</span>
+          </div>
+        </Col>
+      </Row>
+
+      <Row>
+        <Col className="fs-4">
           <div className="movie-description">
             <span className="value">{movie.Description}</span>
           </div>
