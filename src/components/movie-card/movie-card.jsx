@@ -18,7 +18,10 @@ export class MovieCard extends React.Component {
         <Card.Img variant="top" crossOrigin="anonymous" src={movie.ImagePath} />
         <Card.Body>
           <Card.Title>{movie.Title}</Card.Title>
-          <Card.Text>{movie.Description.substring(0, 50)}... </Card.Text>
+          <Card.Text className="fs-6">{movie.ReleaseYear}</Card.Text>
+          <Card.Text className="fs-5">
+            {movie.Description.substring(0, 35)} ...{" "}
+          </Card.Text>
           <Link to={`/movies/${movie._id}`}>
             <Button type="button" className="btn btn-secondary">
               Open
@@ -46,4 +49,5 @@ MovieCard.propTypes = {
     ImagePath: PropTypes.string.isRequired,
   }).isRequired,
   onMovieClick: PropTypes.func,
+  ReleaseYear: PropTypes.string,
 };
