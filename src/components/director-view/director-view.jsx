@@ -18,6 +18,8 @@ export function DirectorView(props) {
 
   let [setDirector, movie, movies, directorList] = useState({});
 
+  console.log("Director view: ", director);
+
   return (
     <Container className="director-view">
       <Card>
@@ -26,9 +28,10 @@ export function DirectorView(props) {
             <Card.Header>
               <h1>{director.Director.Name}</h1>
             </Card.Header>
-            <p className="value">Birth: {director.Director.Birth}</p>
-
-            <p className="value">Death: {director.Director.Death}</p>
+            <p className="value">
+              {" "}
+              {director.Director.Birth} - {director.Director.Death}
+            </p>
           </Col>
         </Row>
 
@@ -41,7 +44,7 @@ export function DirectorView(props) {
             className="btn btn-secondary"
             onClick={() => navigate("/", { replace: true })}
           >
-            go back
+            Return to movies
           </button>
         </Card.Footer>
       </Card>
