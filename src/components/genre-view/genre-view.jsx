@@ -26,7 +26,7 @@ export function GenreView(props) {
             <Card.Header>
               <h1>{genre.Genre.Name}</h1>
             </Card.Header>
-            <p className="value">Description: {genre.Genre.Description}</p>
+            <p className="value"> {genre.Genre.Description}</p>
           </Col>
         </Row>
 
@@ -36,7 +36,7 @@ export function GenreView(props) {
             className="btn btn-secondary"
             onClick={() => navigate("/", { replace: true })}
           >
-            go back
+            Return to movies
           </button>
         </Card.Footer>
       </Card>
