@@ -24,6 +24,11 @@ button {
   padding: 10px;
 }
 
+.label {
+  font-size: medium;
+  font-style: italic;
+}
+
 
 
 .favorite-div, .delete-div {

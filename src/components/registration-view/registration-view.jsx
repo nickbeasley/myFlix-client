@@ -100,7 +100,7 @@ export function RegistrationView(props) {
                 <Form.Label>Password: </Form.Label>
                 <Form.Control
                   type="password"
-                  onChange={(e) => setPassword(e.target.value)}
+                  onChange={(e) => setPassword(e)}
                   required
                   placeholder="enter a password"
                 />
