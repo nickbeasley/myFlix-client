@@ -12,7 +12,7 @@ import "./movie-card.scss";
 
 export class MovieCard extends React.Component {
   render() {
-    const { movie, onMovieClick } = this.props;
+    const { movie, onMovieClick, user } = this.props;
     return (
       <Card bg="light" border="light">
         <Card.Img variant="top" crossOrigin="anonymous" src={movie.ImagePath} />

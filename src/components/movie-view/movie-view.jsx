@@ -2,38 +2,63 @@ import { React, useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { Button, Col, Row } from "react-bootstrap";
 import axios from "axios";
-import { useParams, Link, useNavigate } from "react-router-dom";
+import { useParams, Link, useNavigate, toArray } from "react-router-dom";
 import "./movie-view.scss";
 import { MovieCard } from "../movie-card/movie-card";
 
 export function MovieView(props) {
+  const user = localStorage.getItem("user");
+  const userInfo = JSON.parse(user);
+  const username = userInfo.Username;
+
   const { movieId } = useParams();
   let navigate = useNavigate();
 
   let [movie, setMovie] = useState({});
   console.log("Movies from movie-view: ", movie);
+  console.log("movieId from movie-view: ", movieId);
 
+  console.log("username from movie-view: ", username);
+  console.log("userInfo from movie-view: ", userInfo);
+
+  console.log("user from movie-view: ", user);
+
+  //Works!
   function addFavorite(movieId) {
-    const { movie } = props;
-    const username = localStorage.getItem("user");
     const token = localStorage.getItem("token");
+    //e.preventDefault();
+    axios
+      .post(
+        `https://nixflix.herokuapp.com/users/${username}/movies/${movieId}`,
+        { username: localStorage.getItem("user") },
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      )
+      .then((response) => {
+        console.log(response);
+        alert("Movie added");
+      })
+      .catch((error) => console.error(error));
+  }
 
-    const addFavorite = (e) => {
-      e.preventDefault();
-      axios
-        .post(
-          `https://nixflix.herokuapp.com/users/${username}/movies/${movie._id}`,
-          { username: localStorage.getItem("user") },
-          {
-            headers: { Authorization: `Bearer ${token}` },
-          }
-        )
-        .then((response) => {
-          console.log(response);
-          alert("Movie added");
-        })
-        .catch((error) => console.error(error));
-    };
+  // does not work
+  function removeFavorite(movieId) {
+    const token = localStorage.getItem("token");
+    //preventDefault();
+    axios
+      .delete(
+        `https://nixflix.herokuapp.com/users/${username}/movies/${movieId}`,
+        { username: localStorage.getItem("user") },
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      )
+      .then((response) => {
+        console.log(response);
+        alert("Movie removed");
+      })
+      .catch((error) => console.error(error));
   }
 
   useEffect(() => {
@@ -85,8 +110,8 @@ export function MovieView(props) {
               type="button"
               variant="link"
               onClick={() =>
-                navigate("/genres/:name", {
-                  state: { genre: movie },
+                navigate(`/genres/${movie.Genre.Name}`, {
+                  state: { Genre: movie },
                 })
               }
             >
@@ -108,7 +133,7 @@ from MovieView as "director" into DirectorView */}
               type="button"
               variant="link"
               onClick={() =>
-                navigate("/directors/:name", {
+                navigate(`/directors/${movie.Director.Name}`, {
                   state: { director: movie },
                 })
               }
@@ -127,6 +152,17 @@ from MovieView as "director" into DirectorView */}
         >
           Add to favorites
         </button>
+      </Col>
+      <Col>
+        <Button
+          className="movie-view-remove-favorite-button"
+          variant="btn btn-secondary"
+          size="sm"
+          type="button"
+          onClick={() => removeFavorite(movieId)}
+        >
+          Remove from favorites
+        </Button>
       </Col>
       {/* <Row>
         <Col>

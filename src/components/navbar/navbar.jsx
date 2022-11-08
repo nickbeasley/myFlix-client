@@ -3,7 +3,7 @@ import { Navbar, Nav, Button, Container, NavbarBrand } from "react-bootstrap";
 import NavbarCollapse from "react-bootstrap/esm/NavbarCollapse";
 import { useParams, Link, useNavigate, useLocation } from "react-router-dom";
 import PropTypes from "prop-types";
-
+import axios from "axios";
 export function Menubar({ user }) {
   const onLoggedOut = () => {
     localStorage.clear();
@@ -24,7 +24,6 @@ export function Menubar({ user }) {
   };
   const [expanded, setExpanded] = useState(false);
 
-  //console.log("From Navbar: ", movies);
   return (
     <Navbar
       expanded={expanded}
@@ -67,18 +66,16 @@ export function Menubar({ user }) {
                 </Nav.Link>
 
                 <Nav.Link
-                  onClick={() =>
-                    navigate("/directors/", {
-                      state: { director: movies },
-                    })
-                  }
+                  onClick={() => setExpanded(false)}
+                  to={`/directors/all`}
+                  as={Link}
                 >
                   Directors
                 </Nav.Link>
 
                 <Nav.Link
                   onClick={() => setExpanded(false)}
-                  to="/genres"
+                  to={`/genres/all`}
                   as={Link}
                 >
                   Genres

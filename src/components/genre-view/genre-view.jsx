@@ -13,11 +13,25 @@ export function GenreView(props) {
   let navigate = useNavigate();
   // Here I'm telling state to useLocation which allows it to see the value being passed from MovieView
   // and then telling director to equal the state (movie array) from MovieView
-  const { state } = useLocation();
-  const { genre } = state;
+  //const { state } = useLocation();
+  //const { genre } = state;
 
-  let [setDirector, movie, movies, directorList] = useState({});
+  //let [setDirector, movie, movies, directorList] = useState({});
+  console.log("genre name:", name);
 
+  if (name === "all") {
+    return (
+      <ul>
+        {props.movies.map((movie) => (
+          <li key={movie._id}>
+            <Link to={`/genres/${movie.Genre.Name}`}>{movie.Genre.Name}</Link>
+          </li>
+        ))}
+      </ul>
+    );
+  }
+  let genre = props.movies.find((movie) => movie.Genre.Name === name);
+  console.log("genre: ", genre);
   return (
     <Container className="genre-view">
       <Card>

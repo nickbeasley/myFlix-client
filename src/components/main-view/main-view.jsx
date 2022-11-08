@@ -182,14 +182,7 @@ export class MainView extends React.Component {
               </Route>
               {/* This route now looks pretty simple, its being used with the navigation 
               link in MovieView and also receiving its information from MovieView */}
-              <Route
-                path="/directors"
-                element={
-                  <Col>
-                    <DirectorView />
-                  </Col>
-                }
-              />
+
               <Route path="/directors">
                 <Route
                   path=":name"
@@ -198,20 +191,12 @@ export class MainView extends React.Component {
                       <Navigate to="/" replace />
                     ) : (
                       <Col>
-                        <DirectorView />
+                        <DirectorView movies={movies} />
                       </Col>
                     )
                   }
                 />
               </Route>
-              <Route
-                path="/genres"
-                element={
-                  <Col>
-                    <GenreView />
-                  </Col>
-                }
-              />
               <Route path="/genres">
                 <Route
                   path=":name"
@@ -220,7 +205,7 @@ export class MainView extends React.Component {
                       <Navigate to="/" replace />
                     ) : (
                       <Col>
-                        <GenreView />
+                        <GenreView movies={movies} />
                       </Col>
                     )
                   }
