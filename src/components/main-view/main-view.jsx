@@ -133,6 +133,7 @@ export class MainView extends React.Component {
                   )
                 }
               />
+
               <Route
                 path="/register"
                 element={
@@ -145,6 +146,7 @@ export class MainView extends React.Component {
                   )
                 }
               />
+
               <Route
                 path={`/users/`}
                 element={
@@ -157,6 +159,7 @@ export class MainView extends React.Component {
                   )
                 }
               />
+
               <Route
                 path={`/users/:name`}
                 element={
@@ -180,8 +183,6 @@ export class MainView extends React.Component {
                   }
                 />
               </Route>
-              {/* This route now looks pretty simple, its being used with the navigation 
-              link in MovieView and also receiving its information from MovieView */}
 
               <Route path="/directors">
                 <Route
@@ -197,6 +198,7 @@ export class MainView extends React.Component {
                   }
                 />
               </Route>
+
               <Route path="/genres">
                 <Route
                   path=":name"

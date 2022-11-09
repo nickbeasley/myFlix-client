@@ -26,7 +26,6 @@ export function MovieView(props) {
   //Works!
   function addFavorite(movieId) {
     const token = localStorage.getItem("token");
-    //e.preventDefault();
     axios
       .post(
         `https://nixflix.herokuapp.com/users/${username}/movies/${movieId}`,
@@ -45,7 +44,6 @@ export function MovieView(props) {
   // does not work
   function removeFavorite(movieId) {
     const token = localStorage.getItem("token");
-    //preventDefault();
     axios
       .delete(
         `https://nixflix.herokuapp.com/users/${username}/movies/${movieId}`,
@@ -179,7 +177,7 @@ from MovieView as "director" into DirectorView */}
           className="btn btn-secondary"
           onClick={() => navigate("/", { replace: true })}
         >
-          Go back
+          Back to Movies
         </button>
       </Col>
     </div>

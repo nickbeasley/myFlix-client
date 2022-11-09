@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 
 import { useParams, Link, useNavigate, useLocation } from "react-router-dom";
 
-import { Container, Col, Row, Button, Card } from "react-bootstrap";
+import { Container, Col, Row, Button, Card, ListGroup } from "react-bootstrap";
 
 import { MovieCard } from "../movie-card/movie-card";
 
@@ -11,23 +11,18 @@ import PropTypes from "prop-types";
 export function GenreView(props) {
   const { name } = useParams();
   let navigate = useNavigate();
-  // Here I'm telling state to useLocation which allows it to see the value being passed from MovieView
-  // and then telling director to equal the state (movie array) from MovieView
-  //const { state } = useLocation();
-  //const { genre } = state;
 
-  //let [setDirector, movie, movies, directorList] = useState({});
   console.log("genre name:", name);
 
   if (name === "all") {
     return (
-      <ul>
+      <ListGroup as="ul">
         {props.movies.map((movie) => (
-          <li key={movie._id}>
+          <ListGroup.Item as="li" variant="secondary" key={movie._id}>
             <Link to={`/genres/${movie.Genre.Name}`}>{movie.Genre.Name}</Link>
-          </li>
+          </ListGroup.Item>
         ))}
-      </ul>
+      </ListGroup>
     );
   }
   let genre = props.movies.find((movie) => movie.Genre.Name === name);

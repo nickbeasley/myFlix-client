@@ -1,11 +1,13 @@
 import { React, useState, useEffect } from "react";
 import axios from "axios";
 import PropTypes from "prop-types";
-import { Container, Form, Button, Card, Col, Link } from "react-bootstrap";
+import { Container, Form, Button, Card, Col, Row, Link } from "react-bootstrap";
 
 import { Link, useNavigate } from "react-router-dom";
 
 import "./profile-view.scss";
+
+import { MiniCard } from "../mini-card/mini-card";
 
 import { MovieCard } from "../movie-card/movie-card";
 
@@ -102,13 +104,15 @@ export function ProfileView(props) {
             Email: {user.Email}{" "}
           </Card>
         </Card.Body>
-
+        <Card.Header className="text-center bg-dark text-light" as="h5">
+          Favorites:
+        </Card.Header>
         <Card>
           <Card.Body>
             {props.movies
               .filter((movie) => user.FavoriteMovies.includes(movie._id))
               .map((movie) => (
-                <MovieCard movie={movie} />
+                <MiniCard movie={movie} />
               ))}
           </Card.Body>
         </Card>
@@ -196,7 +200,7 @@ export function ProfileView(props) {
             variant="secondary"
             onClick={() => navigate("/", { replace: true })}
           >
-            Back
+            All Movies
           </Button>
         </Card.Footer>
       </Card>
