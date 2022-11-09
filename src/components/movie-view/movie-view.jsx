@@ -47,7 +47,6 @@ export function MovieView(props) {
     axios
       .delete(
         `https://nixflix.herokuapp.com/users/${username}/movies/${movieId}`,
-        { username: localStorage.getItem("user") },
         {
           headers: { Authorization: `Bearer ${token}` },
         }
@@ -119,10 +118,6 @@ export function MovieView(props) {
         </Col>
       </Row>
 
-      {/* 
-link to DirectorView by sending it to the correct end point. 
-Line 95 is passing the value of "movie" (which is the current selected movie's  full array)
-from MovieView as "director" into DirectorView */}
       <Row>
         <Col>
           <div className="movie-director">
