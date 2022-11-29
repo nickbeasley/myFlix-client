@@ -88,6 +88,8 @@ export function ProfileView(props) {
     }
   };
 
+  console.log(user.FavoriteMovies);
+
   return (
     <Container className="profile-container">
       <Card bg="light" border="secondary" className="profile-card">

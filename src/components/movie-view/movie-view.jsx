@@ -36,12 +36,13 @@ export function MovieView(props) {
       )
       .then((response) => {
         console.log(response);
+        props.addToFavorites(movieId);
         alert("Movie added");
       })
       .catch((error) => console.error(error));
   }
 
-  // does not work
+  // does work
   function removeFavorite(movieId) {
     const token = localStorage.getItem("token");
     axios
@@ -53,6 +54,7 @@ export function MovieView(props) {
       )
       .then((response) => {
         console.log(response);
+        props.removeFromFavorites(movieId);
         alert("Movie removed");
       })
       .catch((error) => console.error(error));

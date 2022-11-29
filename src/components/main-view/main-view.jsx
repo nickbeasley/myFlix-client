@@ -2,6 +2,7 @@ import React from "react";
 import axios from "axios";
 import propTypes from "prop-types";
 import { Row, Col, Container } from "react-bootstrap";
+import Utils from "../../utils.js";
 
 import {
   BrowserRouter as Router,
@@ -28,16 +29,22 @@ import "./main-view.scss";
 import { ProfileView } from "../profile-view/profile-view";
 import { DirectorView } from "../director-view/director-view";
 
+import { connect } from "react-redux";
+
+import { setMovies } from "../../actions/actions";
+
+import MoviesList from "../movies-list/movies-list";
+
 export class MainView extends React.Component {
   constructor() {
     super();
-    this.state = {
-      movies: [],
-      selectedMovie: null,
-      user: null,
-      registered: true,
-      FavoriteMovies: [],
-    };
+    // this.state = {
+    //   movies: [],
+    //   selectedMovie: null,
+    //   user: null,
+    //   registered: true,
+    //   FavoriteMovies: [],
+    // };
   }
   componentDidMount() {
     let accessToken = localStorage.getItem("token");
@@ -67,19 +74,36 @@ export class MainView extends React.Component {
 
   getMovies(token) {
     axios
-      .get("https://nixflix.herokuapp.com/movies", {
+      .get(`https://nixflix.herokuapp.com/movies`, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => {
-        // Assign the result to the state
-        this.setState({
-          movies: response.data,
-        });
+        this.props.setMovies(response.data);
       })
-      .catch(function (error) {
+      .catch((error) => {
         console.log(error);
       });
   }
+  addToFavorites = (id) => {
+    let tempObject = { ...this.state.user };
+    tempObject.FavoriteMovies = Utils.removeDuplicates(
+      tempObject.FavoriteMovies
+    );
+    if (!tempObject.FavoriteMovies.includes(id)) {
+      tempObject.FavoriteMovies.push(id);
+    }
+    this.setState({ user: tempObject });
+  };
+
+  removeFromFavorites = (id) => {
+    let tempObject = { ...this.state.user };
+    //let indexToDelete = tempObject.FavoriteMovies.indexOf(id);
+    //tempObject.FavoriteMovies.splice(indexToDelete, 1);
+    tempObject.FavoriteMovies = tempObject.FavoriteMovies.filter(
+      (movie) => movie._id !== id
+    );
+    this.setState({ user: tempObject });
+  };
 
   onLoggedOut() {
     localStorage.removeItem("token");
@@ -99,7 +123,8 @@ export class MainView extends React.Component {
   }
 
   render() {
-    const { movies, movie, user, selectedMovie } = this.state;
+    let movies = this.props;
+    let user = this.state;
     console.log("Movies from mainview: ", movies);
     console.log("User from mainview: ", user);
 
@@ -127,7 +152,8 @@ export class MainView extends React.Component {
                   ) : (
                     movies.map((m) => (
                       <Col key={m._id} className="movie-card">
-                        <MovieCard movie={m} />
+                        return <MoviesList movies={movies} />;
+                        {/* <MovieCard movie={m} /> */}
                       </Col>
                     ))
                   )
@@ -147,7 +173,7 @@ export class MainView extends React.Component {
                 }
               />
 
-              <Route
+              {/* <Route
                 path={`/users/`}
                 element={
                   !user ? (
@@ -158,7 +184,7 @@ export class MainView extends React.Component {
                     </Col>
                   )
                 }
-              />
+              /> */}
 
               <Route
                 path={`/users/:name`}
@@ -178,7 +204,11 @@ export class MainView extends React.Component {
                   path=":movieId"
                   element={
                     <Col md={6}>
-                      <MovieView movies={movies} />
+                      <MovieView
+                        addToFavorites={this.addToFavorites}
+                        removeFromFavorites={this.removeFromFavorites}
+                        movies={movies}
+                      />
                     </Col>
                   }
                 />
@@ -220,3 +250,8 @@ export class MainView extends React.Component {
     );
   }
 }
+let mapStateToProps = (state) => {
+  return { movies: state.movies };
+};
+
+export default connect(mapStateToProps, { setMovies })(MainView);
