@@ -63,12 +63,9 @@ export class MainView extends React.Component {
   }
 
   onLoggedIn(authData) {
-    console.log("authData from onLoggedIn function", authData);
+    this.props.setUser(authData.user);
     localStorage.setItem("token", authData.token);
-    localStorage.setItem("user", JSON.stringify(authData.user));
-    this.setState({
-      user: authData.user,
-    });
+    localStorage.setItem("user", authData.user.Username);
     this.getMovies(authData.token);
   }
 
@@ -84,6 +81,22 @@ export class MainView extends React.Component {
         console.log(error);
       });
   }
+
+  // Fetch user data
+  getUser(token) {
+    const user = localStorage.getItem("user");
+    axios
+      .get(`https://nixflix.herokuapp.com/users/${user}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      .then((response) => {
+        this.props.setUser(response.data);
+      })
+      .catch((error) => {
+        console.log(error.response);
+      });
+  }
+
   addToFavorites = (id) => {
     let tempObject = { ...this.state.user };
     tempObject.FavoriteMovies = Utils.removeDuplicates(
