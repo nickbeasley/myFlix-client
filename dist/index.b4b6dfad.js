@@ -2398,11 +2398,11 @@ function runTimeout(fun) {
     try {
         // when when somebody has screwed with setTimeout but no I.E. maddness
         return cachedSetTimeout(fun, 0);
-    } catch (e) {
+    } catch (e1) {
         try {
             // When we are in I.E. but the script has been evaled so I.E. doesn't trust the global object when called normally
             return cachedSetTimeout.call(null, fun, 0);
-        } catch (e1) {
+        } catch (e) {
             // same as above but when it's a version of I.E. that must have the global object for 'this', hopfully our context correct otherwise it will throw a global error
             return cachedSetTimeout.call(this, fun, 0);
         }
@@ -2419,11 +2419,11 @@ function runClearTimeout(marker) {
     try {
         // when when somebody has screwed with setTimeout but no I.E. maddness
         return cachedClearTimeout(marker);
-    } catch (e) {
+    } catch (e1) {
         try {
             // When we are in I.E. but the script has been evaled so I.E. doesn't  trust the global object when called normally
             return cachedClearTimeout.call(null, marker);
-        } catch (e1) {
+        } catch (e) {
             // same as above but when it's a version of I.E. that must have the global object for 'this', hopfully our context correct otherwise it will throw a global error.
             // Some versions of I.E. have different rules for clearTimeout vs setTimeout
             return cachedClearTimeout.call(this, marker);
@@ -2504,13 +2504,13 @@ process.umask = function() {
 };
 
 },{}],"jVvJi":[function(require,module,exports) {
-"use strict";
 var global = arguments[3];
 var HMR_HOST = null;
 var HMR_PORT = null;
 var HMR_SECURE = false;
 var HMR_ENV_HASH = "d6ea1d42532a7575";
 module.bundle.HMR_BUNDLE_ID = "022c1b16b4b6dfad";
+"use strict";
 /* global HMR_HOST, HMR_PORT, HMR_ENV_HASH, HMR_SECURE, chrome, browser, globalThis, __parcel__import__, __parcel__importScripts__, ServiceWorkerGlobalScope */ /*::
 import type {
   HMRAsset,
@@ -2908,26 +2908,20 @@ var _reactDomDefault = parcelHelpers.interopDefault(_reactDom);
 var _propTypes = require("prop-types");
 var _propTypesDefault = parcelHelpers.interopDefault(_propTypes);
 var _mainView = require("./components/main-view/main-view");
-var _mainViewDefault = parcelHelpers.interopDefault(_mainView);
 var _container = require("react-bootstrap/Container");
 var _containerDefault = parcelHelpers.interopDefault(_container);
-var _redux = require("redux");
-var _reactRedux = require("react-redux");
-var _reducers = require("./reducers/reducers");
-var _reducersDefault = parcelHelpers.interopDefault(_reducers);
 var _indexScss = require("./index.scss");
-const store = (0, _redux.configureStore)((0, _reducersDefault.default));
 class MyFlixApplication extends (0, _reactDefault.default).Component {
     render() {
         return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _containerDefault.default), {
-            children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _mainViewDefault.default), {}, void 0, false, {
+            children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _mainView.MainView), {}, void 0, false, {
                 fileName: "src/index.jsx",
-                lineNumber: 17,
+                lineNumber: 13,
                 columnNumber: 9
             }, this)
         }, void 0, false, {
             fileName: "src/index.jsx",
-            lineNumber: 16,
+            lineNumber: 12,
             columnNumber: 7
         }, this);
     }
@@ -2942,7 +2936,7 @@ const container = document.getElementsByClassName("app-container")[0];
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","react-dom":"j6uA9","prop-types":"7wKI2","./components/main-view/main-view":"4gflv","./index.scss":"lJZlQ","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","react-bootstrap/Container":"hEdsw","redux":"cDNB3","react-redux":"bdVon","./reducers/reducers":"dgblV"}],"iTorj":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","react-dom":"j6uA9","prop-types":"7wKI2","./components/main-view/main-view":"4gflv","react-bootstrap/Container":"hEdsw","./index.scss":"lJZlQ","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"iTorj":[function(require,module,exports) {
 "use strict";
 module.exports = require("./cjs/react-jsx-dev-runtime.development.js");
 
@@ -3021,7 +3015,8 @@ module.exports = require("./cjs/react-jsx-dev-runtime.development.js");
          // Note: typeof might be other than 'symbol' or 'number' (e.g. if it's a polyfill).
         if (type === REACT_FRAGMENT_TYPE || type === REACT_PROFILER_TYPE || enableDebugTracing || type === REACT_STRICT_MODE_TYPE || type === REACT_SUSPENSE_TYPE || type === REACT_SUSPENSE_LIST_TYPE || enableLegacyHidden || type === REACT_OFFSCREEN_TYPE || enableScopeAPI || enableCacheElement || enableTransitionTracing) return true;
         if (typeof type === "object" && type !== null) {
-            if (type.$$typeof === REACT_LAZY_TYPE || type.$$typeof === REACT_MEMO_TYPE || type.$$typeof === REACT_PROVIDER_TYPE || type.$$typeof === REACT_CONTEXT_TYPE || type.$$typeof === REACT_FORWARD_REF_TYPE || // types supported by any Flight configuration anywhere since
+            if (type.$$typeof === REACT_LAZY_TYPE || type.$$typeof === REACT_MEMO_TYPE || type.$$typeof === REACT_PROVIDER_TYPE || type.$$typeof === REACT_CONTEXT_TYPE || type.$$typeof === REACT_FORWARD_REF_TYPE || // This needs to include all possible module reference object
+            // types supported by any Flight configuration anywhere since
             // we don't know which Flight build this will end up being used
             // with.
             type.$$typeof === REACT_MODULE_REFERENCE || type.getModuleId !== undefined) return true;
@@ -3695,7 +3690,8 @@ module.exports = require("./cjs/react-jsx-dev-runtime.development.js");
         if (type === null || type === undefined || typeof type === "string") return;
         var propTypes;
         if (typeof type === "function") propTypes = type.propTypes;
-        else if (typeof type === "object" && (type.$$typeof === REACT_FORWARD_REF_TYPE || // Inner props are checked in the reconciler.
+        else if (typeof type === "object" && (type.$$typeof === REACT_FORWARD_REF_TYPE || // Note: Memo only checks outer props here.
+        // Inner props are checked in the reconciler.
         type.$$typeof === REACT_MEMO_TYPE)) propTypes = type.propTypes;
         else return;
         if (propTypes) {
@@ -4831,7 +4827,8 @@ module.exports = require("./cjs/react.development.js");
          // Note: typeof might be other than 'symbol' or 'number' (e.g. if it's a polyfill).
         if (type === REACT_FRAGMENT_TYPE || type === REACT_PROFILER_TYPE || enableDebugTracing || type === REACT_STRICT_MODE_TYPE || type === REACT_SUSPENSE_TYPE || type === REACT_SUSPENSE_LIST_TYPE || enableLegacyHidden || type === REACT_OFFSCREEN_TYPE || enableScopeAPI || enableCacheElement || enableTransitionTracing) return true;
         if (typeof type === "object" && type !== null) {
-            if (type.$$typeof === REACT_LAZY_TYPE || type.$$typeof === REACT_MEMO_TYPE || type.$$typeof === REACT_PROVIDER_TYPE || type.$$typeof === REACT_CONTEXT_TYPE || type.$$typeof === REACT_FORWARD_REF_TYPE || // types supported by any Flight configuration anywhere since
+            if (type.$$typeof === REACT_LAZY_TYPE || type.$$typeof === REACT_MEMO_TYPE || type.$$typeof === REACT_PROVIDER_TYPE || type.$$typeof === REACT_CONTEXT_TYPE || type.$$typeof === REACT_FORWARD_REF_TYPE || // This needs to include all possible module reference object
+            // types supported by any Flight configuration anywhere since
             // we don't know which Flight build this will end up being used
             // with.
             type.$$typeof === REACT_MODULE_REFERENCE || type.getModuleId !== undefined) return true;
@@ -5320,7 +5317,8 @@ module.exports = require("./cjs/react.development.js");
         if (type === null || type === undefined || typeof type === "string") return;
         var propTypes;
         if (typeof type === "function") propTypes = type.propTypes;
-        else if (typeof type === "object" && (type.$$typeof === REACT_FORWARD_REF_TYPE || // Inner props are checked in the reconciler.
+        else if (typeof type === "object" && (type.$$typeof === REACT_FORWARD_REF_TYPE || // Note: Memo only checks outer props here.
+        // Inner props are checked in the reconciler.
         type.$$typeof === REACT_MEMO_TYPE)) propTypes = type.propTypes;
         else return;
         if (propTypes) {
@@ -6974,7 +6972,8 @@ module.exports = require("./cjs/react-dom.development.js");
         var type = props.type;
         if (value != null) {
             if (type === "number") {
-                if (value === 0 && node.value === "" || // eslint-disable-next-line
+                if (value === 0 && node.value === "" || // We explicitly want to coerce to number here if possible.
+                // eslint-disable-next-line
                 node.value != value) node.value = toString(value);
             } else if (node.value !== toString(value)) node.value = toString(value);
         } else if (type === "submit" || type === "reset") {
@@ -9677,12 +9676,14 @@ module.exports = require("./cjs/react-dom.development.js");
          // If we're already in the middle of a render, switching lanes will interrupt
         // it and we'll lose our progress. We should only do this if the new lanes are
         // higher priority.
-        if (wipLanes !== NoLanes && wipLanes !== nextLanes && // bother waiting until the root is complete.
+        if (wipLanes !== NoLanes && wipLanes !== nextLanes && // If we already suspended with a delay, then interrupting is fine. Don't
+        // bother waiting until the root is complete.
         (wipLanes & suspendedLanes) === NoLanes) {
             var nextLane = getHighestPriorityLane(nextLanes);
             var wipLane = getHighestPriorityLane(wipLanes);
             if (// one. This works because the bits decrease in priority as you go left.
-            nextLane >= wipLane || // only difference between default updates and transition updates is that
+            nextLane >= wipLane || // Default priority updates should not interrupt transition updates. The
+            // only difference between default updates and transition updates is that
             // default updates do not support refresh transitions.
             nextLane === DefaultLane && (wipLane & TransitionLanes) !== NoLanes) // Keep working on the existing in-progress tree. Do not interrupt.
             return wipLanes;
@@ -9997,7 +9998,8 @@ module.exports = require("./cjs/react-dom.development.js");
         while(lanes){
             var index = pickArbitraryLaneIndex(lanes);
             var lane = 1 << index;
-            if (lane & entangledLanes | entanglements[index] & entangledLanes) entanglements[index] |= entangledLanes;
+            if (lane & entangledLanes | // Is this lane transitively entangled with the newly entangled lanes?
+            entanglements[index] & entangledLanes) entanglements[index] |= entangledLanes;
             lanes &= ~lane;
         }
     }
@@ -11167,7 +11169,8 @@ module.exports = require("./cjs/react-dom.development.js");
  * This is required because Firefox fires `keypress` events for key commands
  * (cut, copy, select-all, etc.) even though no character is inserted.
  */ function isKeypressCommand(nativeEvent) {
-        return (nativeEvent.ctrlKey || nativeEvent.altKey || nativeEvent.metaKey) && !(nativeEvent.ctrlKey && nativeEvent.altKey);
+        return (nativeEvent.ctrlKey || nativeEvent.altKey || nativeEvent.metaKey) && // ctrlKey && altKey is equivalent to AltGr, and is not a command.
+        !(nativeEvent.ctrlKey && nativeEvent.altKey);
     }
     /**
  * Translate native top level events into event types.
@@ -12388,7 +12391,8 @@ module.exports = require("./cjs/react-dom.development.js");
         // In the past, React has always bubbled them, but this can be surprising.
         // We're going to try aligning closer to the browser behavior by not bubbling
         // them in React either. We'll start by not bubbling onScroll, and then expand.
-        var accumulateTargetOnly = !inCapturePhase && // nonDelegatedEvents list in DOMPluginEventSystem.
+        var accumulateTargetOnly = !inCapturePhase && // TODO: ideally, we'd eventually add all events from
+        // nonDelegatedEvents list in DOMPluginEventSystem.
         // Then we can remove this special list.
         // This is a breaking change that can wait until React 18.
         domEventName === "scroll";
@@ -13327,12 +13331,14 @@ module.exports = require("./cjs/react-dom.development.js");
                     if (typeof nextProp !== "function") warnForInvalidEventListener(propKey, nextProp);
                     if (propKey === "onScroll") listenToNonDelegatedEvent("scroll", domElement);
                 }
-            } else if (shouldWarnDev && true && typeof isCustomComponentTag === "boolean") {
+            } else if (shouldWarnDev && true && // Convince Flow we've calculated it (it's DEV-only in this method.)
+            typeof isCustomComponentTag === "boolean") {
                 // Validate that the properties correspond to their expected values.
                 var serverValue = void 0;
                 var propertyInfo = isCustomComponentTag && enableCustomElementPropertySupport ? null : getPropertyInfo(propKey);
                 if (rawProps[SUPPRESS_HYDRATION_WARNING] === true) ;
-                else if (propKey === SUPPRESS_CONTENT_EDITABLE_WARNING || propKey === SUPPRESS_HYDRATION_WARNING || // TODO: Only ignore them on controlled tags.
+                else if (propKey === SUPPRESS_CONTENT_EDITABLE_WARNING || propKey === SUPPRESS_HYDRATION_WARNING || // Controlled attributes are not validated
+                // TODO: Only ignore them on controlled tags.
                 propKey === "value" || propKey === "checked" || propKey === "selected") ;
                 else if (propKey === DANGEROUSLY_SET_INNER_HTML) {
                     var serverHTML = domElement.innerHTML;
@@ -15147,7 +15153,8 @@ module.exports = require("./cjs/react-dom.development.js");
     ReactStrictModeWarnings.recordUnsafeLifecycleWarnings = function(fiber, instance) {
         // Dedupe strategy: Warn once per component.
         if (didWarnAboutUnsafeLifecycles.has(fiber.type)) return;
-        if (typeof instance.componentWillMount === "function" && instance.componentWillMount.__suppressDeprecationWarning !== true) pendingComponentWillMountWarnings.push(fiber);
+        if (typeof instance.componentWillMount === "function" && // Don't warn about react-lifecycles-compat polyfilled components.
+        instance.componentWillMount.__suppressDeprecationWarning !== true) pendingComponentWillMountWarnings.push(fiber);
         if (fiber.mode & StrictLegacyMode && typeof instance.UNSAFE_componentWillMount === "function") pendingUNSAFE_ComponentWillMountWarnings.push(fiber);
         if (typeof instance.componentWillReceiveProps === "function" && instance.componentWillReceiveProps.__suppressDeprecationWarning !== true) pendingComponentWillReceivePropsWarnings.push(fiber);
         if (fiber.mode & StrictLegacyMode && typeof instance.UNSAFE_componentWillReceiveProps === "function") pendingUNSAFE_ComponentWillReceivePropsWarnings.push(fiber);
@@ -15852,7 +15859,8 @@ module.exports = require("./cjs/react-dom.development.js");
                     } // Process this update.
                     newState = getStateFromUpdate(workInProgress, queue, update, newState, props, instance);
                     var callback = update.callback;
-                    if (callback !== null && // callback again.
+                    if (callback !== null && // If the update was already committed, we should not queue its
+                    // callback again.
                     update.lane !== NoLane) {
                         workInProgress.flags |= Callback;
                         var effects = queue.effects;
@@ -16371,7 +16379,8 @@ module.exports = require("./cjs/react-dom.development.js");
             applyDerivedStateFromProps(workInProgress, ctor, getDerivedStateFromProps, newProps);
             newState = workInProgress.memoizedState;
         }
-        var shouldUpdate = checkHasForceUpdateAfterProcessing() || checkShouldComponentUpdate(workInProgress, ctor, oldProps, newProps, oldState, newState, nextContext) || // both before and after `shouldComponentUpdate` has been called. Not ideal,
+        var shouldUpdate = checkHasForceUpdateAfterProcessing() || checkShouldComponentUpdate(workInProgress, ctor, oldProps, newProps, oldState, newState, nextContext) || // TODO: In some cases, we'll end up checking if context has changed twice,
+        // both before and after `shouldComponentUpdate` has been called. Not ideal,
         // but I'm loath to refactor this function. This only happens for memoized
         // components so it's not that common.
         enableLazyContextPropagation;
@@ -16433,7 +16442,8 @@ module.exports = require("./cjs/react-dom.development.js");
         if (mixedRef !== null && typeof mixedRef !== "function" && typeof mixedRef !== "object") {
             // TODO: Clean this up once we turn on the string ref warning for
             // everyone, because the strict mode case will no longer be relevant
-            if ((returnFiber.mode & StrictLegacyMode || warnAboutStringRefs) && // because these cannot be automatically converted to an arrow function
+            if ((returnFiber.mode & StrictLegacyMode || warnAboutStringRefs) && // We warn in ReactElement.js if owner and self are equal for string refs
+            // because these cannot be automatically converted to an arrow function
             // using a codemod. Therefore, we don't have to warn about string refs again.
             !(element._owner && element._self && element._owner.stateNode !== element._self)) {
                 var componentName = getComponentNameFromFiber(returnFiber) || "Component";
@@ -16581,7 +16591,8 @@ module.exports = require("./cjs/react-dom.development.js");
             var elementType = element.type;
             if (elementType === REACT_FRAGMENT_TYPE) return updateFragment(returnFiber, current, element.props.children, lanes, element.key);
             if (current !== null) {
-                if (current.elementType === elementType || isCompatibleFamilyForHotReloading(current, element) || // We need to do this after the Hot Reloading check above,
+                if (current.elementType === elementType || isCompatibleFamilyForHotReloading(current, element) || // Lazy types should reconcile their resolved type.
+                // We need to do this after the Hot Reloading check above,
                 // because hot reloading has different semantics than prod because
                 // it doesn't resuspend. So we can't let the call below suspend.
                 typeof elementType === "object" && elementType !== null && elementType.$$typeof === REACT_LAZY_TYPE && resolveLazy(elementType) === current.type) {
@@ -16855,7 +16866,8 @@ module.exports = require("./cjs/react-dom.development.js");
             if (typeof iteratorFn !== "function") throw new Error("An object is not an iterable. This error is likely caused by a bug in React. Please file an issue.");
             // We don't support rendering Generators because it's a mutation.
             // See https://github.com/facebook/react/issues/12995
-            if (typeof Symbol === "function" && newChildrenIterable[Symbol.toStringTag] === "Generator") {
+            if (typeof Symbol === "function" && // $FlowFixMe Flow doesn't know about toStringTag
+            newChildrenIterable[Symbol.toStringTag] === "Generator") {
                 if (!didWarnAboutGenerators) error("Using Generators as children is unsupported and will likely yield unexpected results because enumerating a generator mutates it. You may convert it to an array with `Array.from()` or the `[...spread]` operator before rendering. Keep in mind you might need to polyfill these features for older browsers.");
                 didWarnAboutGenerators = true;
             } // Warn about using Maps as children
@@ -17001,7 +17013,8 @@ module.exports = require("./cjs/react-dom.development.js");
                             existing._debugOwner = element._owner;
                             return existing;
                         }
-                    } else if (child.elementType === elementType || isCompatibleFamilyForHotReloading(child, element) || // We need to do this after the Hot Reloading check above,
+                    } else if (child.elementType === elementType || isCompatibleFamilyForHotReloading(child, element) || // Lazy types should reconcile their resolved type.
+                    // We need to do this after the Hot Reloading check above,
                     // because hot reloading has different semantics than prod because
                     // it doesn't resuspend. So we can't let the call below suspend.
                     typeof elementType === "object" && elementType !== null && elementType.$$typeof === REACT_LAZY_TYPE && resolveLazy(elementType) === child.type) {
@@ -17218,7 +17231,8 @@ module.exports = require("./cjs/react-dom.development.js");
                     var dehydrated = state.dehydrated;
                     if (dehydrated === null || isSuspenseInstancePending(dehydrated) || isSuspenseInstanceFallback(dehydrated)) return node;
                 }
-            } else if (node.tag === SuspenseListComponent && // keep track of whether it suspended or not.
+            } else if (node.tag === SuspenseListComponent && // revealOrder undefined can't be trusted because it don't
+            // keep track of whether it suspended or not.
             node.memoizedProps.revealOrder !== undefined) {
                 var didSuspend = (node.flags & DidCapture) !== NoFlags;
                 if (didSuspend) return node;
@@ -17411,7 +17425,8 @@ module.exports = require("./cjs/react-dom.development.js");
         // render. If this fires, it suggests that we incorrectly reset the static
         // flags in some other part of the codebase. This has happened before, for
         // example, in the SuspenseList implementation.
-        if (current !== null && (current.flags & StaticMask) !== (workInProgress.flags & StaticMask) && // and creates false positives. To make this work in legacy mode, we'd
+        if (current !== null && (current.flags & StaticMask) !== (workInProgress.flags & StaticMask) && // Disable this warning in legacy mode, because legacy Suspense is weird
+        // and creates false positives. To make this work in legacy mode, we'd
         // need to mark fibers that commit in an incomplete state, somehow. For
         // now I'll disable the warning that most of the bugs that would trigger
         // it are either exclusive to concurrent mode or exist in both.
@@ -17782,7 +17797,8 @@ module.exports = require("./cjs/react-dom.development.js");
         // commit phase if there was an interleaved mutation. In concurrent mode
         // this can happen all the time, but even in synchronous mode, an earlier
         // effect may have mutated the store.
-        if (inst.getSnapshot !== getSnapshot || snapshotChanged || // checking whether we scheduled a subscription effect above.
+        if (inst.getSnapshot !== getSnapshot || snapshotChanged || // Check if the susbcribe function changed. We can save some memory by
+        // checking whether we scheduled a subscription effect above.
         workInProgressHook !== null && workInProgressHook.memoizedState.tag & HasEffect) {
             fiber.flags |= Passive;
             pushEffect(HasEffect | Passive$1, updateStoreInstance.bind(null, fiber, inst, nextSnapshot, getSnapshot), undefined, null); // Unless we're rendering a blocking lane, schedule a consistency check.
@@ -19715,7 +19731,8 @@ module.exports = require("./cjs/react-dom.development.js");
     function updateMemoComponent(current, workInProgress, Component, nextProps, renderLanes) {
         if (current === null) {
             var type = Component.type;
-            if (isSimpleFunctionComponent(type) && Component.compare === null && Component.defaultProps === undefined) {
+            if (isSimpleFunctionComponent(type) && Component.compare === null && // SimpleMemoComponent codepath doesn't resolve outer props either.
+            Component.defaultProps === undefined) {
                 var resolvedType = type;
                 resolvedType = resolveFunctionForHotReloading(type);
                 // and with only the default shallow comparison, we upgrade it
@@ -20527,7 +20544,8 @@ module.exports = require("./cjs/react-dom.development.js");
         };
         var primaryChildFragment;
         if (// completed, even though it's in an inconsistent state.
-        (mode & ConcurrentMode) === NoMode && // already cloned. In legacy mode, the only case where this isn't true is
+        (mode & ConcurrentMode) === NoMode && // Make sure we're on the second pass, i.e. the primary child fragment was
+        // already cloned. In legacy mode, the only case where this isn't true is
         // when DevTools forces us to display a fallback; we skip the first render
         // pass entirely and go straight to rendering the fallback. (In Concurrent
         // Mode, SuspenseList can also trigger this scenario, but this is a legacy-
@@ -21222,7 +21240,8 @@ module.exports = require("./cjs/react-dom.development.js");
                 // Neither props nor legacy context changes. Check if there's a pending
                 // update or context change.
                 var hasScheduledUpdateOrContext = checkScheduledUpdateOrContext(current, renderLanes);
-                if (!hasScheduledUpdateOrContext && // may not be work scheduled on `current`, so we check for this flag.
+                if (!hasScheduledUpdateOrContext && // If this is the second pass of an error or suspense boundary, there
+                // may not be work scheduled on `current`, so we check for this flag.
                 (workInProgress.flags & DidCapture) === NoFlags) {
                     // No pending updates or context. Bail out now.
                     didReceiveUpdate = false;
@@ -21614,7 +21633,8 @@ module.exports = require("./cjs/react-dom.development.js");
                     markUpdate(workInProgress);
                     else if (current !== null) {
                         var prevState = current.memoizedState;
-                        if (!prevState.isDehydrated || (workInProgress.flags & ForceClientRender) !== NoFlags) {
+                        if (!prevState.isDehydrated || // Check if we reverted to client rendering (e.g. due to an error)
+                        (workInProgress.flags & ForceClientRender) !== NoFlags) {
                             // Schedule an effect to clear this container at the start of the
                             // next commit. This handles the case of React rendering into a
                             // container with previous children. It's also safe to do for
@@ -23820,7 +23840,8 @@ module.exports = require("./cjs/react-dom.development.js");
                 markRootSuspended$1(root, workInProgressRootRenderLanes);
             }
             ensureRootIsScheduled(root, eventTime);
-            if (lane === SyncLane && executionContext === NoContext && (fiber.mode & ConcurrentMode) === NoMode && !ReactCurrentActQueue$1.isBatchingLegacy) {
+            if (lane === SyncLane && executionContext === NoContext && (fiber.mode & ConcurrentMode) === NoMode && // Treat `act` as if it's inside `batchedUpdates`, even in legacy mode.
+            !ReactCurrentActQueue$1.isBatchingLegacy) {
                 // Flush the synchronous work now, unless we're already working or inside
                 // a batch. This is intentionally inside scheduleUpdateOnFiber instead of
                 // scheduleCallbackForFiber to preserve the ability to schedule a callback
@@ -23870,7 +23891,8 @@ module.exports = require("./cjs/react-dom.development.js");
         } // We use the highest priority lane to represent the priority of the callback.
         var newCallbackPriority = getHighestPriorityLane(nextLanes); // Check if there's an existing task. We may be able to reuse it.
         var existingCallbackPriority = root.callbackPriority;
-        if (existingCallbackPriority === newCallbackPriority && // Scheduler task, rather than an `act` task, cancel it and re-scheduled
+        if (existingCallbackPriority === newCallbackPriority && // Special case related to `act`. If the currently scheduled task is a
+        // Scheduler task, rather than an `act` task, cancel it and re-scheduled
         // on the `act` queue.
         !(ReactCurrentActQueue$1.current !== null && existingCallbackNode !== fakeActCallbackNode)) {
             // If we're going to re-use an existing task, it needs to exist.
@@ -24082,7 +24104,8 @@ module.exports = require("./cjs/react-dom.development.js");
             case RootSuspended:
                 markRootSuspended$1(root, lanes); // We have an acceptable loading state. We need to figure out if we
                 // should immediately commit it or wait a bit.
-                if (includesOnlyRetries(lanes) && !shouldForceFlushFallbacksInDEV()) {
+                if (includesOnlyRetries(lanes) && // do not delay if we're inside an act() scope
+                !shouldForceFlushFallbacksInDEV()) {
                     // This render only included retries, no updates. Throttle committing
                     // retries so that we don't show too many loading states too quickly.
                     var msUntilTimeout = globalMostRecentFallbackTime + FALLBACK_THROTTLE_MS - now(); // Don't bother with a very short suspense time.
@@ -24248,7 +24271,8 @@ module.exports = require("./cjs/react-dom.development.js");
         } finally{
             executionContext = prevExecutionContext; // If there were legacy sync updates, flush them at the end of the outer
             // most batchedUpdates-like method.
-            if (executionContext === NoContext && !ReactCurrentActQueue$1.isBatchingLegacy) {
+            if (executionContext === NoContext && // Treat `act` as if it's inside `batchedUpdates`, even in legacy mode.
+            !ReactCurrentActQueue$1.isBatchingLegacy) {
                 resetRenderTimer();
                 flushSyncCallbacksOnlyInLegacyMode();
             }
@@ -26547,7 +26571,9 @@ module.exports = require("./cjs/react-dom.development.js");
     setAttemptHydrationAtCurrentPriority(attemptHydrationAtCurrentPriority$1);
     setGetCurrentUpdatePriority(getCurrentUpdatePriority);
     setAttemptHydrationAtPriority(runWithPriority);
-    if (typeof Map !== "function" || Map.prototype == null || typeof Map.prototype.forEach !== "function" || typeof Set !== "function" || Set.prototype == null || typeof Set.prototype.clear !== "function" || typeof Set.prototype.forEach !== "function") error("React depends on Map and Set built-in types. Make sure that you load a polyfill in older browsers. https://reactjs.org/link/react-polyfills");
+    if (typeof Map !== "function" || // $FlowIssue Flow incorrectly thinks Map has no prototype
+    Map.prototype == null || typeof Map.prototype.forEach !== "function" || typeof Set !== "function" || // $FlowIssue Flow incorrectly thinks Set has no prototype
+    Set.prototype == null || typeof Set.prototype.clear !== "function" || typeof Set.prototype.forEach !== "function") error("React depends on Map and Set built-in types. Make sure that you load a polyfill in older browsers. https://reactjs.org/link/react-polyfills");
     setRestoreImplementation(restoreControlledState$3);
     setBatchingImplementation(batchedUpdates$1, discreteUpdates, flushSync);
     function createPortal$1(children, container) {
@@ -27075,7 +27101,12 @@ module.exports = require("./cjs/scheduler.development.js");
 })();
 
 },{}],"7wKI2":[function(require,module,exports) {
-var ReactIs = require("react-is");
+/**
+ * Copyright (c) 2013-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */ var ReactIs = require("react-is");
 // By explicitly using `prop-types` you are opting into new development behavior.
 // http://fb.me/prop-types-in-prod
 var throwOnDirectAccess = true;
@@ -27119,7 +27150,8 @@ module.exports = require("./cjs/react-is.development.js");
     var REACT_RESPONDER_TYPE = hasSymbol ? Symbol.for("react.responder") : 0xead6;
     var REACT_SCOPE_TYPE = hasSymbol ? Symbol.for("react.scope") : 0xead7;
     function isValidElementType(type) {
-        return typeof type === "string" || typeof type === "function" || type === REACT_FRAGMENT_TYPE || type === REACT_CONCURRENT_MODE_TYPE || type === REACT_PROFILER_TYPE || type === REACT_STRICT_MODE_TYPE || type === REACT_SUSPENSE_TYPE || type === REACT_SUSPENSE_LIST_TYPE || typeof type === "object" && type !== null && (type.$$typeof === REACT_LAZY_TYPE || type.$$typeof === REACT_MEMO_TYPE || type.$$typeof === REACT_PROVIDER_TYPE || type.$$typeof === REACT_CONTEXT_TYPE || type.$$typeof === REACT_FORWARD_REF_TYPE || type.$$typeof === REACT_FUNDAMENTAL_TYPE || type.$$typeof === REACT_RESPONDER_TYPE || type.$$typeof === REACT_SCOPE_TYPE || type.$$typeof === REACT_BLOCK_TYPE);
+        return typeof type === "string" || typeof type === "function" || // Note: its typeof might be other than 'symbol' or 'number' if it's a polyfill.
+        type === REACT_FRAGMENT_TYPE || type === REACT_CONCURRENT_MODE_TYPE || type === REACT_PROFILER_TYPE || type === REACT_STRICT_MODE_TYPE || type === REACT_SUSPENSE_TYPE || type === REACT_SUSPENSE_LIST_TYPE || typeof type === "object" && type !== null && (type.$$typeof === REACT_LAZY_TYPE || type.$$typeof === REACT_MEMO_TYPE || type.$$typeof === REACT_PROVIDER_TYPE || type.$$typeof === REACT_CONTEXT_TYPE || type.$$typeof === REACT_FORWARD_REF_TYPE || type.$$typeof === REACT_FUNDAMENTAL_TYPE || type.$$typeof === REACT_RESPONDER_TYPE || type.$$typeof === REACT_SCOPE_TYPE || type.$$typeof === REACT_BLOCK_TYPE);
     }
     function typeOf(object) {
         if (typeof object === "object" && object !== null) {
@@ -27833,10 +27865,7 @@ var _axiosDefault = parcelHelpers.interopDefault(_axios);
 var _propTypes = require("prop-types");
 var _propTypesDefault = parcelHelpers.interopDefault(_propTypes);
 var _reactBootstrap = require("react-bootstrap");
-var _utilsJs = require("../../utils.js");
-var _utilsJsDefault = parcelHelpers.interopDefault(_utilsJs);
 var _reactRouterDom = require("react-router-dom");
-//import { render } from "react-dom/cjs/react-dom.production.min";
 var _loginView = require("../login-view/login-view");
 var _movieView = require("../movie-view/movie-view");
 var _movieCard = require("../movie-card/movie-card");
@@ -27846,20 +27875,16 @@ var _navbar = require("../navbar/navbar");
 var _directorView = require("../director-view/director-view");
 var _genreView = require("../genre-view/genre-view");
 var _mainViewScss = require("./main-view.scss");
-var _reactRedux = require("react-redux");
-var _actions = require("../../actions/actions");
-var _moviesList = require("../movies-list/movies-list");
-var _moviesListDefault = parcelHelpers.interopDefault(_moviesList);
 class MainView extends (0, _reactDefault.default).Component {
     constructor(){
         super();
-    // this.state = {
-    //   movies: [],
-    //   selectedMovie: null,
-    //   user: null,
-    //   registered: true,
-    //   FavoriteMovies: [],
-    // };
+        this.state = {
+            movies: [],
+            selectedMovie: null,
+            user: null,
+            registered: true,
+            FavoriteMovies: []
+        };
     }
     componentDidMount() {
         let accessToken = localStorage.getItem("token");
@@ -27883,13 +27908,16 @@ class MainView extends (0, _reactDefault.default).Component {
         this.getMovies(authData.token);
     }
     getMovies(token) {
-        (0, _axiosDefault.default).get(`https://nixflix.herokuapp.com/movies`, {
+        (0, _axiosDefault.default).get("https://nixflix.herokuapp.com/movies", {
             headers: {
                 Authorization: `Bearer ${token}`
             }
         }).then((response)=>{
-            this.props.setMovies(response.data);
-        }).catch((error)=>{
+            // Assign the result to the state
+            this.setState({
+                movies: response.data
+            });
+        }).catch(function(error) {
             console.log(error);
         });
     }
@@ -27910,7 +27938,7 @@ class MainView extends (0, _reactDefault.default).Component {
         let tempObject = {
             ...this.state.user
         };
-        tempObject.FavoriteMovies = (0, _utilsJsDefault.default).removeDuplicates(tempObject.FavoriteMovies);
+        tempObject.FavoriteMovies = Utils.removeDuplicates(tempObject.FavoriteMovies);
         if (!tempObject.FavoriteMovies.includes(id)) tempObject.FavoriteMovies.push(id);
         this.setState({
             user: tempObject
@@ -27942,13 +27970,12 @@ class MainView extends (0, _reactDefault.default).Component {
     rootPath(user) {
         if (!user) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _loginView.LoginView), {}, void 0, false, {
             fileName: "src/components/main-view/main-view.jsx",
-            lineNumber: 135,
+            lineNumber: 129,
             columnNumber: 23
         }, this);
     }
     render() {
-        let movies = this.props;
-        let user = this.state;
+        const { movies , movie , user , selectedMovie  } = this.state;
         console.log("Movies from mainview: ", movies);
         console.log("User from mainview: ", user);
         return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.BrowserRouter), {
@@ -27958,7 +27985,7 @@ class MainView extends (0, _reactDefault.default).Component {
                     movies: movies
                 }, void 0, false, {
                     fileName: "src/components/main-view/main-view.jsx",
-                    lineNumber: 146,
+                    lineNumber: 139,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Container), {
@@ -27981,17 +28008,13 @@ class MainView extends (0, _reactDefault.default).Component {
                                         children: "No movies"
                                     }, void 0, false, void 0, void 0) : movies.map((m)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Col), {
                                             className: "movie-card",
-                                            children: [
-                                                "return ",
-                                                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _moviesListDefault.default), {
-                                                    movies: movies
-                                                }, void 0, false, void 0, void 0),
-                                                ";"
-                                            ]
-                                        }, m._id, true, void 0, void 0))
+                                            children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieCard.MovieCard), {
+                                                movie: m
+                                            }, void 0, false, void 0, void 0)
+                                        }, m._id, false, void 0, void 0))
                                 }, void 0, false, {
                                     fileName: "src/components/main-view/main-view.jsx",
-                                    lineNumber: 150,
+                                    lineNumber: 143,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Route), {
@@ -28006,7 +28029,25 @@ class MainView extends (0, _reactDefault.default).Component {
                                     }, void 0, false, void 0, void 0)
                                 }, void 0, false, {
                                     fileName: "src/components/main-view/main-view.jsx",
-                                    lineNumber: 176,
+                                    lineNumber: 168,
+                                    columnNumber: 15
+                                }, this),
+                                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Route), {
+                                    path: `/users/`,
+                                    element: !user ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Navigate), {
+                                        to: "/",
+                                        replace: true
+                                    }, void 0, false, void 0, void 0) : /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Col), {
+                                        lg: 8,
+                                        md: 8,
+                                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _profileView.ProfileView), {
+                                            movies: movies,
+                                            user: user
+                                        }, void 0, false, void 0, void 0)
+                                    }, void 0, false, void 0, void 0)
+                                }, void 0, false, {
+                                    fileName: "src/components/main-view/main-view.jsx",
+                                    lineNumber: 181,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Route), {
@@ -28024,7 +28065,7 @@ class MainView extends (0, _reactDefault.default).Component {
                                     }, void 0, false, void 0, void 0)
                                 }, void 0, false, {
                                     fileName: "src/components/main-view/main-view.jsx",
-                                    lineNumber: 202,
+                                    lineNumber: 194,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Route), {
@@ -28034,19 +28075,17 @@ class MainView extends (0, _reactDefault.default).Component {
                                         element: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Col), {
                                             md: 6,
                                             children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieView.MovieView), {
-                                                addToFavorites: this.addToFavorites,
-                                                removeFromFavorites: this.removeFromFavorites,
                                                 movies: movies
                                             }, void 0, false, void 0, void 0)
                                         }, void 0, false, void 0, void 0)
                                     }, void 0, false, {
                                         fileName: "src/components/main-view/main-view.jsx",
-                                        lineNumber: 216,
+                                        lineNumber: 208,
                                         columnNumber: 17
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "src/components/main-view/main-view.jsx",
-                                    lineNumber: 215,
+                                    lineNumber: 207,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Route), {
@@ -28063,12 +28102,12 @@ class MainView extends (0, _reactDefault.default).Component {
                                         }, void 0, false, void 0, void 0)
                                     }, void 0, false, {
                                         fileName: "src/components/main-view/main-view.jsx",
-                                        lineNumber: 231,
+                                        lineNumber: 219,
                                         columnNumber: 17
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "src/components/main-view/main-view.jsx",
-                                    lineNumber: 230,
+                                    lineNumber: 218,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Route), {
@@ -28085,58 +28124,67 @@ class MainView extends (0, _reactDefault.default).Component {
                                         }, void 0, false, void 0, void 0)
                                     }, void 0, false, {
                                         fileName: "src/components/main-view/main-view.jsx",
-                                        lineNumber: 246,
+                                        lineNumber: 234,
                                         columnNumber: 17
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "src/components/main-view/main-view.jsx",
-                                    lineNumber: 245,
+                                    lineNumber: 233,
                                     columnNumber: 15
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 149,
+                            lineNumber: 142,
                             columnNumber: 13
                         }, this)
                     }, void 0, false, {
                         fileName: "src/components/main-view/main-view.jsx",
-                        lineNumber: 148,
+                        lineNumber: 141,
                         columnNumber: 11
                     }, this)
                 }, void 0, false, {
                     fileName: "src/components/main-view/main-view.jsx",
-                    lineNumber: 147,
+                    lineNumber: 140,
                     columnNumber: 9
                 }, this)
             ]
         }, void 0, true, {
             fileName: "src/components/main-view/main-view.jsx",
-            lineNumber: 145,
+            lineNumber: 138,
             columnNumber: 7
         }, this);
     }
 }
-let mapStateToProps = (state)=>{
-    return {
-        movies: state.movies
-    };
-};
-exports.default = (0, _reactRedux.connect)(mapStateToProps, {
-    setMovies: (0, _actions.setMovies)
-})(MainView);
 
   $parcel$ReactRefreshHelpers$f7a6.postlude(module);
 } finally {
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","axios":"jo6P5","prop-types":"7wKI2","../login-view/login-view":"9YtA0","../movie-view/movie-view":"ggaUx","./main-view.scss":"eBaMl","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","react-bootstrap":"3AD9A","../../utils.js":"en4he","react-router-dom":"9xmpe","../movie-card/movie-card":"bwuIu","../registration-view/registration-view":"3U8r7","../profile-view/profile-view":"2vVqf","../navbar/navbar":"bNPgg","../director-view/director-view":"9tpci","../genre-view/genre-view":"4tuA0","react-redux":"bdVon","../../actions/actions":"biFwH","../movies-list/movies-list":"bPxKK"}],"jo6P5":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","axios":"jo6P5","prop-types":"7wKI2","react-bootstrap":"3AD9A","react-router-dom":"9xmpe","../login-view/login-view":"9YtA0","../movie-view/movie-view":"ggaUx","../movie-card/movie-card":"bwuIu","../registration-view/registration-view":"3U8r7","../profile-view/profile-view":"2vVqf","../navbar/navbar":"bNPgg","../director-view/director-view":"9tpci","../genre-view/genre-view":"4tuA0","./main-view.scss":"eBaMl","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"jo6P5":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "default", ()=>(0, _axiosJsDefault.default));
+parcelHelpers.export(exports, "Axios", ()=>Axios);
+parcelHelpers.export(exports, "AxiosError", ()=>AxiosError);
+parcelHelpers.export(exports, "CanceledError", ()=>CanceledError);
+parcelHelpers.export(exports, "isCancel", ()=>isCancel);
+parcelHelpers.export(exports, "CancelToken", ()=>CancelToken);
+parcelHelpers.export(exports, "VERSION", ()=>VERSION);
+parcelHelpers.export(exports, "all", ()=>all);
+parcelHelpers.export(exports, "Cancel", ()=>Cancel);
+parcelHelpers.export(exports, "isAxiosError", ()=>isAxiosError);
+parcelHelpers.export(exports, "spread", ()=>spread);
+parcelHelpers.export(exports, "toFormData", ()=>toFormData);
+parcelHelpers.export(exports, "AxiosHeaders", ()=>AxiosHeaders);
+parcelHelpers.export(exports, "formToJSON", ()=>formToJSON);
 var _axiosJs = require("./lib/axios.js");
 var _axiosJsDefault = parcelHelpers.interopDefault(_axiosJs);
-exports.default = (0, _axiosJsDefault.default);
+// This module is intended to unwrap Axios default export as named.
+// Keep top-level export same with static properties
+// so that it can keep same with es module or cjs
+const { Axios , AxiosError , CanceledError , isCancel , CancelToken , VERSION , all , Cancel , isAxiosError , spread , toFormData , AxiosHeaders , formToJSON  } = (0, _axiosJsDefault.default);
 
 },{"./lib/axios.js":"63MyY","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"63MyY":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
@@ -28168,6 +28216,8 @@ var _spreadJs = require("./helpers/spread.js");
 var _spreadJsDefault = parcelHelpers.interopDefault(_spreadJs);
 var _isAxiosErrorJs = require("./helpers/isAxiosError.js");
 var _isAxiosErrorJsDefault = parcelHelpers.interopDefault(_isAxiosErrorJs);
+var _axiosHeadersJs = require("./core/AxiosHeaders.js");
+var _axiosHeadersJsDefault = parcelHelpers.interopDefault(_axiosHeadersJs);
 "use strict";
 /**
  * Create an instance of Axios
@@ -28213,16 +28263,18 @@ axios.all = function all(promises) {
 axios.spread = (0, _spreadJsDefault.default);
 // Expose isAxiosError
 axios.isAxiosError = (0, _isAxiosErrorJsDefault.default);
-axios.formToJSON = (thing)=>{
-    return (0, _formDataToJSONJsDefault.default)((0, _utilsJsDefault.default).isHTMLForm(thing) ? new FormData(thing) : thing);
-};
+axios.AxiosHeaders = (0, _axiosHeadersJsDefault.default);
+axios.formToJSON = (thing)=>(0, _formDataToJSONJsDefault.default)((0, _utilsJsDefault.default).isHTMLForm(thing) ? new FormData(thing) : thing);
+axios.default = axios;
+// this module should only have a default export
 exports.default = axios;
 
-},{"./utils.js":"5By4s","./helpers/bind.js":"haRQb","./core/Axios.js":"cpqD8","./core/mergeConfig.js":"b85oP","./defaults/index.js":"hXfHM","./helpers/formDataToJSON.js":"01RfH","./cancel/CanceledError.js":"9PwCG","./cancel/CancelToken.js":"45wzn","./cancel/isCancel.js":"a0VmF","./env/data.js":"h29L9","./helpers/toFormData.js":"ajoez","./core/AxiosError.js":"3u8Tl","./helpers/spread.js":"dyQ8N","./helpers/isAxiosError.js":"eyiLq","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"5By4s":[function(require,module,exports) {
+},{"./utils.js":"5By4s","./helpers/bind.js":"haRQb","./core/Axios.js":"cpqD8","./core/mergeConfig.js":"b85oP","./defaults/index.js":"hXfHM","./helpers/formDataToJSON.js":"01RfH","./cancel/CanceledError.js":"9PwCG","./cancel/CancelToken.js":"45wzn","./cancel/isCancel.js":"a0VmF","./env/data.js":"h29L9","./helpers/toFormData.js":"ajoez","./core/AxiosError.js":"3u8Tl","./helpers/spread.js":"dyQ8N","./helpers/isAxiosError.js":"eyiLq","./core/AxiosHeaders.js":"cgSSx","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"5By4s":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _bindJs = require("./helpers/bind.js");
 var _bindJsDefault = parcelHelpers.interopDefault(_bindJs);
+var global = arguments[3];
 "use strict";
 // utils is a library of generic helper functions non-specific to axios
 const { toString  } = Object.prototype;
@@ -28394,7 +28446,7 @@ const typeOfTest = (type)=>(thing)=>typeof thing === type;
  * @param {Function} fn The callback to invoke for each item
  *
  * @param {Boolean} [allOwnKeys = false]
- * @returns {void}
+ * @returns {any}
  */ function forEach(obj, fn, { allOwnKeys =false  } = {}) {
     // Don't bother if no value provided
     if (obj === null || typeof obj === "undefined") return;
@@ -28417,6 +28469,19 @@ const typeOfTest = (type)=>(thing)=>typeof thing === type;
         }
     }
 }
+function findKey(obj, key) {
+    key = key.toLowerCase();
+    const keys = Object.keys(obj);
+    let i = keys.length;
+    let _key;
+    while(i-- > 0){
+        _key = keys[i];
+        if (key === _key.toLowerCase()) return _key;
+    }
+    return null;
+}
+const _global = typeof self === "undefined" ? typeof global === "undefined" ? undefined : global : self;
+const isContextDefined = (context)=>!isUndefined(context) && context !== _global;
 /**
  * Accepts varargs expecting each argument to be an object, then
  * immutably merges the properties of each object and returns result.
@@ -28435,12 +28500,14 @@ const typeOfTest = (type)=>(thing)=>typeof thing === type;
  *
  * @returns {Object} Result of all merge properties
  */ function merge() {
+    const { caseless  } = isContextDefined(this) && this || {};
     const result = {};
     const assignValue = (val, key)=>{
-        if (isPlainObject(result[key]) && isPlainObject(val)) result[key] = merge(result[key], val);
-        else if (isPlainObject(val)) result[key] = merge({}, val);
-        else if (isArray(val)) result[key] = val.slice();
-        else result[key] = val;
+        const targetKey = caseless && findKey(result, key) || key;
+        if (isPlainObject(result[targetKey]) && isPlainObject(val)) result[targetKey] = merge(result[targetKey], val);
+        else if (isPlainObject(val)) result[targetKey] = merge({}, val);
+        else if (isArray(val)) result[targetKey] = val.slice();
+        else result[targetKey] = val;
     };
     for(let i = 0, l = arguments.length; i < l; i++)arguments[i] && forEach(arguments[i], assignValue);
     return result;
@@ -28619,6 +28686,12 @@ const reduceDescriptors = (obj, reducer)=>{
  * @param {Object} obj
  */ const freezeMethods = (obj)=>{
     reduceDescriptors(obj, (descriptor, name)=>{
+        // skip restricted props in strict mode
+        if (isFunction(obj) && [
+            "arguments",
+            "caller",
+            "callee"
+        ].indexOf(name) !== -1) return false;
         const value = obj[name];
         if (!isFunction(value)) return;
         descriptor.enumerable = false;
@@ -28627,7 +28700,7 @@ const reduceDescriptors = (obj, reducer)=>{
             return;
         }
         if (!descriptor.set) descriptor.set = ()=>{
-            throw Error("Can not read-only method '" + name + "'");
+            throw Error("Can not rewrite read-only method '" + name + "'");
         };
     });
 };
@@ -28645,6 +28718,26 @@ const noop = ()=>{};
 const toFiniteNumber = (value, defaultValue)=>{
     value = +value;
     return Number.isFinite(value) ? value : defaultValue;
+};
+const toJSONObject = (obj)=>{
+    const stack = new Array(10);
+    const visit = (source, i)=>{
+        if (isObject(source)) {
+            if (stack.indexOf(source) >= 0) return;
+            if (!("toJSON" in source)) {
+                stack[i] = source;
+                const target = isArray(source) ? [] : {};
+                forEach(source, (value, key)=>{
+                    const reducedValue = visit(value, i + 1);
+                    !isUndefined(reducedValue) && (target[key] = reducedValue);
+                });
+                stack[i] = undefined;
+                return target;
+            }
+        }
+        return source;
+    };
+    return visit(obj, 0);
 };
 exports.default = {
     isArray,
@@ -28688,7 +28781,11 @@ exports.default = {
     toObjectSet,
     toCamelCase,
     noop,
-    toFiniteNumber
+    toFiniteNumber,
+    findKey,
+    global: _global,
+    isContextDefined,
+    toJSONObject
 };
 
 },{"./helpers/bind.js":"haRQb","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"haRQb":[function(require,module,exports) {
@@ -28781,17 +28878,22 @@ const validators = (0, _validatorJsDefault.default).validators;
             config.url = configOrUrl;
         } else config = configOrUrl || {};
         config = (0, _mergeConfigJsDefault.default)(this.defaults, config);
-        const transitional = config.transitional;
+        const { transitional , paramsSerializer , headers  } = config;
         if (transitional !== undefined) (0, _validatorJsDefault.default).assertOptions(transitional, {
             silentJSONParsing: validators.transitional(validators.boolean),
             forcedJSONParsing: validators.transitional(validators.boolean),
             clarifyTimeoutError: validators.transitional(validators.boolean)
         }, false);
+        if (paramsSerializer !== undefined) (0, _validatorJsDefault.default).assertOptions(paramsSerializer, {
+            encode: validators.function,
+            serialize: validators.function
+        }, true);
         // Set config.method
         config.method = (config.method || this.defaults.method || "get").toLowerCase();
+        let contextHeaders;
         // Flatten headers
-        const defaultHeaders = config.headers && (0, _utilsJsDefault.default).merge(config.headers.common, config.headers[config.method]);
-        defaultHeaders && (0, _utilsJsDefault.default).forEach([
+        contextHeaders = headers && (0, _utilsJsDefault.default).merge(headers.common, headers[config.method]);
+        contextHeaders && (0, _utilsJsDefault.default).forEach([
             "delete",
             "get",
             "head",
@@ -28799,10 +28901,10 @@ const validators = (0, _validatorJsDefault.default).validators;
             "put",
             "patch",
             "common"
-        ], function cleanHeaderConfig(method) {
-            delete config.headers[method];
+        ], (method)=>{
+            delete headers[method];
         });
-        config.headers = new (0, _axiosHeadersJsDefault.default)(config.headers, defaultHeaders);
+        config.headers = (0, _axiosHeadersJsDefault.default).concat(contextHeaders, headers);
         // filter out skipped interceptors
         const requestInterceptorChain = [];
         let synchronousRequestInterceptors = true;
@@ -28916,11 +29018,16 @@ var _axiosURLSearchParamsJsDefault = parcelHelpers.interopDefault(_axiosURLSearc
 }
 function buildURL(url, params, options) {
     /*eslint no-param-reassign:0*/ if (!params) return url;
-    const hashmarkIndex = url.indexOf("#");
-    if (hashmarkIndex !== -1) url = url.slice(0, hashmarkIndex);
     const _encode = options && options.encode || encode;
-    const serializerParams = (0, _utilsJsDefault.default).isURLSearchParams(params) ? params.toString() : new (0, _axiosURLSearchParamsJsDefault.default)(params, options).toString(_encode);
-    if (serializerParams) url += (url.indexOf("?") === -1 ? "?" : "&") + serializerParams;
+    const serializeFn = options && options.serialize;
+    let serializedParams;
+    if (serializeFn) serializedParams = serializeFn(params, options);
+    else serializedParams = (0, _utilsJsDefault.default).isURLSearchParams(params) ? params.toString() : new (0, _axiosURLSearchParamsJsDefault.default)(params, options).toString(_encode);
+    if (serializedParams) {
+        const hashmarkIndex = url.indexOf("#");
+        if (hashmarkIndex !== -1) url = url.slice(0, hashmarkIndex);
+        url += (url.indexOf("?") === -1 ? "?" : "&") + serializedParams;
+    }
     return url;
 }
 exports.default = buildURL;
@@ -28989,8 +29096,8 @@ var _axiosErrorJs = require("../core/AxiosError.js");
 var _axiosErrorJsDefault = parcelHelpers.interopDefault(_axiosErrorJs);
 var _formDataJs = require("../env/classes/FormData.js");
 var _formDataJsDefault = parcelHelpers.interopDefault(_formDataJs);
-"use strict";
 var Buffer = require("buffer").Buffer;
+"use strict";
 /**
  * Determines if the given thing is a array or js object.
  *
@@ -29117,7 +29224,7 @@ const predicates = (0, _utilsJsDefault.default).toFlatObject((0, _utilsJsDefault
                 // eslint-disable-next-line no-param-reassign
                 key = removeBrackets(key);
                 arr.forEach(function each(el, index) {
-                    !(0, _utilsJsDefault.default).isUndefined(el) && formData.append(// eslint-disable-next-line no-nested-ternary
+                    !((0, _utilsJsDefault.default).isUndefined(el) || el === null) && formData.append(// eslint-disable-next-line no-nested-ternary
                     indexes === true ? renderKey([
                         key
                     ], index, dots) : indexes === null ? key : key + "[]", convertValue(el));
@@ -29140,7 +29247,7 @@ const predicates = (0, _utilsJsDefault.default).toFlatObject((0, _utilsJsDefault
         if (stack.indexOf(value) !== -1) throw Error("Circular reference detected in " + path.join("."));
         stack.push(value);
         (0, _utilsJsDefault.default).forEach(value, function each(el, key) {
-            const result = !(0, _utilsJsDefault.default).isUndefined(el) && visitor.call(formData, el, (0, _utilsJsDefault.default).isString(key) ? key.trim() : key, path, exposedHelpers);
+            const result = !((0, _utilsJsDefault.default).isUndefined(el) || el === null) && visitor.call(formData, el, (0, _utilsJsDefault.default).isString(key) ? key.trim() : key, path, exposedHelpers);
             if (result === true) build(el, path ? path.concat(key) : [
                 key
             ]);
@@ -29153,105 +29260,7 @@ const predicates = (0, _utilsJsDefault.default).toFlatObject((0, _utilsJsDefault
 }
 exports.default = toFormData;
 
-},{"../utils.js":"5By4s","../core/AxiosError.js":"3u8Tl","../env/classes/FormData.js":"lSnyf","buffer":"fCgem","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"3u8Tl":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var _utilsJs = require("../utils.js");
-var _utilsJsDefault = parcelHelpers.interopDefault(_utilsJs);
-"use strict";
-/**
- * Create an Error with the specified message, config, error code, request and response.
- *
- * @param {string} message The error message.
- * @param {string} [code] The error code (for example, 'ECONNABORTED').
- * @param {Object} [config] The config.
- * @param {Object} [request] The request.
- * @param {Object} [response] The response.
- *
- * @returns {Error} The created error.
- */ function AxiosError(message, code, config, request, response) {
-    Error.call(this);
-    if (Error.captureStackTrace) Error.captureStackTrace(this, this.constructor);
-    else this.stack = new Error().stack;
-    this.message = message;
-    this.name = "AxiosError";
-    code && (this.code = code);
-    config && (this.config = config);
-    request && (this.request = request);
-    response && (this.response = response);
-}
-(0, _utilsJsDefault.default).inherits(AxiosError, Error, {
-    toJSON: function toJSON() {
-        return {
-            // Standard
-            message: this.message,
-            name: this.name,
-            // Microsoft
-            description: this.description,
-            number: this.number,
-            // Mozilla
-            fileName: this.fileName,
-            lineNumber: this.lineNumber,
-            columnNumber: this.columnNumber,
-            stack: this.stack,
-            // Axios
-            config: this.config,
-            code: this.code,
-            status: this.response && this.response.status ? this.response.status : null
-        };
-    }
-});
-const prototype = AxiosError.prototype;
-const descriptors = {};
-[
-    "ERR_BAD_OPTION_VALUE",
-    "ERR_BAD_OPTION",
-    "ECONNABORTED",
-    "ETIMEDOUT",
-    "ERR_NETWORK",
-    "ERR_FR_TOO_MANY_REDIRECTS",
-    "ERR_DEPRECATED",
-    "ERR_BAD_RESPONSE",
-    "ERR_BAD_REQUEST",
-    "ERR_CANCELED",
-    "ERR_NOT_SUPPORT",
-    "ERR_INVALID_URL"
-].forEach((code)=>{
-    descriptors[code] = {
-        value: code
-    };
-});
-Object.defineProperties(AxiosError, descriptors);
-Object.defineProperty(prototype, "isAxiosError", {
-    value: true
-});
-// eslint-disable-next-line func-names
-AxiosError.from = (error, code, config, request, response, customProps)=>{
-    const axiosError = Object.create(prototype);
-    (0, _utilsJsDefault.default).toFlatObject(error, axiosError, function filter(obj) {
-        return obj !== Error.prototype;
-    }, (prop)=>{
-        return prop !== "isAxiosError";
-    });
-    AxiosError.call(axiosError, error.message, code, config, request, response);
-    axiosError.cause = error;
-    axiosError.name = error.name;
-    customProps && Object.assign(axiosError, customProps);
-    return axiosError;
-};
-exports.default = AxiosError;
-
-},{"../utils.js":"5By4s","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"lSnyf":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var _formData = require("form-data");
-var _formDataDefault = parcelHelpers.interopDefault(_formData);
-exports.default = (0, _formDataDefault.default);
-
-},{"form-data":"2TZrR","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"2TZrR":[function(require,module,exports) {
-/* eslint-env browser */ module.exports = typeof self == "object" ? self.FormData : window.FormData;
-
-},{}],"fCgem":[function(require,module,exports) {
+},{"buffer":"fCgem","../utils.js":"5By4s","../core/AxiosError.js":"3u8Tl","../env/classes/FormData.js":"lSnyf","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"fCgem":[function(require,module,exports) {
 /*!
  * The buffer module from node.js, for the browser.
  *
@@ -30047,8 +30056,8 @@ Buffer.prototype.readBigUInt64LE = defineBigIntMethod(function readBigUInt64LE(o
     const first = this[offset];
     const last = this[offset + 7];
     if (first === undefined || last === undefined) boundsError(offset, this.length - 8);
-    const lo = first + this[++offset] * 256 + this[++offset] * 65536 + this[++offset] * 2 ** 24;
-    const hi = this[++offset] + this[++offset] * 256 + this[++offset] * 65536 + last * 2 ** 24;
+    const lo = first + this[++offset] * 256 + this[++offset] * 2 ** 16 + this[++offset] * 2 ** 24;
+    const hi = this[++offset] + this[++offset] * 256 + this[++offset] * 2 ** 16 + last * 2 ** 24;
     return BigInt(lo) + (BigInt(hi) << BigInt(32));
 });
 Buffer.prototype.readBigUInt64BE = defineBigIntMethod(function readBigUInt64BE(offset) {
@@ -30057,8 +30066,8 @@ Buffer.prototype.readBigUInt64BE = defineBigIntMethod(function readBigUInt64BE(o
     const first = this[offset];
     const last = this[offset + 7];
     if (first === undefined || last === undefined) boundsError(offset, this.length - 8);
-    const hi = first * 2 ** 24 + this[++offset] * 65536 + this[++offset] * 256 + this[++offset];
-    const lo = this[++offset] * 2 ** 24 + this[++offset] * 65536 + this[++offset] * 256 + last;
+    const hi = first * 2 ** 24 + this[++offset] * 2 ** 16 + this[++offset] * 256 + this[++offset];
+    const lo = this[++offset] * 2 ** 24 + this[++offset] * 2 ** 16 + this[++offset] * 256 + last;
     return (BigInt(hi) << BigInt(32)) + BigInt(lo);
 });
 Buffer.prototype.readIntLE = function readIntLE(offset, byteLength, noAssert) {
@@ -30119,9 +30128,9 @@ Buffer.prototype.readBigInt64LE = defineBigIntMethod(function readBigInt64LE(off
     const first = this[offset];
     const last = this[offset + 7];
     if (first === undefined || last === undefined) boundsError(offset, this.length - 8);
-    const val = this[offset + 4] + this[offset + 5] * 256 + this[offset + 6] * 65536 + (last << 24 // Overflow
+    const val = this[offset + 4] + this[offset + 5] * 256 + this[offset + 6] * 2 ** 16 + (last << 24 // Overflow
     );
-    return (BigInt(val) << BigInt(32)) + BigInt(first + this[++offset] * 256 + this[++offset] * 65536 + this[++offset] * 2 ** 24);
+    return (BigInt(val) << BigInt(32)) + BigInt(first + this[++offset] * 256 + this[++offset] * 2 ** 16 + this[++offset] * 2 ** 24);
 });
 Buffer.prototype.readBigInt64BE = defineBigIntMethod(function readBigInt64BE(offset) {
     offset = offset >>> 0;
@@ -30129,8 +30138,9 @@ Buffer.prototype.readBigInt64BE = defineBigIntMethod(function readBigInt64BE(off
     const first = this[offset];
     const last = this[offset + 7];
     if (first === undefined || last === undefined) boundsError(offset, this.length - 8);
-    const val = (first << 24) + this[++offset] * 65536 + this[++offset] * 256 + this[++offset];
-    return (BigInt(val) << BigInt(32)) + BigInt(this[++offset] * 2 ** 24 + this[++offset] * 65536 + this[++offset] * 256 + last);
+    const val = (first << 24) + // Overflow
+    this[++offset] * 2 ** 16 + this[++offset] * 256 + this[++offset];
+    return (BigInt(val) << BigInt(32)) + BigInt(this[++offset] * 2 ** 24 + this[++offset] * 2 ** 16 + this[++offset] * 256 + last);
 });
 Buffer.prototype.readFloatLE = function readFloatLE(offset, noAssert) {
     offset = offset >>> 0;
@@ -30846,6 +30856,104 @@ exports.write = function(buffer, value, offset, isLE, mLen, nBytes) {
     buffer[offset + i - d] |= s * 128;
 };
 
+},{}],"3u8Tl":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _utilsJs = require("../utils.js");
+var _utilsJsDefault = parcelHelpers.interopDefault(_utilsJs);
+"use strict";
+/**
+ * Create an Error with the specified message, config, error code, request and response.
+ *
+ * @param {string} message The error message.
+ * @param {string} [code] The error code (for example, 'ECONNABORTED').
+ * @param {Object} [config] The config.
+ * @param {Object} [request] The request.
+ * @param {Object} [response] The response.
+ *
+ * @returns {Error} The created error.
+ */ function AxiosError(message, code, config, request, response) {
+    Error.call(this);
+    if (Error.captureStackTrace) Error.captureStackTrace(this, this.constructor);
+    else this.stack = new Error().stack;
+    this.message = message;
+    this.name = "AxiosError";
+    code && (this.code = code);
+    config && (this.config = config);
+    request && (this.request = request);
+    response && (this.response = response);
+}
+(0, _utilsJsDefault.default).inherits(AxiosError, Error, {
+    toJSON: function toJSON() {
+        return {
+            // Standard
+            message: this.message,
+            name: this.name,
+            // Microsoft
+            description: this.description,
+            number: this.number,
+            // Mozilla
+            fileName: this.fileName,
+            lineNumber: this.lineNumber,
+            columnNumber: this.columnNumber,
+            stack: this.stack,
+            // Axios
+            config: (0, _utilsJsDefault.default).toJSONObject(this.config),
+            code: this.code,
+            status: this.response && this.response.status ? this.response.status : null
+        };
+    }
+});
+const prototype = AxiosError.prototype;
+const descriptors = {};
+[
+    "ERR_BAD_OPTION_VALUE",
+    "ERR_BAD_OPTION",
+    "ECONNABORTED",
+    "ETIMEDOUT",
+    "ERR_NETWORK",
+    "ERR_FR_TOO_MANY_REDIRECTS",
+    "ERR_DEPRECATED",
+    "ERR_BAD_RESPONSE",
+    "ERR_BAD_REQUEST",
+    "ERR_CANCELED",
+    "ERR_NOT_SUPPORT",
+    "ERR_INVALID_URL"
+].forEach((code)=>{
+    descriptors[code] = {
+        value: code
+    };
+});
+Object.defineProperties(AxiosError, descriptors);
+Object.defineProperty(prototype, "isAxiosError", {
+    value: true
+});
+// eslint-disable-next-line func-names
+AxiosError.from = (error, code, config, request, response, customProps)=>{
+    const axiosError = Object.create(prototype);
+    (0, _utilsJsDefault.default).toFlatObject(error, axiosError, function filter(obj) {
+        return obj !== Error.prototype;
+    }, (prop)=>{
+        return prop !== "isAxiosError";
+    });
+    AxiosError.call(axiosError, error.message, code, config, request, response);
+    axiosError.cause = error;
+    axiosError.name = error.name;
+    customProps && Object.assign(axiosError, customProps);
+    return axiosError;
+};
+exports.default = AxiosError;
+
+},{"../utils.js":"5By4s","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"lSnyf":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _formData = require("form-data");
+var _formDataDefault = parcelHelpers.interopDefault(_formData);
+exports.default = (0, _formDataDefault.default);
+
+},{"form-data":"2TZrR","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"2TZrR":[function(require,module,exports) {
+/* eslint-env browser */ module.exports = typeof self == "object" ? self.FormData : window.FormData;
+
 },{}],"1VRIM":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
@@ -30918,6 +31026,8 @@ var _canceledErrorJs = require("../cancel/CanceledError.js");
 var _canceledErrorJsDefault = parcelHelpers.interopDefault(_canceledErrorJs);
 var _axiosHeadersJs = require("../core/AxiosHeaders.js");
 var _axiosHeadersJsDefault = parcelHelpers.interopDefault(_axiosHeadersJs);
+var _adaptersJs = require("../adapters/adapters.js");
+var _adaptersJsDefault = parcelHelpers.interopDefault(_adaptersJs);
 "use strict";
 /**
  * Throws a `CanceledError` if cancellation has been requested.
@@ -30934,7 +31044,12 @@ function dispatchRequest(config) {
     config.headers = (0, _axiosHeadersJsDefault.default).from(config.headers);
     // Transform request data
     config.data = (0, _transformDataJsDefault.default).call(config, config.transformRequest);
-    const adapter = config.adapter || (0, _indexJsDefault.default).adapter;
+    if ([
+        "post",
+        "put",
+        "patch"
+    ].indexOf(config.method) !== -1) config.headers.setContentType("application/x-www-form-urlencoded", false);
+    const adapter = (0, _adaptersJsDefault.default).getAdapter(config.adapter || (0, _indexJsDefault.default).adapter);
     return adapter(config).then(function onAdapterResolution(response) {
         throwIfCancellationRequested(config);
         // Transform response data
@@ -30955,7 +31070,7 @@ function dispatchRequest(config) {
 }
 exports.default = dispatchRequest;
 
-},{"./transformData.js":"eRqJY","../cancel/isCancel.js":"a0VmF","../defaults/index.js":"hXfHM","../cancel/CanceledError.js":"9PwCG","../core/AxiosHeaders.js":"cgSSx","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"eRqJY":[function(require,module,exports) {
+},{"./transformData.js":"eRqJY","../cancel/isCancel.js":"a0VmF","../defaults/index.js":"hXfHM","../cancel/CanceledError.js":"9PwCG","../core/AxiosHeaders.js":"cgSSx","../adapters/adapters.js":"d7JxI","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"eRqJY":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _utilsJs = require("./../utils.js");
@@ -30995,26 +31110,10 @@ var _indexJs = require("../platform/index.js");
 var _indexJsDefault = parcelHelpers.interopDefault(_indexJs);
 var _formDataToJSONJs = require("../helpers/formDataToJSON.js");
 var _formDataToJSONJsDefault = parcelHelpers.interopDefault(_formDataToJSONJs);
-var _indexJs1 = require("../adapters/index.js");
-var _indexJsDefault1 = parcelHelpers.interopDefault(_indexJs1);
 "use strict";
-var process = require("process");
 const DEFAULT_CONTENT_TYPE = {
-    "Content-Type": "application/x-www-form-urlencoded"
+    "Content-Type": undefined
 };
-/**
- * If the browser has an XMLHttpRequest object, use the XHR adapter, otherwise use the HTTP
- * adapter
- *
- * @returns {Function}
- */ function getDefaultAdapter() {
-    let adapter;
-    if (typeof XMLHttpRequest !== "undefined") // For browsers use XHR adapter
-    adapter = (0, _indexJsDefault1.default).getAdapter("xhr");
-    else if (typeof process !== "undefined" && (0, _utilsJsDefault.default).kindOf(process) === "process") // For node use HTTP adapter
-    adapter = (0, _indexJsDefault1.default).getAdapter("http");
-    return adapter;
-}
 /**
  * It takes a string, tries to parse it, and if it fails, it returns the stringified version
  * of the input
@@ -31035,7 +31134,10 @@ const DEFAULT_CONTENT_TYPE = {
 }
 const defaults = {
     transitional: (0, _transitionalJsDefault.default),
-    adapter: getDefaultAdapter(),
+    adapter: [
+        "xhr",
+        "http"
+    ],
     transformRequest: [
         function transformRequest(data, headers) {
             const contentType = headers.getContentType() || "";
@@ -31127,7 +31229,7 @@ const defaults = {
 });
 exports.default = defaults;
 
-},{"../utils.js":"5By4s","../core/AxiosError.js":"3u8Tl","./transitional.js":"lM32f","../helpers/toFormData.js":"ajoez","../helpers/toURLEncodedForm.js":"9hjry","../platform/index.js":"7tDev","../helpers/formDataToJSON.js":"01RfH","../adapters/index.js":"aeXzy","process":"d5jf4","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"lM32f":[function(require,module,exports) {
+},{"../utils.js":"5By4s","../core/AxiosError.js":"3u8Tl","./transitional.js":"lM32f","../helpers/toFormData.js":"ajoez","../helpers/toURLEncodedForm.js":"9hjry","../platform/index.js":"7tDev","../helpers/formDataToJSON.js":"01RfH","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"lM32f":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 "use strict";
@@ -31302,7 +31404,286 @@ var _utilsJsDefault = parcelHelpers.interopDefault(_utilsJs);
 }
 exports.default = formDataToJSON;
 
-},{"../utils.js":"5By4s","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"aeXzy":[function(require,module,exports) {
+},{"../utils.js":"5By4s","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"cgSSx":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _utilsJs = require("../utils.js");
+var _utilsJsDefault = parcelHelpers.interopDefault(_utilsJs);
+var _parseHeadersJs = require("../helpers/parseHeaders.js");
+var _parseHeadersJsDefault = parcelHelpers.interopDefault(_parseHeadersJs);
+"use strict";
+const $internals = Symbol("internals");
+function normalizeHeader(header) {
+    return header && String(header).trim().toLowerCase();
+}
+function normalizeValue(value) {
+    if (value === false || value == null) return value;
+    return (0, _utilsJsDefault.default).isArray(value) ? value.map(normalizeValue) : String(value);
+}
+function parseTokens(str) {
+    const tokens = Object.create(null);
+    const tokensRE = /([^\s,;=]+)\s*(?:=\s*([^,;]+))?/g;
+    let match;
+    while(match = tokensRE.exec(str))tokens[match[1]] = match[2];
+    return tokens;
+}
+function isValidHeaderName(str) {
+    return /^[-_a-zA-Z]+$/.test(str.trim());
+}
+function matchHeaderValue(context, value, header, filter) {
+    if ((0, _utilsJsDefault.default).isFunction(filter)) return filter.call(this, value, header);
+    if (!(0, _utilsJsDefault.default).isString(value)) return;
+    if ((0, _utilsJsDefault.default).isString(filter)) return value.indexOf(filter) !== -1;
+    if ((0, _utilsJsDefault.default).isRegExp(filter)) return filter.test(value);
+}
+function formatHeader(header) {
+    return header.trim().toLowerCase().replace(/([a-z\d])(\w*)/g, (w, char, str)=>{
+        return char.toUpperCase() + str;
+    });
+}
+function buildAccessors(obj, header) {
+    const accessorName = (0, _utilsJsDefault.default).toCamelCase(" " + header);
+    [
+        "get",
+        "set",
+        "has"
+    ].forEach((methodName)=>{
+        Object.defineProperty(obj, methodName + accessorName, {
+            value: function(arg1, arg2, arg3) {
+                return this[methodName].call(this, header, arg1, arg2, arg3);
+            },
+            configurable: true
+        });
+    });
+}
+class AxiosHeaders {
+    constructor(headers){
+        headers && this.set(headers);
+    }
+    set(header, valueOrRewrite, rewrite) {
+        const self = this;
+        function setHeader(_value, _header, _rewrite) {
+            const lHeader = normalizeHeader(_header);
+            if (!lHeader) throw new Error("header name must be a non-empty string");
+            const key = (0, _utilsJsDefault.default).findKey(self, lHeader);
+            if (!key || self[key] === undefined || _rewrite === true || _rewrite === undefined && self[key] !== false) self[key || _header] = normalizeValue(_value);
+        }
+        const setHeaders = (headers, _rewrite)=>(0, _utilsJsDefault.default).forEach(headers, (_value, _header)=>setHeader(_value, _header, _rewrite));
+        if ((0, _utilsJsDefault.default).isPlainObject(header) || header instanceof this.constructor) setHeaders(header, valueOrRewrite);
+        else if ((0, _utilsJsDefault.default).isString(header) && (header = header.trim()) && !isValidHeaderName(header)) setHeaders((0, _parseHeadersJsDefault.default)(header), valueOrRewrite);
+        else header != null && setHeader(valueOrRewrite, header, rewrite);
+        return this;
+    }
+    get(header, parser) {
+        header = normalizeHeader(header);
+        if (header) {
+            const key = (0, _utilsJsDefault.default).findKey(this, header);
+            if (key) {
+                const value = this[key];
+                if (!parser) return value;
+                if (parser === true) return parseTokens(value);
+                if ((0, _utilsJsDefault.default).isFunction(parser)) return parser.call(this, value, key);
+                if ((0, _utilsJsDefault.default).isRegExp(parser)) return parser.exec(value);
+                throw new TypeError("parser must be boolean|regexp|function");
+            }
+        }
+    }
+    has(header, matcher) {
+        header = normalizeHeader(header);
+        if (header) {
+            const key = (0, _utilsJsDefault.default).findKey(this, header);
+            return !!(key && (!matcher || matchHeaderValue(this, this[key], key, matcher)));
+        }
+        return false;
+    }
+    delete(header, matcher) {
+        const self = this;
+        let deleted = false;
+        function deleteHeader(_header) {
+            _header = normalizeHeader(_header);
+            if (_header) {
+                const key = (0, _utilsJsDefault.default).findKey(self, _header);
+                if (key && (!matcher || matchHeaderValue(self, self[key], key, matcher))) {
+                    delete self[key];
+                    deleted = true;
+                }
+            }
+        }
+        if ((0, _utilsJsDefault.default).isArray(header)) header.forEach(deleteHeader);
+        else deleteHeader(header);
+        return deleted;
+    }
+    clear() {
+        return Object.keys(this).forEach(this.delete.bind(this));
+    }
+    normalize(format) {
+        const self = this;
+        const headers = {};
+        (0, _utilsJsDefault.default).forEach(this, (value, header)=>{
+            const key = (0, _utilsJsDefault.default).findKey(headers, header);
+            if (key) {
+                self[key] = normalizeValue(value);
+                delete self[header];
+                return;
+            }
+            const normalized = format ? formatHeader(header) : String(header).trim();
+            if (normalized !== header) delete self[header];
+            self[normalized] = normalizeValue(value);
+            headers[normalized] = true;
+        });
+        return this;
+    }
+    concat(...targets) {
+        return this.constructor.concat(this, ...targets);
+    }
+    toJSON(asStrings) {
+        const obj = Object.create(null);
+        (0, _utilsJsDefault.default).forEach(this, (value, header)=>{
+            value != null && value !== false && (obj[header] = asStrings && (0, _utilsJsDefault.default).isArray(value) ? value.join(", ") : value);
+        });
+        return obj;
+    }
+    [Symbol.iterator]() {
+        return Object.entries(this.toJSON())[Symbol.iterator]();
+    }
+    toString() {
+        return Object.entries(this.toJSON()).map(([header, value])=>header + ": " + value).join("\n");
+    }
+    get [Symbol.toStringTag]() {
+        return "AxiosHeaders";
+    }
+    static from(thing) {
+        return thing instanceof this ? thing : new this(thing);
+    }
+    static concat(first, ...targets) {
+        const computed = new this(first);
+        targets.forEach((target)=>computed.set(target));
+        return computed;
+    }
+    static accessor(header) {
+        const internals = this[$internals] = this[$internals] = {
+            accessors: {}
+        };
+        const accessors = internals.accessors;
+        const prototype = this.prototype;
+        function defineAccessor(_header) {
+            const lHeader = normalizeHeader(_header);
+            if (!accessors[lHeader]) {
+                buildAccessors(prototype, _header);
+                accessors[lHeader] = true;
+            }
+        }
+        (0, _utilsJsDefault.default).isArray(header) ? header.forEach(defineAccessor) : defineAccessor(header);
+        return this;
+    }
+}
+AxiosHeaders.accessor([
+    "Content-Type",
+    "Content-Length",
+    "Accept",
+    "Accept-Encoding",
+    "User-Agent"
+]);
+(0, _utilsJsDefault.default).freezeMethods(AxiosHeaders.prototype);
+(0, _utilsJsDefault.default).freezeMethods(AxiosHeaders);
+exports.default = AxiosHeaders;
+
+},{"../utils.js":"5By4s","../helpers/parseHeaders.js":"kqDd5","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"kqDd5":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _utilsJs = require("./../utils.js");
+var _utilsJsDefault = parcelHelpers.interopDefault(_utilsJs);
+"use strict";
+// RawAxiosHeaders whose duplicates are ignored by node
+// c.f. https://nodejs.org/api/http.html#http_message_headers
+const ignoreDuplicateOf = (0, _utilsJsDefault.default).toObjectSet([
+    "age",
+    "authorization",
+    "content-length",
+    "content-type",
+    "etag",
+    "expires",
+    "from",
+    "host",
+    "if-modified-since",
+    "if-unmodified-since",
+    "last-modified",
+    "location",
+    "max-forwards",
+    "proxy-authorization",
+    "referer",
+    "retry-after",
+    "user-agent"
+]);
+/**
+ * Parse headers into an object
+ *
+ * ```
+ * Date: Wed, 27 Aug 2014 08:58:49 GMT
+ * Content-Type: application/json
+ * Connection: keep-alive
+ * Transfer-Encoding: chunked
+ * ```
+ *
+ * @param {String} rawHeaders Headers needing to be parsed
+ *
+ * @returns {Object} Headers parsed into an object
+ */ exports.default = (rawHeaders)=>{
+    const parsed = {};
+    let key;
+    let val;
+    let i;
+    rawHeaders && rawHeaders.split("\n").forEach(function parser(line) {
+        i = line.indexOf(":");
+        key = line.substring(0, i).trim().toLowerCase();
+        val = line.substring(i + 1).trim();
+        if (!key || parsed[key] && ignoreDuplicateOf[key]) return;
+        if (key === "set-cookie") {
+            if (parsed[key]) parsed[key].push(val);
+            else parsed[key] = [
+                val
+            ];
+        } else parsed[key] = parsed[key] ? parsed[key] + ", " + val : val;
+    });
+    return parsed;
+};
+
+},{"./../utils.js":"5By4s","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"a0VmF":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+"use strict";
+function isCancel(value) {
+    return !!(value && value.__CANCEL__);
+}
+exports.default = isCancel;
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"9PwCG":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _axiosErrorJs = require("../core/AxiosError.js");
+var _axiosErrorJsDefault = parcelHelpers.interopDefault(_axiosErrorJs);
+var _utilsJs = require("../utils.js");
+var _utilsJsDefault = parcelHelpers.interopDefault(_utilsJs);
+"use strict";
+/**
+ * A `CanceledError` is an object that is thrown when an operation is canceled.
+ *
+ * @param {string=} message The message.
+ * @param {Object=} config The config.
+ * @param {Object=} request The request.
+ *
+ * @returns {CanceledError} The created error.
+ */ function CanceledError(message, config, request) {
+    // eslint-disable-next-line no-eq-null,eqeqeq
+    (0, _axiosErrorJsDefault.default).call(this, message == null ? "canceled" : message, (0, _axiosErrorJsDefault.default).ERR_CANCELED, config, request);
+    this.name = "CanceledError";
+}
+(0, _utilsJsDefault.default).inherits(CanceledError, (0, _axiosErrorJsDefault.default), {
+    __CANCEL__: true
+});
+exports.default = CanceledError;
+
+},{"../core/AxiosError.js":"3u8Tl","../utils.js":"5By4s","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"d7JxI":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _utilsJs = require("../utils.js");
@@ -31311,24 +31692,55 @@ var _httpJs = require("./http.js");
 var _httpJsDefault = parcelHelpers.interopDefault(_httpJs);
 var _xhrJs = require("./xhr.js");
 var _xhrJsDefault = parcelHelpers.interopDefault(_xhrJs);
-const adapters = {
+var _axiosErrorJs = require("../core/AxiosError.js");
+var _axiosErrorJsDefault = parcelHelpers.interopDefault(_axiosErrorJs);
+const knownAdapters = {
     http: (0, _httpJsDefault.default),
     xhr: (0, _xhrJsDefault.default)
 };
-exports.default = {
-    getAdapter: (nameOrAdapter)=>{
-        if ((0, _utilsJsDefault.default).isString(nameOrAdapter)) {
-            const adapter = adapters[nameOrAdapter];
-            if (!nameOrAdapter) throw Error((0, _utilsJsDefault.default).hasOwnProp(nameOrAdapter) ? `Adapter '${nameOrAdapter}' is not available in the build` : `Can not resolve adapter '${nameOrAdapter}'`);
-            return adapter;
+(0, _utilsJsDefault.default).forEach(knownAdapters, (fn, value)=>{
+    if (fn) {
+        try {
+            Object.defineProperty(fn, "name", {
+                value
+            });
+        } catch (e) {
+        // eslint-disable-next-line no-empty
         }
-        if (!(0, _utilsJsDefault.default).isFunction(nameOrAdapter)) throw new TypeError("adapter is not a function");
-        return nameOrAdapter;
+        Object.defineProperty(fn, "adapterName", {
+            value
+        });
+    }
+});
+exports.default = {
+    getAdapter: (adapters)=>{
+        adapters = (0, _utilsJsDefault.default).isArray(adapters) ? adapters : [
+            adapters
+        ];
+        const { length  } = adapters;
+        let nameOrAdapter;
+        let adapter;
+        for(let i = 0; i < length; i++){
+            nameOrAdapter = adapters[i];
+            if (adapter = (0, _utilsJsDefault.default).isString(nameOrAdapter) ? knownAdapters[nameOrAdapter.toLowerCase()] : nameOrAdapter) break;
+        }
+        if (!adapter) {
+            if (adapter === false) throw new (0, _axiosErrorJsDefault.default)(`Adapter ${nameOrAdapter} is not supported by the environment`, "ERR_NOT_SUPPORT");
+            throw new Error((0, _utilsJsDefault.default).hasOwnProp(knownAdapters, nameOrAdapter) ? `Adapter '${nameOrAdapter}' is not available in the build` : `Unknown adapter '${nameOrAdapter}'`);
+        }
+        if (!(0, _utilsJsDefault.default).isFunction(adapter)) throw new TypeError("adapter is not a function");
+        return adapter;
     },
-    adapters
+    adapters: knownAdapters
 };
 
-},{"../utils.js":"5By4s","./http.js":"ldm57","./xhr.js":"ldm57","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"ldm57":[function(require,module,exports) {
+},{"../utils.js":"5By4s","./http.js":"aFlee","./xhr.js":"ldm57","../core/AxiosError.js":"3u8Tl","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"aFlee":[function(require,module,exports) {
+// eslint-disable-next-line strict
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+exports.default = null;
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"ldm57":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _utilsJs = require("./../utils.js");
@@ -31374,13 +31786,15 @@ function progressEventReducer(listener, isDownloadStream) {
             progress: total ? loaded / total : undefined,
             bytes: progressBytes,
             rate: rate ? rate : undefined,
-            estimated: rate && total && inRange ? (total - loaded) / rate : undefined
+            estimated: rate && total && inRange ? (total - loaded) / rate : undefined,
+            event: e
         };
         data[isDownloadStream ? "download" : "upload"] = true;
         listener(data);
     };
 }
-function xhrAdapter(config) {
+const isXHRAdapterSupported = typeof XMLHttpRequest !== "undefined";
+exports.default = isXHRAdapterSupported && function(config) {
     return new Promise(function dispatchXhrRequest(resolve, reject) {
         let requestData = config.data;
         const requestHeaders = (0, _axiosHeadersJsDefault.default).from(config.headers).normalize();
@@ -31505,8 +31919,7 @@ function xhrAdapter(config) {
         // Send the request
         request.send(requestData || null);
     });
-}
-exports.default = xhrAdapter;
+};
 
 },{"./../utils.js":"5By4s","./../core/settle.js":"dD9aC","./../helpers/cookies.js":"4WJjt","./../helpers/buildURL.js":"3bwC2","../core/buildFullPath.js":"1I5TW","./../helpers/isURLSameOrigin.js":"lxXtv","../defaults/transitional.js":"lM32f","../core/AxiosError.js":"3u8Tl","../cancel/CanceledError.js":"9PwCG","../helpers/parseProtocol.js":"7NfWU","../platform/index.js":"7tDev","../core/AxiosHeaders.js":"cgSSx","../helpers/speedometer.js":"gQeo1","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"dD9aC":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
@@ -31654,33 +32067,7 @@ function nonStandardBrowserEnv() {
     };
 }();
 
-},{"./../utils.js":"5By4s","../platform/index.js":"7tDev","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"9PwCG":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var _axiosErrorJs = require("../core/AxiosError.js");
-var _axiosErrorJsDefault = parcelHelpers.interopDefault(_axiosErrorJs);
-var _utilsJs = require("../utils.js");
-var _utilsJsDefault = parcelHelpers.interopDefault(_utilsJs);
-"use strict";
-/**
- * A `CanceledError` is an object that is thrown when an operation is canceled.
- *
- * @param {string=} message The message.
- * @param {Object=} config The config.
- * @param {Object=} request The request.
- *
- * @returns {CanceledError} The created error.
- */ function CanceledError(message, config, request) {
-    // eslint-disable-next-line no-eq-null,eqeqeq
-    (0, _axiosErrorJsDefault.default).call(this, message == null ? "canceled" : message, (0, _axiosErrorJsDefault.default).ERR_CANCELED, config, request);
-    this.name = "CanceledError";
-}
-(0, _utilsJsDefault.default).inherits(CanceledError, (0, _axiosErrorJsDefault.default), {
-    __CANCEL__: true
-});
-exports.default = CanceledError;
-
-},{"../core/AxiosError.js":"3u8Tl","../utils.js":"5By4s","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"7NfWU":[function(require,module,exports) {
+},{"./../utils.js":"5By4s","../platform/index.js":"7tDev","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"7NfWU":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 "use strict";
@@ -31690,250 +32077,7 @@ function parseProtocol(url) {
 }
 exports.default = parseProtocol;
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"cgSSx":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var _utilsJs = require("../utils.js");
-var _utilsJsDefault = parcelHelpers.interopDefault(_utilsJs);
-var _parseHeadersJs = require("../helpers/parseHeaders.js");
-var _parseHeadersJsDefault = parcelHelpers.interopDefault(_parseHeadersJs);
-"use strict";
-const $internals = Symbol("internals");
-const $defaults = Symbol("defaults");
-function normalizeHeader(header) {
-    return header && String(header).trim().toLowerCase();
-}
-function normalizeValue(value) {
-    if (value === false || value == null) return value;
-    return String(value);
-}
-function parseTokens(str) {
-    const tokens = Object.create(null);
-    const tokensRE = /([^\s,;=]+)\s*(?:=\s*([^,;]+))?/g;
-    let match;
-    while(match = tokensRE.exec(str))tokens[match[1]] = match[2];
-    return tokens;
-}
-function matchHeaderValue(context, value, header, filter) {
-    if ((0, _utilsJsDefault.default).isFunction(filter)) return filter.call(this, value, header);
-    if (!(0, _utilsJsDefault.default).isString(value)) return;
-    if ((0, _utilsJsDefault.default).isString(filter)) return value.indexOf(filter) !== -1;
-    if ((0, _utilsJsDefault.default).isRegExp(filter)) return filter.test(value);
-}
-function formatHeader(header) {
-    return header.trim().toLowerCase().replace(/([a-z\d])(\w*)/g, (w, char, str)=>{
-        return char.toUpperCase() + str;
-    });
-}
-function buildAccessors(obj, header) {
-    const accessorName = (0, _utilsJsDefault.default).toCamelCase(" " + header);
-    [
-        "get",
-        "set",
-        "has"
-    ].forEach((methodName)=>{
-        Object.defineProperty(obj, methodName + accessorName, {
-            value: function(arg1, arg2, arg3) {
-                return this[methodName].call(this, header, arg1, arg2, arg3);
-            },
-            configurable: true
-        });
-    });
-}
-function findKey(obj, key) {
-    key = key.toLowerCase();
-    const keys = Object.keys(obj);
-    let i = keys.length;
-    let _key;
-    while(i-- > 0){
-        _key = keys[i];
-        if (key === _key.toLowerCase()) return _key;
-    }
-    return null;
-}
-function AxiosHeaders(headers, defaults) {
-    headers && this.set(headers);
-    this[$defaults] = defaults || null;
-}
-Object.assign(AxiosHeaders.prototype, {
-    set: function(header, valueOrRewrite, rewrite) {
-        const self = this;
-        function setHeader(_value, _header, _rewrite) {
-            const lHeader = normalizeHeader(_header);
-            if (!lHeader) throw new Error("header name must be a non-empty string");
-            const key = findKey(self, lHeader);
-            if (key && _rewrite !== true && (self[key] === false || _rewrite === false)) return;
-            if ((0, _utilsJsDefault.default).isArray(_value)) _value = _value.map(normalizeValue);
-            else _value = normalizeValue(_value);
-            self[key || _header] = _value;
-        }
-        if ((0, _utilsJsDefault.default).isPlainObject(header)) (0, _utilsJsDefault.default).forEach(header, (_value, _header)=>{
-            setHeader(_value, _header, valueOrRewrite);
-        });
-        else setHeader(valueOrRewrite, header, rewrite);
-        return this;
-    },
-    get: function(header, parser) {
-        header = normalizeHeader(header);
-        if (!header) return undefined;
-        const key = findKey(this, header);
-        if (key) {
-            const value = this[key];
-            if (!parser) return value;
-            if (parser === true) return parseTokens(value);
-            if ((0, _utilsJsDefault.default).isFunction(parser)) return parser.call(this, value, key);
-            if ((0, _utilsJsDefault.default).isRegExp(parser)) return parser.exec(value);
-            throw new TypeError("parser must be boolean|regexp|function");
-        }
-    },
-    has: function(header, matcher) {
-        header = normalizeHeader(header);
-        if (header) {
-            const key = findKey(this, header);
-            return !!(key && (!matcher || matchHeaderValue(this, this[key], key, matcher)));
-        }
-        return false;
-    },
-    delete: function(header, matcher) {
-        const self = this;
-        let deleted = false;
-        function deleteHeader(_header) {
-            _header = normalizeHeader(_header);
-            if (_header) {
-                const key = findKey(self, _header);
-                if (key && (!matcher || matchHeaderValue(self, self[key], key, matcher))) {
-                    delete self[key];
-                    deleted = true;
-                }
-            }
-        }
-        if ((0, _utilsJsDefault.default).isArray(header)) header.forEach(deleteHeader);
-        else deleteHeader(header);
-        return deleted;
-    },
-    clear: function() {
-        return Object.keys(this).forEach(this.delete.bind(this));
-    },
-    normalize: function(format) {
-        const self = this;
-        const headers = {};
-        (0, _utilsJsDefault.default).forEach(this, (value, header)=>{
-            const key = findKey(headers, header);
-            if (key) {
-                self[key] = normalizeValue(value);
-                delete self[header];
-                return;
-            }
-            const normalized = format ? formatHeader(header) : String(header).trim();
-            if (normalized !== header) delete self[header];
-            self[normalized] = normalizeValue(value);
-            headers[normalized] = true;
-        });
-        return this;
-    },
-    toJSON: function() {
-        const obj = Object.create(null);
-        (0, _utilsJsDefault.default).forEach(Object.assign({}, this[$defaults] || null, this), (value, header)=>{
-            if (value == null || value === false) return;
-            obj[header] = (0, _utilsJsDefault.default).isArray(value) ? value.join(", ") : value;
-        });
-        return obj;
-    }
-});
-Object.assign(AxiosHeaders, {
-    from: function(thing) {
-        if ((0, _utilsJsDefault.default).isString(thing)) return new this((0, _parseHeadersJsDefault.default)(thing));
-        return thing instanceof this ? thing : new this(thing);
-    },
-    accessor: function(header) {
-        const internals = this[$internals] = this[$internals] = {
-            accessors: {}
-        };
-        const accessors = internals.accessors;
-        const prototype = this.prototype;
-        function defineAccessor(_header) {
-            const lHeader = normalizeHeader(_header);
-            if (!accessors[lHeader]) {
-                buildAccessors(prototype, _header);
-                accessors[lHeader] = true;
-            }
-        }
-        (0, _utilsJsDefault.default).isArray(header) ? header.forEach(defineAccessor) : defineAccessor(header);
-        return this;
-    }
-});
-AxiosHeaders.accessor([
-    "Content-Type",
-    "Content-Length",
-    "Accept",
-    "Accept-Encoding",
-    "User-Agent"
-]);
-(0, _utilsJsDefault.default).freezeMethods(AxiosHeaders.prototype);
-(0, _utilsJsDefault.default).freezeMethods(AxiosHeaders);
-exports.default = AxiosHeaders;
-
-},{"../utils.js":"5By4s","../helpers/parseHeaders.js":"kqDd5","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"kqDd5":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var _utilsJs = require("./../utils.js");
-var _utilsJsDefault = parcelHelpers.interopDefault(_utilsJs);
-"use strict";
-// RawAxiosHeaders whose duplicates are ignored by node
-// c.f. https://nodejs.org/api/http.html#http_message_headers
-const ignoreDuplicateOf = (0, _utilsJsDefault.default).toObjectSet([
-    "age",
-    "authorization",
-    "content-length",
-    "content-type",
-    "etag",
-    "expires",
-    "from",
-    "host",
-    "if-modified-since",
-    "if-unmodified-since",
-    "last-modified",
-    "location",
-    "max-forwards",
-    "proxy-authorization",
-    "referer",
-    "retry-after",
-    "user-agent"
-]);
-/**
- * Parse headers into an object
- *
- * ```
- * Date: Wed, 27 Aug 2014 08:58:49 GMT
- * Content-Type: application/json
- * Connection: keep-alive
- * Transfer-Encoding: chunked
- * ```
- *
- * @param {String} rawHeaders Headers needing to be parsed
- *
- * @returns {Object} Headers parsed into an object
- */ exports.default = (rawHeaders)=>{
-    const parsed = {};
-    let key;
-    let val;
-    let i;
-    rawHeaders && rawHeaders.split("\n").forEach(function parser(line) {
-        i = line.indexOf(":");
-        key = line.substring(0, i).trim().toLowerCase();
-        val = line.substring(i + 1).trim();
-        if (!key || parsed[key] && ignoreDuplicateOf[key]) return;
-        if (key === "set-cookie") {
-            if (parsed[key]) parsed[key].push(val);
-            else parsed[key] = [
-                val
-            ];
-        } else parsed[key] = parsed[key] ? parsed[key] + ", " + val : val;
-    });
-    return parsed;
-};
-
-},{"./../utils.js":"5By4s","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"gQeo1":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"gQeo1":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 "use strict";
@@ -31971,89 +32115,86 @@ parcelHelpers.defineInteropFlag(exports);
 }
 exports.default = speedometer;
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"a0VmF":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-"use strict";
-function isCancel(value) {
-    return !!(value && value.__CANCEL__);
-}
-exports.default = isCancel;
-
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"b85oP":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _utilsJs = require("../utils.js");
 var _utilsJsDefault = parcelHelpers.interopDefault(_utilsJs);
+var _axiosHeadersJs = require("./AxiosHeaders.js");
+var _axiosHeadersJsDefault = parcelHelpers.interopDefault(_axiosHeadersJs);
 "use strict";
+const headersToObject = (thing)=>thing instanceof (0, _axiosHeadersJsDefault.default) ? thing.toJSON() : thing;
 function mergeConfig(config1, config2) {
     // eslint-disable-next-line no-param-reassign
     config2 = config2 || {};
     const config = {};
-    function getMergedValue(target, source) {
-        if ((0, _utilsJsDefault.default).isPlainObject(target) && (0, _utilsJsDefault.default).isPlainObject(source)) return (0, _utilsJsDefault.default).merge(target, source);
+    function getMergedValue(target, source, caseless) {
+        if ((0, _utilsJsDefault.default).isPlainObject(target) && (0, _utilsJsDefault.default).isPlainObject(source)) return (0, _utilsJsDefault.default).merge.call({
+            caseless
+        }, target, source);
         else if ((0, _utilsJsDefault.default).isPlainObject(source)) return (0, _utilsJsDefault.default).merge({}, source);
         else if ((0, _utilsJsDefault.default).isArray(source)) return source.slice();
         return source;
     }
     // eslint-disable-next-line consistent-return
-    function mergeDeepProperties(prop) {
-        if (!(0, _utilsJsDefault.default).isUndefined(config2[prop])) return getMergedValue(config1[prop], config2[prop]);
-        else if (!(0, _utilsJsDefault.default).isUndefined(config1[prop])) return getMergedValue(undefined, config1[prop]);
+    function mergeDeepProperties(a, b, caseless) {
+        if (!(0, _utilsJsDefault.default).isUndefined(b)) return getMergedValue(a, b, caseless);
+        else if (!(0, _utilsJsDefault.default).isUndefined(a)) return getMergedValue(undefined, a, caseless);
     }
     // eslint-disable-next-line consistent-return
-    function valueFromConfig2(prop) {
-        if (!(0, _utilsJsDefault.default).isUndefined(config2[prop])) return getMergedValue(undefined, config2[prop]);
+    function valueFromConfig2(a, b) {
+        if (!(0, _utilsJsDefault.default).isUndefined(b)) return getMergedValue(undefined, b);
     }
     // eslint-disable-next-line consistent-return
-    function defaultToConfig2(prop) {
-        if (!(0, _utilsJsDefault.default).isUndefined(config2[prop])) return getMergedValue(undefined, config2[prop]);
-        else if (!(0, _utilsJsDefault.default).isUndefined(config1[prop])) return getMergedValue(undefined, config1[prop]);
+    function defaultToConfig2(a, b) {
+        if (!(0, _utilsJsDefault.default).isUndefined(b)) return getMergedValue(undefined, b);
+        else if (!(0, _utilsJsDefault.default).isUndefined(a)) return getMergedValue(undefined, a);
     }
     // eslint-disable-next-line consistent-return
-    function mergeDirectKeys(prop) {
-        if (prop in config2) return getMergedValue(config1[prop], config2[prop]);
-        else if (prop in config1) return getMergedValue(undefined, config1[prop]);
+    function mergeDirectKeys(a, b, prop) {
+        if (prop in config2) return getMergedValue(a, b);
+        else if (prop in config1) return getMergedValue(undefined, a);
     }
     const mergeMap = {
-        "url": valueFromConfig2,
-        "method": valueFromConfig2,
-        "data": valueFromConfig2,
-        "baseURL": defaultToConfig2,
-        "transformRequest": defaultToConfig2,
-        "transformResponse": defaultToConfig2,
-        "paramsSerializer": defaultToConfig2,
-        "timeout": defaultToConfig2,
-        "timeoutMessage": defaultToConfig2,
-        "withCredentials": defaultToConfig2,
-        "adapter": defaultToConfig2,
-        "responseType": defaultToConfig2,
-        "xsrfCookieName": defaultToConfig2,
-        "xsrfHeaderName": defaultToConfig2,
-        "onUploadProgress": defaultToConfig2,
-        "onDownloadProgress": defaultToConfig2,
-        "decompress": defaultToConfig2,
-        "maxContentLength": defaultToConfig2,
-        "maxBodyLength": defaultToConfig2,
-        "beforeRedirect": defaultToConfig2,
-        "transport": defaultToConfig2,
-        "httpAgent": defaultToConfig2,
-        "httpsAgent": defaultToConfig2,
-        "cancelToken": defaultToConfig2,
-        "socketPath": defaultToConfig2,
-        "responseEncoding": defaultToConfig2,
-        "validateStatus": mergeDirectKeys
+        url: valueFromConfig2,
+        method: valueFromConfig2,
+        data: valueFromConfig2,
+        baseURL: defaultToConfig2,
+        transformRequest: defaultToConfig2,
+        transformResponse: defaultToConfig2,
+        paramsSerializer: defaultToConfig2,
+        timeout: defaultToConfig2,
+        timeoutMessage: defaultToConfig2,
+        withCredentials: defaultToConfig2,
+        adapter: defaultToConfig2,
+        responseType: defaultToConfig2,
+        xsrfCookieName: defaultToConfig2,
+        xsrfHeaderName: defaultToConfig2,
+        onUploadProgress: defaultToConfig2,
+        onDownloadProgress: defaultToConfig2,
+        decompress: defaultToConfig2,
+        maxContentLength: defaultToConfig2,
+        maxBodyLength: defaultToConfig2,
+        beforeRedirect: defaultToConfig2,
+        transport: defaultToConfig2,
+        httpAgent: defaultToConfig2,
+        httpsAgent: defaultToConfig2,
+        cancelToken: defaultToConfig2,
+        socketPath: defaultToConfig2,
+        responseEncoding: defaultToConfig2,
+        validateStatus: mergeDirectKeys,
+        headers: (a, b)=>mergeDeepProperties(headersToObject(a), headersToObject(b), true)
     };
     (0, _utilsJsDefault.default).forEach(Object.keys(config1).concat(Object.keys(config2)), function computeConfigValue(prop) {
         const merge = mergeMap[prop] || mergeDeepProperties;
-        const configValue = merge(prop);
+        const configValue = merge(config1[prop], config2[prop], prop);
         (0, _utilsJsDefault.default).isUndefined(configValue) && merge !== mergeDirectKeys || (config[prop] = configValue);
     });
     return config;
 }
 exports.default = mergeConfig;
 
-},{"../utils.js":"5By4s","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"9vgkY":[function(require,module,exports) {
+},{"../utils.js":"5By4s","./AxiosHeaders.js":"cgSSx","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"9vgkY":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _dataJs = require("../env/data.js");
@@ -32131,7 +32272,7 @@ exports.default = {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "VERSION", ()=>VERSION);
-const VERSION = "1.1.2";
+const VERSION = "1.2.0";
 
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"45wzn":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
@@ -32242,283 +32383,7 @@ function isAxiosError(payload) {
 }
 exports.default = isAxiosError;
 
-},{"./../utils.js":"5By4s","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"9YtA0":[function(require,module,exports) {
-var $parcel$ReactRefreshHelpers$9fee = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
-var prevRefreshReg = window.$RefreshReg$;
-var prevRefreshSig = window.$RefreshSig$;
-$parcel$ReactRefreshHelpers$9fee.prelude(module);
-
-try {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "LoginView", ()=>LoginView);
-var _jsxDevRuntime = require("react/jsx-dev-runtime");
-var _react = require("react");
-var _reactDefault = parcelHelpers.interopDefault(_react);
-var _propTypes = require("prop-types");
-var _propTypesDefault = parcelHelpers.interopDefault(_propTypes);
-var _reactBootstrap = require("react-bootstrap");
-var _axios = require("axios");
-var _axiosDefault = parcelHelpers.interopDefault(_axios);
-var _s = $RefreshSig$();
-function LoginView(props) {
-    _s();
-    const [username, setUsername] = (0, _react.useState)("");
-    const [password, setPassword] = (0, _react.useState)("");
-    // Declare hook for each input
-    const [usernameErr, setUsernameErr] = (0, _react.useState)("");
-    const [passwordErr, setPasswordErr] = (0, _react.useState)("");
-    // validate user inputs
-    const validate = ()=>{
-        let isReq = true;
-        if (!username) {
-            setUsernameErr("Username Required");
-            isReq = false;
-        } else if (username.length < 2) {
-            setUsernameErr("Username must be 2 characters long");
-            isReq = false;
-        }
-        if (!password) {
-            setPasswordErr("Password Required");
-            isReq = false;
-        } else if (password.length < 6) {
-            setPassword("Password must be 6 characters long");
-            isReq = false;
-        }
-        return isReq;
-    };
-    const handleLogin = (e)=>{
-        e.preventDefault();
-        const isReq = validate();
-        if (isReq) /* Send request to the server for authentication */ (0, _axiosDefault.default).post("https://nixflix.herokuapp.com/login", {
-            Username: username,
-            Password: password
-        }).then((response)=>{
-            const data = response.data;
-            console.log("username: ", username);
-            console.log("password: ", password);
-            console.log("data from handleLogin function", data);
-            props.onLoggedIn(data);
-        }).catch((e)=>{
-            console.log("Login Error", e);
-        });
-    };
-    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form), {
-        children: [
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form).Group, {
-                controlId: "formUsername",
-                children: [
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form).Label, {
-                        children: "Username:"
-                    }, void 0, false, {
-                        fileName: "src/components/login-view/login-view.jsx",
-                        lineNumber: 60,
-                        columnNumber: 9
-                    }, this),
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form).Control, {
-                        type: "text",
-                        placeholder: "Enter username",
-                        value: username,
-                        onChange: (e)=>setUsername(e.target.value)
-                    }, void 0, false, {
-                        fileName: "src/components/login-view/login-view.jsx",
-                        lineNumber: 61,
-                        columnNumber: 9
-                    }, this),
-                    usernameErr && /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
-                        children: usernameErr
-                    }, void 0, false, {
-                        fileName: "src/components/login-view/login-view.jsx",
-                        lineNumber: 68,
-                        columnNumber: 25
-                    }, this)
-                ]
-            }, void 0, true, {
-                fileName: "src/components/login-view/login-view.jsx",
-                lineNumber: 59,
-                columnNumber: 7
-            }, this),
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form).Group, {
-                controlId: "formPassword",
-                children: [
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form).Label, {
-                        children: "Password"
-                    }, void 0, false, {
-                        fileName: "src/components/login-view/login-view.jsx",
-                        lineNumber: 72,
-                        columnNumber: 9
-                    }, this),
-                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form).Control, {
-                        type: "password",
-                        placeholder: "Password",
-                        value: password,
-                        onChange: (e)=>setPassword(e.target.value)
-                    }, void 0, false, {
-                        fileName: "src/components/login-view/login-view.jsx",
-                        lineNumber: 73,
-                        columnNumber: 9
-                    }, this),
-                    passwordErr && /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
-                        children: passwordErr
-                    }, void 0, false, {
-                        fileName: "src/components/login-view/login-view.jsx",
-                        lineNumber: 80,
-                        columnNumber: 25
-                    }, this)
-                ]
-            }, void 0, true, {
-                fileName: "src/components/login-view/login-view.jsx",
-                lineNumber: 71,
-                columnNumber: 7
-            }, this),
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Button), {
-                variant: "primary",
-                type: "submit",
-                onClick: handleLogin,
-                children: "Submit"
-            }, void 0, false, {
-                fileName: "src/components/login-view/login-view.jsx",
-                lineNumber: 82,
-                columnNumber: 7
-            }, this)
-        ]
-    }, void 0, true, {
-        fileName: "src/components/login-view/login-view.jsx",
-        lineNumber: 58,
-        columnNumber: 5
-    }, this);
-}
-_s(LoginView, "8pGqNa6D1L55vC7VE2hBm7jlBGo=");
-_c = LoginView;
-var _c;
-$RefreshReg$(_c, "LoginView");
-
-  $parcel$ReactRefreshHelpers$9fee.postlude(module);
-} finally {
-  window.$RefreshReg$ = prevRefreshReg;
-  window.$RefreshSig$ = prevRefreshSig;
-}
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","prop-types":"7wKI2","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","react-bootstrap":"3AD9A","axios":"jo6P5"}],"km3Ru":[function(require,module,exports) {
-"use strict";
-var Refresh = require("react-refresh/runtime");
-function debounce(func, delay) {
-    var args;
-    var timeout = undefined;
-    return function(args) {
-        clearTimeout(timeout);
-        timeout = setTimeout(function() {
-            timeout = undefined;
-            func.call(null, args);
-        }, delay);
-    };
-}
-var enqueueUpdate = debounce(function() {
-    Refresh.performReactRefresh();
-}, 30); // Everthing below is either adapted or copied from
-// https://github.com/facebook/metro/blob/61de16bd1edd7e738dd0311c89555a644023ab2d/packages/metro/src/lib/polyfills/require.js
-// MIT License - Copyright (c) Facebook, Inc. and its affiliates.
-module.exports.prelude = function(module1) {
-    window.$RefreshReg$ = function(type, id) {
-        Refresh.register(type, module1.id + " " + id);
-    };
-    window.$RefreshSig$ = Refresh.createSignatureFunctionForTransform;
-};
-module.exports.postlude = function(module1) {
-    if (isReactRefreshBoundary(module1.exports)) {
-        registerExportsForReactRefresh(module1);
-        if (module1.hot) {
-            module1.hot.dispose(function(data) {
-                if (Refresh.hasUnrecoverableErrors()) window.location.reload();
-                data.prevExports = module1.exports;
-            });
-            module1.hot.accept(function(getParents) {
-                var prevExports = module1.hot.data.prevExports;
-                var nextExports = module1.exports; // Since we just executed the code for it, it's possible
-                // that the new exports make it ineligible for being a boundary.
-                var isNoLongerABoundary = !isReactRefreshBoundary(nextExports); // It can also become ineligible if its exports are incompatible
-                // with the previous exports.
-                // For example, if you add/remove/change exports, we'll want
-                // to re-execute the importing modules, and force those components
-                // to re-render. Similarly, if you convert a class component
-                // to a function, we want to invalidate the boundary.
-                var didInvalidate = shouldInvalidateReactRefreshBoundary(prevExports, nextExports);
-                if (isNoLongerABoundary || didInvalidate) {
-                    // We'll be conservative. The only case in which we won't do a full
-                    // reload is if all parent modules are also refresh boundaries.
-                    // In that case we'll add them to the current queue.
-                    var parents = getParents();
-                    if (parents.length === 0) {
-                        // Looks like we bubbled to the root. Can't recover from that.
-                        window.location.reload();
-                        return;
-                    }
-                    return parents;
-                }
-                enqueueUpdate();
-            });
-        }
-    }
-};
-function isReactRefreshBoundary(exports) {
-    if (Refresh.isLikelyComponentType(exports)) return true;
-    if (exports == null || typeof exports !== "object") // Exit if we can't iterate over exports.
-    return false;
-    var hasExports = false;
-    var areAllExportsComponents = true;
-    let isESM = "__esModule" in exports;
-    for(var key in exports){
-        hasExports = true;
-        if (key === "__esModule") continue;
-        var desc = Object.getOwnPropertyDescriptor(exports, key);
-        if (desc && desc.get && !isESM) // Don't invoke getters for CJS as they may have side effects.
-        return false;
-        var exportValue = exports[key];
-        if (!Refresh.isLikelyComponentType(exportValue)) areAllExportsComponents = false;
-    }
-    return hasExports && areAllExportsComponents;
-}
-function shouldInvalidateReactRefreshBoundary(prevExports, nextExports) {
-    var prevSignature = getRefreshBoundarySignature(prevExports);
-    var nextSignature = getRefreshBoundarySignature(nextExports);
-    if (prevSignature.length !== nextSignature.length) return true;
-    for(var i = 0; i < nextSignature.length; i++){
-        if (prevSignature[i] !== nextSignature[i]) return true;
-    }
-    return false;
-} // When this signature changes, it's unsafe to stop at this refresh boundary.
-function getRefreshBoundarySignature(exports) {
-    var signature = [];
-    signature.push(Refresh.getFamilyByType(exports));
-    if (exports == null || typeof exports !== "object") // Exit if we can't iterate over exports.
-    // (This is important for legacy environments.)
-    return signature;
-    let isESM = "__esModule" in exports;
-    for(var key in exports){
-        if (key === "__esModule") continue;
-        var desc = Object.getOwnPropertyDescriptor(exports, key);
-        if (desc && desc.get && !isESM) continue;
-        var exportValue = exports[key];
-        signature.push(key);
-        signature.push(Refresh.getFamilyByType(exportValue));
-    }
-    return signature;
-}
-function registerExportsForReactRefresh(module1) {
-    var exports = module1.exports, id = module1.id;
-    Refresh.register(exports, id + " %exports%");
-    if (exports == null || typeof exports !== "object") // Exit if we can't iterate over exports.
-    // (This is important for legacy environments.)
-    return;
-    let isESM = "__esModule" in exports;
-    for(var key in exports){
-        var desc = Object.getOwnPropertyDescriptor(exports, key);
-        if (desc && desc.get && !isESM) continue;
-        var exportValue = exports[key];
-        Refresh.register(exportValue, id + " %exports% " + key);
-    }
-}
-
-},{"react-refresh/runtime":"786KC"}],"3AD9A":[function(require,module,exports) {
+},{"./../utils.js":"5By4s","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"3AD9A":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "Accordion", ()=>(0, _accordionDefault.default));
@@ -33017,7 +32882,8 @@ module.exports = require("./cjs/react-jsx-runtime.development.js");
          // Note: typeof might be other than 'symbol' or 'number' (e.g. if it's a polyfill).
         if (type === REACT_FRAGMENT_TYPE || type === REACT_PROFILER_TYPE || enableDebugTracing || type === REACT_STRICT_MODE_TYPE || type === REACT_SUSPENSE_TYPE || type === REACT_SUSPENSE_LIST_TYPE || enableLegacyHidden || type === REACT_OFFSCREEN_TYPE || enableScopeAPI || enableCacheElement || enableTransitionTracing) return true;
         if (typeof type === "object" && type !== null) {
-            if (type.$$typeof === REACT_LAZY_TYPE || type.$$typeof === REACT_MEMO_TYPE || type.$$typeof === REACT_PROVIDER_TYPE || type.$$typeof === REACT_CONTEXT_TYPE || type.$$typeof === REACT_FORWARD_REF_TYPE || // types supported by any Flight configuration anywhere since
+            if (type.$$typeof === REACT_LAZY_TYPE || type.$$typeof === REACT_MEMO_TYPE || type.$$typeof === REACT_PROVIDER_TYPE || type.$$typeof === REACT_CONTEXT_TYPE || type.$$typeof === REACT_FORWARD_REF_TYPE || // This needs to include all possible module reference object
+            // types supported by any Flight configuration anywhere since
             // we don't know which Flight build this will end up being used
             // with.
             type.$$typeof === REACT_MODULE_REFERENCE || type.getModuleId !== undefined) return true;
@@ -33691,7 +33557,8 @@ module.exports = require("./cjs/react-jsx-runtime.development.js");
         if (type === null || type === undefined || typeof type === "string") return;
         var propTypes;
         if (typeof type === "function") propTypes = type.propTypes;
-        else if (typeof type === "object" && (type.$$typeof === REACT_FORWARD_REF_TYPE || // Inner props are checked in the reconciler.
+        else if (typeof type === "object" && (type.$$typeof === REACT_FORWARD_REF_TYPE || // Note: Memo only checks outer props here.
+        // Inner props are checked in the reconciler.
         type.$$typeof === REACT_MEMO_TYPE)) propTypes = type.propTypes;
         else return;
         if (propTypes) {
@@ -34051,8 +33918,8 @@ var _classnames = require("classnames");
 var _classnamesDefault = parcelHelpers.interopDefault(_classnames);
 var _jsxRuntime = require("react/jsx-runtime");
 const propTypes = {
-    "aria-label": (0, _propTypesDefault.default).string,
-    onClick: (0, _propTypesDefault.default).func,
+    /** An accessible label indicating the relevant information about the Close Button. */ "aria-label": (0, _propTypesDefault.default).string,
+    /** A callback fired after the Close Button is clicked. */ onClick: (0, _propTypesDefault.default).func,
     /**
    * Render different color variant for the button.
    *
@@ -34159,7 +34026,9 @@ function getDefaultDimensionValue(dimension, elem) {
     const offset = `offset${dimension[0].toUpperCase()}${dimension.slice(1)}`;
     const value = elem[offset];
     const margins = MARGINS[dimension];
-    return value + parseInt((0, _cssDefault.default)(elem, margins[0]), 10) + parseInt((0, _cssDefault.default)(elem, margins[1]), 10);
+    return value + // @ts-ignore
+    parseInt((0, _cssDefault.default)(elem, margins[0]), 10) + // @ts-ignore
+    parseInt((0, _cssDefault.default)(elem, margins[1]), 10);
 }
 const collapseStyles = {
     [(0, _transition.EXITED)]: "collapse",
@@ -34277,7 +34146,11 @@ function ownerWindow(node) {
 exports.default = ownerWindow;
 
 },{"./ownerDocument":"2WpOk","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"2WpOk":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+/**
+ * Returns the owner document of a given element.
+ * 
+ * @param node the element
+ */ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 function ownerDocument(node) {
     return node && node.ownerDocument || document;
@@ -34285,13 +34158,13 @@ function ownerDocument(node) {
 exports.default = ownerDocument;
 
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"hbsNp":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
  * https://github.com/facebook/react/blob/2aeb8a2a6beb00617a4217f7f8284924fa2ad819/src/vendor/core/hyphenateStyleName.js
- */ var _hyphenate = require("./hyphenate");
+ */ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _hyphenate = require("./hyphenate");
 var _hyphenateDefault = parcelHelpers.interopDefault(_hyphenate);
 var msPattern = /^ms-/;
 function hyphenateStyleName(string) {
@@ -35009,11 +34882,11 @@ function listen(node, eventName, handler, options) {
 exports.default = listen;
 
 },{"./addEventListener":"c5x2p","./removeEventListener":"la8JB","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"c5x2p":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+/* eslint-disable no-return-assign */ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "optionsSupported", ()=>optionsSupported);
 parcelHelpers.export(exports, "onceSupported", ()=>onceSupported);
-/* eslint-disable no-return-assign */ var _canUseDOM = require("./canUseDOM");
+var _canUseDOM = require("./canUseDOM");
 var _canUseDOMDefault = parcelHelpers.interopDefault(_canUseDOM);
 var optionsSupported = false;
 var onceSupported = false;
@@ -35063,8 +34936,6 @@ parcelHelpers.defineInteropFlag(exports);
 exports.default = !!(typeof window !== "undefined" && window.document && window.document.createElement);
 
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"la8JB":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
 /**
  * A `removeEventListener` ponyfill
  * 
@@ -35072,7 +34943,9 @@ parcelHelpers.defineInteropFlag(exports);
  * @param eventName the event name
  * @param handle the handler
  * @param options event options
- */ function removeEventListener(node, eventName, handler, options) {
+ */ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+function removeEventListener(node, eventName, handler, options) {
     var capture = options && typeof options !== "boolean" ? options.capture : options;
     node.removeEventListener(eventName, handler, capture);
     if (handler.__once) node.removeEventListener(eventName, handler.__once, capture);
@@ -35080,7 +34953,14 @@ parcelHelpers.defineInteropFlag(exports);
 exports.default = removeEventListener;
 
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"lQ70W":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+/**
+ * Triggers an event on a given element.
+ * 
+ * @param node the element
+ * @param eventName the event name to trigger
+ * @param bubbles whether the event should bubble up
+ * @param cancelable whether the event should be cancelable
+ */ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 function triggerEvent(node, eventName, bubbles, cancelable) {
     if (bubbles === void 0) bubbles = false;
@@ -35094,8 +34974,6 @@ function triggerEvent(node, eventName, bubbles, cancelable) {
 exports.default = triggerEvent;
 
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"1KNLM":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
 /**
  * Safe chained function
  *
@@ -35104,7 +34982,9 @@ parcelHelpers.defineInteropFlag(exports);
  *
  * @param {function} functions to chain
  * @returns {function|null}
- */ function createChainedFunction(...funcs) {
+ */ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+function createChainedFunction(...funcs) {
     return funcs.filter((f)=>f != null).reduce((acc, f)=>{
         if (typeof f !== "function") throw new Error("Invalid Argument Type, must only provide functions, undefined, or null.");
         if (acc === null) return f;
@@ -35118,6 +34998,8 @@ parcelHelpers.defineInteropFlag(exports);
 exports.default = createChainedFunction;
 
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"eWjs5":[function(require,module,exports) {
+// reading a dimension prop will cause the browser to recalculate,
+// which will let our animations work
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 function triggerBrowserReflow(node) {
@@ -36200,15 +36082,15 @@ function uncontrollable(Component, controlledValues, methods) {
 exports.default = uncontrollable;
 
 },{"@babel/runtime/helpers/esm/objectWithoutPropertiesLoose":"adHgr","@babel/runtime/helpers/esm/extends":"fTBFS","@babel/runtime/helpers/esm/inheritsLoose":"9u2Z8","react":"21dqq","react-lifecycles-compat":"3f3fU","invariant":"d1QgR","./utils":"7UQ73","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"3f3fU":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "polyfill", ()=>polyfill);
 /**
  * Copyright (c) 2013-present, Facebook, Inc.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
- */ function componentWillMount() {
+ */ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "polyfill", ()=>polyfill);
+function componentWillMount() {
     // Call this.constructor.gDSFP to support sub-classes.
     var state = this.constructor.getDerivedStateFromProps(this.props, this.state);
     if (state !== null && state !== undefined) this.setState(state);
@@ -36627,6 +36509,8 @@ parcelHelpers.defineInteropFlag(exports);
 var _classnames = require("classnames");
 var _classnamesDefault = parcelHelpers.interopDefault(_classnames);
 var _react = require("react");
+var _warning = require("warning");
+var _warningDefault = parcelHelpers.interopDefault(_warning);
 var _useEventCallback = require("@restart/hooks/useEventCallback");
 var _useEventCallbackDefault = parcelHelpers.interopDefault(_useEventCallback);
 var _navItem = require("@restart/ui/NavItem");
@@ -36653,6 +36537,7 @@ const ListGroupItem = /*#__PURE__*/ _react.forwardRef(({ bsPrefix , active , dis
         props["aria-disabled"] = true;
     } // eslint-disable-next-line no-nested-ternary
     const Component = as || (action ? props.href ? "a" : "button" : "div");
+    (0, _warningDefault.default)(as || !(!action && props.href), "`action=false` and `href` should not be used together.");
     return /*#__PURE__*/ (0, _jsxRuntime.jsx)(Component, {
         ref: ref,
         ...props,
@@ -36664,7 +36549,7 @@ const ListGroupItem = /*#__PURE__*/ _react.forwardRef(({ bsPrefix , active , dis
 ListGroupItem.displayName = "ListGroupItem";
 exports.default = ListGroupItem;
 
-},{"classnames":"jocGM","react":"21dqq","@restart/hooks/useEventCallback":"7ONdq","@restart/ui/NavItem":"2cGYS","@restart/ui/SelectableContext":"8zLqy","./ThemeProvider":"dVixI","react/jsx-runtime":"6AEwr","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"cXyL2":[function(require,module,exports) {
+},{"classnames":"jocGM","react":"21dqq","warning":"eUVzU","@restart/hooks/useEventCallback":"7ONdq","@restart/ui/NavItem":"2cGYS","@restart/ui/SelectableContext":"8zLqy","./ThemeProvider":"dVixI","react/jsx-runtime":"6AEwr","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"cXyL2":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _classnames = require("classnames");
@@ -37238,7 +37123,9 @@ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _react = require("react");
 var global = arguments[3];
-var isReactNative = typeof global !== "undefined" && global.navigator && global.navigator.product === "ReactNative";
+var isReactNative = typeof global !== "undefined" && // @ts-ignore
+global.navigator && // @ts-ignore
+global.navigator.product === "ReactNative";
 var isDOM = typeof document !== "undefined";
 /**
  * Is `useLayoutEffect` in a DOM or React Native environment, otherwise resolves to useEffect
@@ -37994,7 +37881,12 @@ function activeElement(doc) {
 exports.default = activeElement;
 
 },{"./ownerDocument":"2WpOk","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"KpRFS":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+/* eslint-disable no-bitwise, no-cond-assign */ /**
+ * Checks if an element contains another given element.
+ * 
+ * @param context the context element
+ * @param node the element to check
+ */ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 function contains(context, node) {
     // HTML DOM and SVG DOM may have different support levels,
@@ -38115,7 +38007,9 @@ const OPEN_DATA_ATTRIBUTE = (0, _dataKey.dataAttr)("modal-open");
 exports.default = ModalManager;
 
 },{"dom-helpers/css":"klmhr","./DataKey":"9vwZh","./getScrollbarWidth":"9IxEN","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"9IxEN":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+/**
+ * Get the width of the vertical window scrollbar if it's visible
+ */ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 function getBodyScrollbarWidth(ownerDocument = document) {
     const window = ownerDocument.defaultView;
@@ -38393,7 +38287,12 @@ function addClass(element, className) {
 exports.default = addClass;
 
 },{"./hasClass":"6sJz4","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"6sJz4":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+/**
+ * Checks if a given element has a CSS class.
+ * 
+ * @param element the element
+ * @param className the CSS class name
+ */ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 function hasClass(element, className) {
     if (element.classList) return !!className && element.classList.contains(className);
@@ -38447,371 +38346,17 @@ as: Component = "div" , ...props }, ref)=>{
 Row.displayName = "Row";
 exports.default = Row;
 
-},{"classnames":"jocGM","react":"21dqq","./ThemeProvider":"dVixI","react/jsx-runtime":"6AEwr","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"ggaUx":[function(require,module,exports) {
-var $parcel$ReactRefreshHelpers$e9f6 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
-var prevRefreshReg = window.$RefreshReg$;
-var prevRefreshSig = window.$RefreshSig$;
-$parcel$ReactRefreshHelpers$e9f6.prelude(module);
-
-try {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "MovieView", ()=>MovieView);
-var _jsxDevRuntime = require("react/jsx-dev-runtime");
-var _react = require("react");
-var _propTypes = require("prop-types");
-var _propTypesDefault = parcelHelpers.interopDefault(_propTypes);
-var _reactBootstrap = require("react-bootstrap");
-var _axios = require("axios");
-var _axiosDefault = parcelHelpers.interopDefault(_axios);
-var _reactRouterDom = require("react-router-dom");
-var _movieViewScss = require("./movie-view.scss");
-var _movieCard = require("../movie-card/movie-card");
-var _s = $RefreshSig$();
-function MovieView(props) {
-    _s();
-    const user = localStorage.getItem("user");
-    const userInfo = JSON.parse(user);
-    const username = userInfo.Username;
-    const { movieId  } = (0, _reactRouterDom.useParams)();
-    let navigate = (0, _reactRouterDom.useNavigate)();
-    let [movie, setMovie] = (0, _react.useState)({});
-    console.log("Movies from movie-view: ", movie);
-    console.log("movieId from movie-view: ", movieId);
-    console.log("username from movie-view: ", username);
-    console.log("userInfo from movie-view: ", userInfo);
-    console.log("user from movie-view: ", user);
-    //Works!
-    function addFavorite(movieId) {
-        const token = localStorage.getItem("token");
-        (0, _axiosDefault.default).post(`https://nixflix.herokuapp.com/users/${username}/movies/${movieId}`, {
-            username: localStorage.getItem("user")
-        }, {
-            headers: {
-                Authorization: `Bearer ${token}`
-            }
-        }).then((response)=>{
-            console.log(response);
-            props.addToFavorites(movieId);
-            alert("Movie added");
-        }).catch((error)=>console.error(error));
-    }
-    // does work
-    function removeFavorite(movieId) {
-        const token = localStorage.getItem("token");
-        (0, _axiosDefault.default).delete(`https://nixflix.herokuapp.com/users/${username}/movies/${movieId}`, {
-            headers: {
-                Authorization: `Bearer ${token}`
-            }
-        }).then((response)=>{
-            console.log(response);
-            props.removeFromFavorites(movieId);
-            alert("Movie removed");
-        }).catch((error)=>console.error(error));
-    }
-    (0, _react.useEffect)(()=>{
-        let film = props.movies.find(function(m) {
-            return m._id == movieId;
-        });
-        setMovie(film);
-    }, []);
-    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-        className: "movie-view",
-        children: [
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Row), {
-                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Col), {
-                    children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                        className: "movie-poster",
-                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("img", {
-                            className: "img-fluid",
-                            src: movie.ImagePath
-                        }, void 0, false, {
-                            fileName: "src/components/movie-view/movie-view.jsx",
-                            lineNumber: 75,
-                            columnNumber: 13
-                        }, this)
-                    }, void 0, false, {
-                        fileName: "src/components/movie-view/movie-view.jsx",
-                        lineNumber: 74,
-                        columnNumber: 11
-                    }, this)
-                }, void 0, false, {
-                    fileName: "src/components/movie-view/movie-view.jsx",
-                    lineNumber: 73,
-                    columnNumber: 9
-                }, this)
-            }, void 0, false, {
-                fileName: "src/components/movie-view/movie-view.jsx",
-                lineNumber: 72,
-                columnNumber: 7
-            }, this),
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Row), {
-                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Col), {
-                    className: "fs-2",
-                    children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                        className: "movie-title",
-                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
-                            className: "value",
-                            children: movie.Title
-                        }, void 0, false, {
-                            fileName: "src/components/movie-view/movie-view.jsx",
-                            lineNumber: 83,
-                            columnNumber: 13
-                        }, this)
-                    }, void 0, false, {
-                        fileName: "src/components/movie-view/movie-view.jsx",
-                        lineNumber: 82,
-                        columnNumber: 11
-                    }, this)
-                }, void 0, false, {
-                    fileName: "src/components/movie-view/movie-view.jsx",
-                    lineNumber: 81,
-                    columnNumber: 9
-                }, this)
-            }, void 0, false, {
-                fileName: "src/components/movie-view/movie-view.jsx",
-                lineNumber: 80,
-                columnNumber: 7
-            }, this),
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Row), {
-                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Col), {
-                    className: "fs-6",
-                    children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                        className: "movie-release-year",
-                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
-                            className: "value",
-                            children: movie.ReleaseYear
-                        }, void 0, false, {
-                            fileName: "src/components/movie-view/movie-view.jsx",
-                            lineNumber: 91,
-                            columnNumber: 13
-                        }, this)
-                    }, void 0, false, {
-                        fileName: "src/components/movie-view/movie-view.jsx",
-                        lineNumber: 90,
-                        columnNumber: 11
-                    }, this)
-                }, void 0, false, {
-                    fileName: "src/components/movie-view/movie-view.jsx",
-                    lineNumber: 89,
-                    columnNumber: 9
-                }, this)
-            }, void 0, false, {
-                fileName: "src/components/movie-view/movie-view.jsx",
-                lineNumber: 88,
-                columnNumber: 7
-            }, this),
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Row), {
-                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Col), {
-                    className: "fs-4",
-                    children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                        className: "movie-description",
-                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
-                            className: "value",
-                            children: movie.Description
-                        }, void 0, false, {
-                            fileName: "src/components/movie-view/movie-view.jsx",
-                            lineNumber: 99,
-                            columnNumber: 13
-                        }, this)
-                    }, void 0, false, {
-                        fileName: "src/components/movie-view/movie-view.jsx",
-                        lineNumber: 98,
-                        columnNumber: 11
-                    }, this)
-                }, void 0, false, {
-                    fileName: "src/components/movie-view/movie-view.jsx",
-                    lineNumber: 97,
-                    columnNumber: 9
-                }, this)
-            }, void 0, false, {
-                fileName: "src/components/movie-view/movie-view.jsx",
-                lineNumber: 96,
-                columnNumber: 7
-            }, this),
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Row), {
-                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Col), {
-                    children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                        className: "movie-genre",
-                        children: [
-                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
-                                className: "label",
-                                children: "Genre: "
-                            }, void 0, false, {
-                                fileName: "src/components/movie-view/movie-view.jsx",
-                                lineNumber: 107,
-                                columnNumber: 13
-                            }, this),
-                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Button), {
-                                type: "button",
-                                variant: "link",
-                                onClick: ()=>navigate(`/genres/${movie.Genre.Name}`, {
-                                        state: {
-                                            Genre: movie
-                                        }
-                                    }),
-                                children: movie.Genre?.Name
-                            }, void 0, false, {
-                                fileName: "src/components/movie-view/movie-view.jsx",
-                                lineNumber: 108,
-                                columnNumber: 13
-                            }, this)
-                        ]
-                    }, void 0, true, {
-                        fileName: "src/components/movie-view/movie-view.jsx",
-                        lineNumber: 106,
-                        columnNumber: 11
-                    }, this)
-                }, void 0, false, {
-                    fileName: "src/components/movie-view/movie-view.jsx",
-                    lineNumber: 105,
-                    columnNumber: 9
-                }, this)
-            }, void 0, false, {
-                fileName: "src/components/movie-view/movie-view.jsx",
-                lineNumber: 104,
-                columnNumber: 7
-            }, this),
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Row), {
-                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Col), {
-                    children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                        className: "movie-director",
-                        children: [
-                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
-                                className: "label",
-                                children: "Director: "
-                            }, void 0, false, {
-                                fileName: "src/components/movie-view/movie-view.jsx",
-                                lineNumber: 126,
-                                columnNumber: 13
-                            }, this),
-                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Button), {
-                                type: "button",
-                                variant: "link",
-                                onClick: ()=>navigate(`/directors/${movie.Director.Name}`, {
-                                        state: {
-                                            director: movie
-                                        }
-                                    }),
-                                children: movie.Director?.Name
-                            }, void 0, false, {
-                                fileName: "src/components/movie-view/movie-view.jsx",
-                                lineNumber: 127,
-                                columnNumber: 13
-                            }, this)
-                        ]
-                    }, void 0, true, {
-                        fileName: "src/components/movie-view/movie-view.jsx",
-                        lineNumber: 125,
-                        columnNumber: 11
-                    }, this)
-                }, void 0, false, {
-                    fileName: "src/components/movie-view/movie-view.jsx",
-                    lineNumber: 124,
-                    columnNumber: 9
-                }, this)
-            }, void 0, false, {
-                fileName: "src/components/movie-view/movie-view.jsx",
-                lineNumber: 123,
-                columnNumber: 7
-            }, this),
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Col), {
-                className: "movie-view-favorite-button",
-                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
-                    type: "button",
-                    className: "btn btn-secondary",
-                    onClick: ()=>addFavorite(movieId),
-                    children: "Add to favorites"
-                }, void 0, false, {
-                    fileName: "src/components/movie-view/movie-view.jsx",
-                    lineNumber: 143,
-                    columnNumber: 9
-                }, this)
-            }, void 0, false, {
-                fileName: "src/components/movie-view/movie-view.jsx",
-                lineNumber: 142,
-                columnNumber: 7
-            }, this),
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Col), {
-                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Button), {
-                    className: "movie-view-remove-favorite-button",
-                    variant: "btn btn-secondary",
-                    size: "sm",
-                    type: "button",
-                    onClick: ()=>removeFavorite(movieId),
-                    children: "Remove from favorites"
-                }, void 0, false, {
-                    fileName: "src/components/movie-view/movie-view.jsx",
-                    lineNumber: 152,
-                    columnNumber: 9
-                }, this)
-            }, void 0, false, {
-                fileName: "src/components/movie-view/movie-view.jsx",
-                lineNumber: 151,
-                columnNumber: 7
-            }, this),
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Col), {
-                className: "movie-view-back-button",
-                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
-                    type: "button",
-                    className: "btn btn-secondary",
-                    onClick: ()=>navigate("/", {
-                            replace: true
-                        }),
-                    children: "Back to Movies"
-                }, void 0, false, {
-                    fileName: "src/components/movie-view/movie-view.jsx",
-                    lineNumber: 172,
-                    columnNumber: 9
-                }, this)
-            }, void 0, false, {
-                fileName: "src/components/movie-view/movie-view.jsx",
-                lineNumber: 171,
-                columnNumber: 7
-            }, this)
-        ]
-    }, void 0, true, {
-        fileName: "src/components/movie-view/movie-view.jsx",
-        lineNumber: 71,
-        columnNumber: 5
-    }, this);
-}
-_s(MovieView, "M2qqWdwQR/YBcXgrZppb99yBWpA=", false, function() {
-    return [
-        (0, _reactRouterDom.useParams),
-        (0, _reactRouterDom.useNavigate)
-    ];
-});
-_c = MovieView;
-MovieView.propTypes = {
-    movie: (0, _propTypesDefault.default).shape({
-        Title: (0, _propTypesDefault.default).string,
-        Description: (0, _propTypesDefault.default).string,
-        ImagePath: (0, _propTypesDefault.default).string,
-        Genre: (0, _propTypesDefault.default).shape({
-            Name: (0, _propTypesDefault.default).string,
-            Description: (0, _propTypesDefault.default).string
-        }),
-        Actors: (0, _propTypesDefault.default).array,
-        Director: (0, _propTypesDefault.default).shape({
-            Name: (0, _propTypesDefault.default).string,
-            Bio: (0, _propTypesDefault.default).string,
-            Birth: (0, _propTypesDefault.default).string,
-            Death: (0, _propTypesDefault.default).string
-        })
-    }),
-    onBackClick: (0, _propTypesDefault.default).func
-};
-var _c;
-$RefreshReg$(_c, "MovieView");
-
-  $parcel$ReactRefreshHelpers$e9f6.postlude(module);
-} finally {
-  window.$RefreshReg$ = prevRefreshReg;
-  window.$RefreshSig$ = prevRefreshSig;
-}
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","prop-types":"7wKI2","./movie-view.scss":"jnlR5","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","react-bootstrap":"3AD9A","axios":"jo6P5","react-router-dom":"9xmpe","../movie-card/movie-card":"bwuIu"}],"jnlR5":[function() {},{}],"9xmpe":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+},{"classnames":"jocGM","react":"21dqq","./ThemeProvider":"dVixI","react/jsx-runtime":"6AEwr","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"9xmpe":[function(require,module,exports) {
+/**
+ * React Router DOM v6.4.4
+ *
+ * Copyright (c) Remix Software Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE.md file in the root directory of this source tree.
+ *
+ * @license MIT
+ */ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "AbortedDeferredError", ()=>(0, _reactRouter.AbortedDeferredError));
 parcelHelpers.export(exports, "Await", ()=>(0, _reactRouter.Await));
@@ -38880,16 +38425,7 @@ parcelHelpers.export(exports, "useFormAction", ()=>useFormAction);
 parcelHelpers.export(exports, "useLinkClickHandler", ()=>useLinkClickHandler);
 parcelHelpers.export(exports, "useSearchParams", ()=>useSearchParams);
 parcelHelpers.export(exports, "useSubmit", ()=>useSubmit);
-/**
- * React Router DOM v6.4.2
- *
- * Copyright (c) Remix Software Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE.md file in the root directory of this source tree.
- *
- * @license MIT
- */ var _react = require("react");
+var _react = require("react");
 var _reactRouter = require("react-router");
 var _router = require("@remix-run/router");
 function _extends() {
@@ -38932,7 +38468,8 @@ function isModifiedEvent(event) {
     return !!(event.metaKey || event.altKey || event.ctrlKey || event.shiftKey);
 }
 function shouldProcessLinkClick(event, target) {
-    return event.button === 0 && (!target || target === "_self") && !isModifiedEvent(event) // Ignore clicks with modifier keys
+    return event.button === 0 && (!target || target === "_self") && // Let browser handle "target=_blank" etc.
+    !isModifiedEvent(event) // Ignore clicks with modifier keys
     ;
 }
 /**
@@ -39050,26 +38587,42 @@ const _excluded = [
 //#region Routers
 ////////////////////////////////////////////////////////////////////////////////
 function createBrowserRouter(routes, opts) {
-    var _window;
     return (0, _router.createRouter)({
         basename: opts == null ? void 0 : opts.basename,
         history: (0, _router.createBrowserHistory)({
             window: opts == null ? void 0 : opts.window
         }),
-        hydrationData: (opts == null ? void 0 : opts.hydrationData) || ((_window = window) == null ? void 0 : _window.__staticRouterHydrationData),
+        hydrationData: (opts == null ? void 0 : opts.hydrationData) || parseHydrationData(),
         routes: (0, _reactRouter.UNSAFE_enhanceManualRouteObjects)(routes)
     }).initialize();
 }
 function createHashRouter(routes, opts) {
-    var _window2;
     return (0, _router.createRouter)({
         basename: opts == null ? void 0 : opts.basename,
         history: (0, _router.createHashHistory)({
             window: opts == null ? void 0 : opts.window
         }),
-        hydrationData: (opts == null ? void 0 : opts.hydrationData) || ((_window2 = window) == null ? void 0 : _window2.__staticRouterHydrationData),
+        hydrationData: (opts == null ? void 0 : opts.hydrationData) || parseHydrationData(),
         routes: (0, _reactRouter.UNSAFE_enhanceManualRouteObjects)(routes)
     }).initialize();
+}
+function parseHydrationData() {
+    var _window;
+    let state = (_window = window) == null ? void 0 : _window.__staticRouterHydrationData;
+    if (state && state.errors) state = _extends({}, state, {
+        errors: deserializeErrors(state.errors)
+    });
+    return state;
+}
+function deserializeErrors(errors) {
+    if (!errors) return null;
+    let entries = Object.entries(errors);
+    let serialized = {};
+    for (let [key, val] of entries)// Hey you!  If you change this, please change the corresponding logic in
+    // serializeErrors in react-router-dom/server.tsx :)
+    if (val && val.__type === "RouteErrorResponse") serialized[key] = new (0, _router.ErrorResponse)(val.status, val.statusText, val.data, val.internal === true);
+    else serialized[key] = val;
+    return serialized;
 }
 /**
  * A `<Router>` for use in web browsers. Provides the cleanest URLs.
@@ -39176,28 +38729,22 @@ Link.displayName = "Link";
  * A <Link> wrapper that knows if it's "active" or not.
  */ const NavLink = /*#__PURE__*/ _react.forwardRef(function NavLinkWithRef(_ref5, ref) {
     let { "aria-current": ariaCurrentProp = "page" , caseSensitive =false , className: classNameProp = "" , end =false , style: styleProp , to , children  } = _ref5, rest = _objectWithoutPropertiesLoose(_ref5, _excluded2);
-    let path = (0, _reactRouter.useResolvedPath)(to);
-    let match = (0, _reactRouter.useMatch)({
-        path: path.pathname,
-        end,
-        caseSensitive
+    let path = (0, _reactRouter.useResolvedPath)(to, {
+        relative: rest.relative
     });
+    let location = (0, _reactRouter.useLocation)();
     let routerState = _react.useContext((0, _reactRouter.UNSAFE_DataRouterStateContext));
-    let nextLocation = routerState == null ? void 0 : routerState.navigation.location;
-    let nextPath = (0, _reactRouter.useResolvedPath)(nextLocation || "");
-    let nextMatch = _react.useMemo(()=>nextLocation ? (0, _router.matchPath)({
-            path: path.pathname,
-            end,
-            caseSensitive
-        }, nextPath.pathname) : null, [
-        nextLocation,
-        path.pathname,
-        caseSensitive,
-        end,
-        nextPath.pathname
-    ]);
-    let isPending = nextMatch != null;
-    let isActive = match != null;
+    let { navigator  } = _react.useContext((0, _reactRouter.UNSAFE_NavigationContext));
+    let toPathname = navigator.encodeLocation ? navigator.encodeLocation(path).pathname : path.pathname;
+    let locationPathname = location.pathname;
+    let nextLocationPathname = routerState && routerState.navigation && routerState.navigation.location ? routerState.navigation.location.pathname : null;
+    if (!caseSensitive) {
+        locationPathname = locationPathname.toLowerCase();
+        nextLocationPathname = nextLocationPathname ? nextLocationPathname.toLowerCase() : null;
+        toPathname = toPathname.toLowerCase();
+    }
+    let isActive = locationPathname === toPathname || !end && locationPathname.startsWith(toPathname) && locationPathname.charAt(toPathname.length) === "/";
+    let isPending = nextLocationPathname != null && (nextLocationPathname === toPathname || !end && nextLocationPathname.startsWith(toPathname) && nextLocationPathname.charAt(toPathname.length) === "/");
     let ariaCurrent = isActive ? ariaCurrentProp : undefined;
     let className;
     if (typeof classNameProp === "function") className = classNameProp({
@@ -39266,7 +38813,7 @@ const FormImpl = /*#__PURE__*/ _react.forwardRef((_ref6, forwardedRef)=>{
         onSubmit: reloadDocument ? onSubmit : submitHandler
     }, props));
 });
-Form.displayName = "Form";
+FormImpl.displayName = "FormImpl";
 /**
  * This component will emulate the browser's scroll restoration on location
  * changes.
@@ -39605,7 +39152,16 @@ function warning(cond, message) {
 } //#endregion
 
 },{"react":"21dqq","react-router":"dbWyW","@remix-run/router":"5ncDG","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"dbWyW":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+/**
+ * React Router v6.4.4
+ *
+ * Copyright (c) Remix Software Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE.md file in the root directory of this source tree.
+ *
+ * @license MIT
+ */ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "AbortedDeferredError", ()=>(0, _router.AbortedDeferredError));
 parcelHelpers.export(exports, "NavigationType", ()=>(0, _router.Action));
@@ -39658,16 +39214,7 @@ parcelHelpers.export(exports, "useRevalidator", ()=>useRevalidator);
 parcelHelpers.export(exports, "useRouteError", ()=>useRouteError);
 parcelHelpers.export(exports, "useRouteLoaderData", ()=>useRouteLoaderData);
 parcelHelpers.export(exports, "useRoutes", ()=>useRoutes);
-/**
- * React Router v6.4.2
- *
- * Copyright (c) Remix Software Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE.md file in the root directory of this source tree.
- *
- * @license MIT
- */ var _router = require("@remix-run/router");
+var _router = require("@remix-run/router");
 var _react = require("react");
 function _extends() {
     _extends = Object.assign ? Object.assign.bind() : function(target) {
@@ -39898,7 +39445,7 @@ RouteErrorContext.displayName = "RouteError";
     return _react.useContext(LocationContext).navigationType;
 }
 /**
- * Returns true if the URL for the given "to" value matches the current URL.
+ * Returns a PathMatch object if the given pattern matches the current URL.
  * This is useful for components that need to know "active" state, e.g.
  * <NavLink>.
  *
@@ -39915,29 +39462,6 @@ RouteErrorContext.displayName = "RouteError";
 /**
  * The interface for the navigate() function returned from useNavigate().
  */ /**
- * When processing relative navigation we want to ignore ancestor routes that
- * do not contribute to the path, such that index/pathless layout routes don't
- * interfere.
- *
- * For example, when moving a route element into an index route and/or a
- * pathless layout route, relative link behavior contained within should stay
- * the same.  Both of the following examples should link back to the root:
- *
- *   <Route path="/">
- *     <Route path="accounts" element={<Link to=".."}>
- *   </Route>
- *
- *   <Route path="/">
- *     <Route path="accounts">
- *       <Route element={<AccountsLayout />}>       // <-- Does not contribute
- *         <Route index element={<Link to=".."} />  // <-- Does not contribute
- *       </Route
- *     </Route>
- *   </Route>
- */ function getPathContributingMatches(matches) {
-    return matches.filter((match, index)=>index === 0 || !match.route.index && match.pathnameBase !== matches[index - 1].pathnameBase);
-}
-/**
  * Returns an imperative method for changing the location. Used by <Link>s, but
  * may also be used by other elements to change the location.
  *
@@ -39948,7 +39472,7 @@ RouteErrorContext.displayName = "RouteError";
     let { basename , navigator  } = _react.useContext(NavigationContext);
     let { matches  } = _react.useContext(RouteContext);
     let { pathname: locationPathname  } = useLocation();
-    let routePathnamesJson = JSON.stringify(getPathContributingMatches(matches).map((match)=>match.pathnameBase));
+    let routePathnamesJson = JSON.stringify((0, _router.UNSAFE_getPathContributingMatches)(matches).map((match)=>match.pathnameBase));
     let activeRef = _react.useRef(false);
     _react.useEffect(()=>{
         activeRef.current = true;
@@ -40016,7 +39540,7 @@ const OutletContext = /*#__PURE__*/ _react.createContext(null);
     let { relative  } = _temp2 === void 0 ? {} : _temp2;
     let { matches  } = _react.useContext(RouteContext);
     let { pathname: locationPathname  } = useLocation();
-    let routePathnamesJson = JSON.stringify(getPathContributingMatches(matches).map((match)=>match.pathnameBase));
+    let routePathnamesJson = JSON.stringify((0, _router.UNSAFE_getPathContributingMatches)(matches).map((match)=>match.pathnameBase));
     return _react.useMemo(()=>(0, _router.resolveTo)(to, JSON.parse(routePathnamesJson), locationPathname, relative === "path"), [
         to,
         routePathnamesJson,
@@ -40034,6 +39558,7 @@ const OutletContext = /*#__PURE__*/ _react.createContext(null);
  */ function useRoutes(routes, locationArg) {
     !useInRouterContext() && (0, _router.invariant)(false, // router loaded. We can help them understand how to avoid that.
     "useRoutes() may be used only in the context of a <Router> component.");
+    let { navigator  } = _react.useContext(NavigationContext);
     let dataRouterStateContext = _react.useContext(DataRouterStateContext);
     let { matches: parentMatches  } = _react.useContext(RouteContext);
     let routeMatch = parentMatches[parentMatches.length - 1];
@@ -40084,16 +39609,16 @@ const OutletContext = /*#__PURE__*/ _react.createContext(null);
             params: Object.assign({}, parentParams, match.params),
             pathname: (0, _router.joinPaths)([
                 parentPathnameBase,
-                match.pathname
+                navigator.encodeLocation ? navigator.encodeLocation(match.pathname).pathname : match.pathname
             ]),
             pathnameBase: match.pathnameBase === "/" ? parentPathnameBase : (0, _router.joinPaths)([
                 parentPathnameBase,
-                match.pathnameBase
+                navigator.encodeLocation ? navigator.encodeLocation(match.pathnameBase).pathname : match.pathnameBase
             ])
         })), parentMatches, dataRouterStateContext || undefined); // When a user passes in a `locationArg`, the associated routes need to
     // be wrapped in a new `LocationContext.Provider` in order for `useLocation`
     // to use the scoped location instead of the global location.
-    if (locationArg) return /*#__PURE__*/ _react.createElement(LocationContext.Provider, {
+    if (locationArg && renderedMatches) return /*#__PURE__*/ _react.createElement(LocationContext.Provider, {
         value: {
             location: _extends({
                 pathname: "/",
@@ -40357,6 +39882,7 @@ function warningOnce(key, cond, message) {
     let navigator = _react.useMemo(()=>{
         return {
             createHref: router.createHref,
+            encodeLocation: router.encodeLocation,
             go: (n)=>router.navigate(n),
             push: (to, state, opts)=>router.navigate(to, {
                     state,
@@ -40700,7 +40226,16 @@ function createMemoryRouter(routes, opts) {
 } ///////////////////////////////////////////////////////////////////////////////
 
 },{"@remix-run/router":"5ncDG","react":"21dqq","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"5ncDG":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+/**
+ * @remix-run/router v1.0.4
+ *
+ * Copyright (c) Remix Software Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE.md file in the root directory of this source tree.
+ *
+ * @license MIT
+ */ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "AbortedDeferredError", ()=>AbortedDeferredError);
 parcelHelpers.export(exports, "Action", ()=>Action);
@@ -40708,6 +40243,7 @@ parcelHelpers.export(exports, "ErrorResponse", ()=>ErrorResponse);
 parcelHelpers.export(exports, "IDLE_FETCHER", ()=>IDLE_FETCHER);
 parcelHelpers.export(exports, "IDLE_NAVIGATION", ()=>IDLE_NAVIGATION);
 parcelHelpers.export(exports, "UNSAFE_convertRoutesToDataRoutes", ()=>convertRoutesToDataRoutes);
+parcelHelpers.export(exports, "UNSAFE_getPathContributingMatches", ()=>getPathContributingMatches);
 parcelHelpers.export(exports, "createBrowserHistory", ()=>createBrowserHistory);
 parcelHelpers.export(exports, "createHashHistory", ()=>createHashHistory);
 parcelHelpers.export(exports, "createMemoryHistory", ()=>createMemoryHistory);
@@ -40731,16 +40267,7 @@ parcelHelpers.export(exports, "resolveTo", ()=>resolveTo);
 parcelHelpers.export(exports, "stripBasename", ()=>stripBasename);
 parcelHelpers.export(exports, "unstable_createStaticHandler", ()=>unstable_createStaticHandler);
 parcelHelpers.export(exports, "warning", ()=>warning);
-/**
- * @remix-run/router v1.0.2
- *
- * Copyright (c) Remix Software Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE.md file in the root directory of this source tree.
- *
- * @license MIT
- */ function _extends() {
+function _extends() {
     _extends = Object.assign ? Object.assign.bind() : function(target) {
         for(var i = 1; i < arguments.length; i++){
             var source = arguments[i];
@@ -40812,6 +40339,14 @@ const PopStateEventType = "popstate";
         },
         createHref (to) {
             return typeof to === "string" ? to : createPath(to);
+        },
+        encodeLocation (to) {
+            let path = typeof to === "string" ? parsePath(to) : to;
+            return {
+                pathname: path.pathname || "",
+                search: path.search || "",
+                hash: path.hash || ""
+            };
         },
         push (to, state) {
             action = Action.Push;
@@ -40975,6 +40510,14 @@ function createKey() {
     }
     return parsedPath;
 }
+function createURL(location) {
+    // window.location.origin is "null" (the literal string value) in Firefox
+    // under certain conditions, notably when serving from a local HTML file
+    // See https://bugzilla.mozilla.org/show_bug.cgi?id=878297
+    let base = typeof window !== "undefined" && typeof window.location !== "undefined" && window.location.origin !== "null" ? window.location.origin : "unknown://unknown";
+    let href = typeof location === "string" ? location : createPath(location);
+    return new URL(href, base);
+}
 function getUrlBasedHistory(getLocation, createHref, validateLocation, options) {
     if (options === void 0) options = {};
     let { window: window1 = document.defaultView , v5Compat =false  } = options;
@@ -41003,7 +40546,7 @@ function getUrlBasedHistory(getLocation, createHref, validateLocation, options) 
         }
         if (v5Compat && listener) listener({
             action,
-            location
+            location: history.location
         });
     }
     function replace(to, state) {
@@ -41015,7 +40558,7 @@ function getUrlBasedHistory(getLocation, createHref, validateLocation, options) 
         globalHistory.replaceState(historyState, "", url);
         if (v5Compat && listener) listener({
             action,
-            location: location
+            location: history.location
         });
     }
     let history = {
@@ -41036,6 +40579,15 @@ function getUrlBasedHistory(getLocation, createHref, validateLocation, options) 
         },
         createHref (to) {
             return createHref(window1, to);
+        },
+        encodeLocation (to) {
+            // Encode a Location the same way window.location would
+            let url = createURL(typeof to === "string" ? to : createPath(to));
+            return {
+                pathname: url.pathname,
+                search: url.search,
+                hash: url.hash
+            };
         },
         push,
         replace,
@@ -41094,7 +40646,12 @@ function convertRoutesToDataRoutes(routes, parentPath, allIds) {
     let branches = flattenRoutes(routes);
     rankRouteBranches(branches);
     let matches = null;
-    for(let i = 0; matches == null && i < branches.length; ++i)matches = matchRouteBranch(branches[i], pathname);
+    for(let i = 0; matches == null && i < branches.length; ++i)matches = matchRouteBranch(branches[i], // or from router.navigate, but we want to match against the unencoded
+    // paths in the route definitions.  Memory router locations won't be
+    // encoded here but there also shouldn't be anything to decode so this
+    // should be a safe operation.  This avoids needing matchRoutes to be
+    // history-aware.
+    safelyDecodeURI(pathname));
     return matches;
 }
 function flattenRoutes(routes, branches, parentsMeta, parentPath) {
@@ -41281,6 +40838,14 @@ function compilePath(path, caseSensitive, end) {
         paramNames
     ];
 }
+function safelyDecodeURI(value) {
+    try {
+        return decodeURI(value);
+    } catch (error) {
+        warning(false, 'The URL path "' + value + '" could not be decoded because it is is a ' + "malformed URL segment. This is probably due to a bad percent " + ("encoding (" + error + ")."));
+        return value;
+    }
+}
 function safelyDecodeURIComponent(value, paramName) {
     try {
         return decodeURIComponent(value);
@@ -41348,6 +40913,31 @@ function resolvePathname(relativePath, fromPathname) {
 }
 function getInvalidPathError(char, field, dest, path) {
     return "Cannot include a '" + char + "' character in a manually specified " + ("`to." + field + "` field [" + JSON.stringify(path) + "].  Please separate it out to the ") + ("`to." + dest + "` field. Alternatively you may provide the full path as ") + 'a string in <Link to="..."> and the router will parse it for you.';
+}
+/**
+ * @private
+ *
+ * When processing relative navigation we want to ignore ancestor routes that
+ * do not contribute to the path, such that index/pathless layout routes don't
+ * interfere.
+ *
+ * For example, when moving a route element into an index route and/or a
+ * pathless layout route, relative link behavior contained within should stay
+ * the same.  Both of the following examples should link back to the root:
+ *
+ *   <Route path="/">
+ *     <Route path="accounts" element={<Link to=".."}>
+ *   </Route>
+ *
+ *   <Route path="/">
+ *     <Route path="accounts">
+ *       <Route element={<AccountsLayout />}>       // <-- Does not contribute
+ *         <Route index element={<Link to=".."} />  // <-- Does not contribute
+ *       </Route
+ *     </Route>
+ *   </Route>
+ */ function getPathContributingMatches(matches) {
+    return matches.filter((match, index)=>index === 0 || match.route.path && match.route.path.length > 0);
 }
 /**
  * @private
@@ -41554,10 +41144,15 @@ function defer(data) {
  * @private
  * Utility class we use to hold auto-unwrapped 4xx/5xx Response bodies
  */ class ErrorResponse {
-    constructor(status, statusText, data){
+    constructor(status, statusText, data, internal){
+        if (internal === void 0) internal = false;
         this.status = status;
         this.statusText = statusText || "";
-        this.data = data;
+        this.internal = internal;
+        if (data instanceof Error) {
+            this.data = data.toString();
+            this.error = data;
+        } else this.data = data;
     }
 }
 /**
@@ -41566,6 +41161,29 @@ function defer(data) {
  */ function isRouteErrorResponse(e) {
     return e instanceof ErrorResponse;
 }
+const validActionMethodsArr = [
+    "post",
+    "put",
+    "patch",
+    "delete"
+];
+const validActionMethods = new Set(validActionMethodsArr);
+const validRequestMethodsArr = [
+    "get",
+    ...validActionMethodsArr
+];
+const validRequestMethods = new Set(validRequestMethodsArr);
+const redirectStatusCodes = new Set([
+    301,
+    302,
+    303,
+    307,
+    308
+]);
+const redirectPreserveMethodStatusCodes = new Set([
+    307,
+    308
+]);
 const IDLE_NAVIGATION = {
     state: "idle",
     location: undefined,
@@ -41581,7 +41199,9 @@ const IDLE_FETCHER = {
     formAction: undefined,
     formEncType: undefined,
     formData: undefined
-}; //#endregion
+};
+const isBrowser = typeof window !== "undefined" && typeof window.document !== "undefined" && typeof window.document.createElement !== "undefined";
+const isServer = !isBrowser; //#endregion
 ////////////////////////////////////////////////////////////////////////////////
 //#region createRouter
 ////////////////////////////////////////////////////////////////////////////////
@@ -41604,7 +41224,10 @@ const IDLE_FETCHER = {
     if (initialMatches == null) {
         // If we do not match a user-provided-route, fall back to the root
         // to allow the error boundary to take over
-        let { matches , route , error  } = getNotFoundMatches(dataRoutes);
+        let error = getInternalRouterError(404, {
+            pathname: init.history.location.pathname
+        });
+        let { matches , route  } = getShortCircuitMatches(dataRoutes);
         initialMatches = matches;
         initialErrors = {
             [route.id]: error
@@ -41728,7 +41351,12 @@ const IDLE_FETCHER = {
             return;
         }
         let { path , submission , error  } = normalizeNavigateOptions(to, opts);
-        let location = createLocation(state.location, path, opts && opts.state);
+        let location = createLocation(state.location, path, opts && opts.state); // When using navigate as a PUSH/REPLACE we aren't reading an already-encoded
+        // URL from window.location, so we need to encode it here so the behavior
+        // remains the same as POP and non-data-router usages.  new URL() does all
+        // the same encoding we'd get from a history.pushState/window.location read
+        // without having to touch history
+        location = _extends({}, location, init.history.encodeLocation(location));
         let historyAction = (opts && opts.replace) === true || submission != null ? Action.Replace : Action.Push;
         let preventScrollReset = opts && "preventScrollReset" in opts ? opts.preventScrollReset === true : undefined;
         return await startNavigation(historyAction, location, {
@@ -41780,7 +41408,10 @@ const IDLE_FETCHER = {
         let loadingNavigation = opts && opts.overrideNavigation;
         let matches = matchRoutes(dataRoutes, location, init.basename); // Short circuit with a 404 on the root error boundary if we match nothing
         if (!matches) {
-            let { matches: notFoundMatches , route , error  } = getNotFoundMatches(dataRoutes); // Cancel all pending deferred on 404s since we don't keep any routes
+            let error = getInternalRouterError(404, {
+                pathname: location.pathname
+            });
+            let { matches: notFoundMatches , route  } = getShortCircuitMatches(dataRoutes); // Cancel all pending deferred on 404s since we don't keep any routes
             cancelActiveDeferreds();
             completeNavigation(location, {
                 matches: notFoundMatches,
@@ -41846,19 +41477,22 @@ const IDLE_FETCHER = {
         }); // Call our action and get the result
         let result;
         let actionMatch = getTargetMatch(matches, location);
-        if (!actionMatch.route.action) result = getMethodNotAllowedResult(location);
+        if (!actionMatch.route.action) result = {
+            type: ResultType.error,
+            error: getInternalRouterError(405, {
+                method: request.method,
+                pathname: location.pathname,
+                routeId: actionMatch.route.id
+            })
+        };
         else {
-            result = await callLoaderOrAction("action", request, actionMatch);
+            result = await callLoaderOrAction("action", request, actionMatch, matches, router.basename);
             if (request.signal.aborted) return {
                 shortCircuited: true
             };
         }
         if (isRedirectResult(result)) {
-            let redirectNavigation = _extends({
-                state: "loading",
-                location: createLocation(state.location, result.location)
-            }, submission);
-            await startRedirectNavigation(result, redirectNavigation, opts && opts.replace);
+            await startRedirectNavigation(state, result, opts && opts.replace === true);
             return {
                 shortCircuited: true
             };
@@ -41921,7 +41555,7 @@ const IDLE_FETCHER = {
         if (!isUninterruptedRevalidation) {
             revalidatingFetchers.forEach((_ref2)=>{
                 let [key] = _ref2;
-                const fetcher = state.fetchers.get(key);
+                let fetcher = state.fetchers.get(key);
                 let revalidatingFetcher = {
                     state: "loading",
                     data: fetcher && fetcher.data,
@@ -41944,7 +41578,7 @@ const IDLE_FETCHER = {
             let [key] = _ref3;
             return fetchControllers.set(key, pendingNavigationController);
         });
-        let { results , loaderResults , fetcherResults  } = await callLoadersAndMaybeResolveData(state.matches, matchesToLoad, revalidatingFetchers, request);
+        let { results , loaderResults , fetcherResults  } = await callLoadersAndMaybeResolveData(state.matches, matches, matchesToLoad, revalidatingFetchers, request);
         if (request.signal.aborted) return {
             shortCircuited: true
         };
@@ -41957,8 +41591,7 @@ const IDLE_FETCHER = {
         }); // If any loaders returned a redirect Response, start a new REPLACE navigation
         let redirect = findRedirect(results);
         if (redirect) {
-            let redirectNavigation = getLoaderRedirect(state, redirect);
-            await startRedirectNavigation(redirect, redirectNavigation, replace);
+            await startRedirectNavigation(state, redirect, replace);
             return {
                 shortCircuited: true
             };
@@ -41985,32 +41618,39 @@ const IDLE_FETCHER = {
         return state.fetchers.get(key) || IDLE_FETCHER;
     } // Trigger a fetcher load/submit for the given fetcher key
     function fetch(key, routeId, href, opts) {
-        if (typeof AbortController === "undefined") throw new Error("router.fetch() was called during the server render, but it shouldn't be. You are likely calling a useFetcher() method in the body of your component. Try moving it to a useEffect or a callback.");
+        if (isServer) throw new Error("router.fetch() was called during the server render, but it shouldn't be. You are likely calling a useFetcher() method in the body of your component. Try moving it to a useEffect or a callback.");
         if (fetchControllers.has(key)) abortFetcher(key);
         let matches = matchRoutes(dataRoutes, href, init.basename);
         if (!matches) {
-            setFetcherError(key, routeId, new ErrorResponse(404, "Not Found", null));
+            setFetcherError(key, routeId, getInternalRouterError(404, {
+                pathname: href
+            }));
             return;
         }
         let { path , submission  } = normalizeNavigateOptions(href, opts, true);
         let match = getTargetMatch(matches, path);
         if (submission) {
-            handleFetcherAction(key, routeId, path, match, submission);
+            handleFetcherAction(key, routeId, path, match, matches, submission);
             return;
         } // Store off the match so we can call it's shouldRevalidate on subsequent
         // revalidations
         fetchLoadMatches.set(key, [
             path,
-            match
+            match,
+            matches
         ]);
-        handleFetcherLoader(key, routeId, path, match);
+        handleFetcherLoader(key, routeId, path, match, matches);
     } // Call the action for the matched fetcher.submit(), and then handle redirects,
     // errors, and revalidation
-    async function handleFetcherAction(key, routeId, path, match, submission) {
+    async function handleFetcherAction(key, routeId, path, match, requestMatches, submission) {
         interruptActiveLoads();
         fetchLoadMatches.delete(key);
         if (!match.route.action) {
-            let { error  } = getMethodNotAllowedResult(path);
+            let error = getInternalRouterError(405, {
+                method: submission.formMethod,
+                pathname: path,
+                routeId: routeId
+            });
             setFetcherError(key, routeId, error);
             return;
         } // Put this fetcher into it's submitting state
@@ -42027,7 +41667,7 @@ const IDLE_FETCHER = {
         let abortController = new AbortController();
         let fetchRequest = createRequest(path, abortController.signal, submission);
         fetchControllers.set(key, abortController);
-        let actionResult = await callLoaderOrAction("action", fetchRequest, match);
+        let actionResult = await callLoaderOrAction("action", fetchRequest, match, requestMatches, router.basename);
         if (fetchRequest.signal.aborted) {
             // We can delete this so long as we weren't aborted by ou our own fetcher
             // re-submit which would have put _new_ controller is in fetchControllers
@@ -42046,12 +41686,7 @@ const IDLE_FETCHER = {
             updateState({
                 fetchers: new Map(state.fetchers)
             });
-            let redirectNavigation = _extends({
-                state: "loading",
-                location: createLocation(state.location, actionResult.location)
-            }, submission);
-            await startRedirectNavigation(actionResult, redirectNavigation);
-            return;
+            return startRedirectNavigation(state, actionResult);
         } // Process any non-redirect errors thrown
         if (isErrorResult(actionResult)) {
             setFetcherError(key, routeId, actionResult.error);
@@ -42096,7 +41731,7 @@ const IDLE_FETCHER = {
         updateState({
             fetchers: new Map(state.fetchers)
         });
-        let { results , loaderResults , fetcherResults  } = await callLoadersAndMaybeResolveData(state.matches, matchesToLoad, revalidatingFetchers, revalidationRequest);
+        let { results , loaderResults , fetcherResults  } = await callLoadersAndMaybeResolveData(state.matches, matches, matchesToLoad, revalidatingFetchers, revalidationRequest);
         if (abortController.signal.aborted) return;
         fetchReloadIds.delete(key);
         fetchControllers.delete(key);
@@ -42105,11 +41740,8 @@ const IDLE_FETCHER = {
             return fetchControllers.delete(staleKey);
         });
         let redirect = findRedirect(results);
-        if (redirect) {
-            let redirectNavigation1 = getLoaderRedirect(state, redirect);
-            await startRedirectNavigation(redirect, redirectNavigation1);
-            return;
-        } // Process and commit output from loaders
+        if (redirect) return startRedirectNavigation(state, redirect);
+         // Process and commit output from loaders
         let { loaderData , errors  } = processLoaderData(state, state.matches, matchesToLoad, loaderResults, undefined, revalidatingFetchers, fetcherResults, activeDeferreds);
         let doneFetcher = {
             state: "idle",
@@ -42145,7 +41777,7 @@ const IDLE_FETCHER = {
             isRevalidationRequired = false;
         }
     } // Call the matched loader for fetcher.load(), handling redirects, errors, etc.
-    async function handleFetcherLoader(key, routeId, path, match) {
+    async function handleFetcherLoader(key, routeId, path, match, matches) {
         let existingFetcher = state.fetchers.get(key); // Put this fetcher into it's loading state
         let loadingFetcher = {
             state: "loading",
@@ -42162,7 +41794,7 @@ const IDLE_FETCHER = {
         let abortController = new AbortController();
         let fetchRequest = createRequest(path, abortController.signal);
         fetchControllers.set(key, abortController);
-        let result = await callLoaderOrAction("loader", fetchRequest, match); // Deferred isn't supported or fetcher loads, await everything and treat it
+        let result = await callLoaderOrAction("loader", fetchRequest, match, matches, router.basename); // Deferred isn't supported or fetcher loads, await everything and treat it
         // as a normal load.  resolveDeferredData will return undefined if this
         // fetcher gets aborted, so we just leave result untouched and short circuit
         // below if that happens
@@ -42173,8 +41805,7 @@ const IDLE_FETCHER = {
         if (fetchRequest.signal.aborted) return;
          // If the loader threw a redirect Response, start a new REPLACE navigation
         if (isRedirectResult(result)) {
-            let redirectNavigation = getLoaderRedirect(state, result);
-            await startRedirectNavigation(result, redirectNavigation);
+            await startRedirectNavigation(state, result);
             return;
         } // Process any non-redirect errors thrown
         if (isErrorResult(result)) {
@@ -42222,25 +41853,51 @@ const IDLE_FETCHER = {
    * navigation (including processed redirects).  This means that we never
    * actually touch history until we've processed redirects, so we just use
    * the history action from the original navigation (PUSH or REPLACE).
-   */ async function startRedirectNavigation(redirect, navigation, replace) {
+   */ async function startRedirectNavigation(state, redirect, replace) {
         if (redirect.revalidate) isRevalidationRequired = true;
-        invariant(navigation.location, "Expected a location on the redirect navigation"); // There's no need to abort on redirects, since we don't detect the
+        let redirectLocation = createLocation(state.location, redirect.location);
+        invariant(redirectLocation, "Expected a location on the redirect navigation");
+        if (redirect.external && typeof window !== "undefined" && typeof window.location !== "undefined") {
+            if (replace) window.location.replace(redirect.location);
+            else window.location.assign(redirect.location);
+            return;
+        } // There's no need to abort on redirects, since we don't detect the
         // redirect until the action/loaders have settled
         pendingNavigationController = null;
         let redirectHistoryAction = replace === true ? Action.Replace : Action.Push;
-        await startNavigation(redirectHistoryAction, navigation.location, {
-            overrideNavigation: navigation
+        let { formMethod , formAction , formEncType , formData  } = state.navigation; // If this was a 307/308 submission we want to preserve the HTTP method and
+        // re-submit the POST/PUT/PATCH/DELETE as a submission navigation to the
+        // redirected location
+        if (redirectPreserveMethodStatusCodes.has(redirect.status) && formMethod && isSubmissionMethod(formMethod) && formEncType && formData) await startNavigation(redirectHistoryAction, redirectLocation, {
+            submission: {
+                formMethod,
+                formAction: redirect.location,
+                formEncType,
+                formData
+            }
+        });
+        else // Otherwise, we kick off a new loading navigation, preserving the
+        // submission info for the duration of this navigation
+        await startNavigation(redirectHistoryAction, redirectLocation, {
+            overrideNavigation: {
+                state: "loading",
+                location: redirectLocation,
+                formMethod: formMethod || undefined,
+                formAction: formAction || undefined,
+                formEncType: formEncType || undefined,
+                formData: formData || undefined
+            }
         });
     }
-    async function callLoadersAndMaybeResolveData(currentMatches, matchesToLoad, fetchersToLoad, request) {
+    async function callLoadersAndMaybeResolveData(currentMatches, matches, matchesToLoad, fetchersToLoad, request) {
         // Call all navigation loaders and revalidating fetcher loaders in parallel,
         // then slice off the results into separate arrays so we can handle them
         // accordingly
         let results = await Promise.all([
-            ...matchesToLoad.map((m)=>callLoaderOrAction("loader", request, m)),
+            ...matchesToLoad.map((match)=>callLoaderOrAction("loader", request, match, matches, router.basename)),
             ...fetchersToLoad.map((_ref8)=>{
-                let [, href, match] = _ref8;
-                return callLoaderOrAction("loader", createRequest(href, request.signal), match);
+                let [, href, match, fetchMatches] = _ref8;
+                return callLoaderOrAction("loader", createRequest(href, request.signal), match, fetchMatches, router.basename);
             })
         ]);
         let loaderResults = results.slice(0, matchesToLoad.length);
@@ -42399,7 +42056,10 @@ const IDLE_FETCHER = {
         navigate,
         fetch,
         revalidate,
-        createHref,
+        // Passthrough to history-aware createHref used by useHref so we get proper
+        // hash-aware URLs in DOM paths
+        createHref: (to)=>init.history.createHref(to),
+        encodeLocation: (to)=>init.history.encodeLocation(to),
         getFetcher,
         deleteFetcher,
         dispose,
@@ -42411,95 +42071,181 @@ const IDLE_FETCHER = {
 ////////////////////////////////////////////////////////////////////////////////
 //#region createStaticHandler
 ////////////////////////////////////////////////////////////////////////////////
-function unstable_createStaticHandler(routes) {
+function unstable_createStaticHandler(routes, opts) {
     invariant(routes.length > 0, "You must provide a non-empty routes array to unstable_createStaticHandler");
     let dataRoutes = convertRoutesToDataRoutes(routes);
-    async function query(request) {
-        let { location , result  } = await queryImpl(request);
+    let basename = (opts ? opts.basename : null) || "/";
+    /**
+   * The query() method is intended for document requests, in which we want to
+   * call an optional action and potentially multiple loaders for all nested
+   * routes.  It returns a StaticHandlerContext object, which is very similar
+   * to the router state (location, loaderData, actionData, errors, etc.) and
+   * also adds SSR-specific information such as the statusCode and headers
+   * from action/loaders Responses.
+   *
+   * It _should_ never throw and should report all errors through the
+   * returned context.errors object, properly associating errors to their error
+   * boundary.  Additionally, it tracks _deepestRenderedBoundaryId which can be
+   * used to emulate React error boundaries during SSr by performing a second
+   * pass only down to the boundaryId.
+   *
+   * The one exception where we do not return a StaticHandlerContext is when a
+   * redirect response is returned or thrown from any action/loader.  We
+   * propagate that out and return the raw Response so the HTTP server can
+   * return it directly.
+   */ async function query(request) {
+        let url = new URL(request.url);
+        let method = request.method.toLowerCase();
+        let location = createLocation("", createPath(url), null, "default");
+        let matches = matchRoutes(dataRoutes, location, basename); // SSR supports HEAD requests while SPA doesn't
+        if (!isValidMethod(method) && method !== "head") {
+            let error = getInternalRouterError(405, {
+                method
+            });
+            let { matches: methodNotAllowedMatches , route  } = getShortCircuitMatches(dataRoutes);
+            return {
+                basename,
+                location,
+                matches: methodNotAllowedMatches,
+                loaderData: {},
+                actionData: null,
+                errors: {
+                    [route.id]: error
+                },
+                statusCode: error.status,
+                loaderHeaders: {},
+                actionHeaders: {}
+            };
+        } else if (!matches) {
+            let error1 = getInternalRouterError(404, {
+                pathname: location.pathname
+            });
+            let { matches: notFoundMatches , route: route1  } = getShortCircuitMatches(dataRoutes);
+            return {
+                basename,
+                location,
+                matches: notFoundMatches,
+                loaderData: {},
+                actionData: null,
+                errors: {
+                    [route1.id]: error1
+                },
+                statusCode: error1.status,
+                loaderHeaders: {},
+                actionHeaders: {}
+            };
+        }
+        let result = await queryImpl(request, location, matches);
         if (result instanceof Response) return result;
          // When returning StaticHandlerContext, we patch back in the location here
         // since we need it for React Context.  But this helps keep our submit and
         // loadRouteData operating on a Request instead of a Location
         return _extends({
-            location
+            location,
+            basename
         }, result);
     }
-    async function queryRoute(request, routeId) {
-        let { result  } = await queryImpl(request, routeId);
+    /**
+   * The queryRoute() method is intended for targeted route requests, either
+   * for fetch ?_data requests or resource route requests.  In this case, we
+   * are only ever calling a single action or loader, and we are returning the
+   * returned value directly.  In most cases, this will be a Response returned
+   * from the action/loader, but it may be a primitive or other value as well -
+   * and in such cases the calling context should handle that accordingly.
+   *
+   * We do respect the throw/return differentiation, so if an action/loader
+   * throws, then this method will throw the value.  This is important so we
+   * can do proper boundary identification in Remix where a thrown Response
+   * must go to the Catch Boundary but a returned Response is happy-path.
+   *
+   * One thing to note is that any Router-initiated Errors that make sense
+   * to associate with a status code will be thrown as an ErrorResponse
+   * instance which include the raw Error, such that the calling context can
+   * serialize the error as they see fit while including the proper response
+   * code.  Examples here are 404 and 405 errors that occur prior to reaching
+   * any user-defined loaders.
+   */ async function queryRoute(request, routeId) {
+        let url = new URL(request.url);
+        let method = request.method.toLowerCase();
+        let location = createLocation("", createPath(url), null, "default");
+        let matches = matchRoutes(dataRoutes, location, basename); // SSR supports HEAD requests while SPA doesn't
+        if (!isValidMethod(method) && method !== "head") throw getInternalRouterError(405, {
+            method
+        });
+        else if (!matches) throw getInternalRouterError(404, {
+            pathname: location.pathname
+        });
+        let match = routeId ? matches.find((m)=>m.route.id === routeId) : getTargetMatch(matches, location);
+        if (routeId && !match) throw getInternalRouterError(403, {
+            pathname: location.pathname,
+            routeId
+        });
+        else if (!match) // This should never hit I don't think?
+        throw getInternalRouterError(404, {
+            pathname: location.pathname
+        });
+        let result = await queryImpl(request, location, matches, match);
         if (result instanceof Response) return result;
         let error = result.errors ? Object.values(result.errors)[0] : undefined;
-        if (error !== undefined) {
-            // While we always re-throw Responses returned from loaders/actions
-            // directly for route requests and prevent the unwrapping into an
-            // ErrorResponse, we still need this for error cases _prior_ the
-            // execution of the loader/action, such as a 404/405 error.
-            if (isRouteErrorResponse(error)) return new Response(error.data, {
-                status: error.status,
-                statusText: error.statusText
-            });
-             // If we got back result.errors, that means the loader/action threw
-            // _something_ that wasn't a Response, but it's not guaranteed/required
-            // to be an `instanceof Error` either, so we have to use throw here to
-            // preserve the "error" state outside of queryImpl.
-            throw error;
-        } // Pick off the right state value to return
+        if (error !== undefined) // If we got back result.errors, that means the loader/action threw
+        // _something_ that wasn't a Response, but it's not guaranteed/required
+        // to be an `instanceof Error` either, so we have to use throw here to
+        // preserve the "error" state outside of queryImpl.
+        throw error;
+         // Pick off the right state value to return
         let routeData = [
             result.actionData,
             result.loaderData
         ].find((v)=>v);
-        let value = Object.values(routeData || {})[0];
-        if (isRouteErrorResponse(value)) return new Response(value.data, {
-            status: value.status,
-            statusText: value.statusText
-        });
-        return value;
+        return Object.values(routeData || {})[0];
     }
-    async function queryImpl(request, routeId) {
-        invariant(request.method !== "HEAD", "query()/queryRoute() do not support HEAD requests");
+    async function queryImpl(request, location, matches, routeMatch) {
         invariant(request.signal, "query()/queryRoute() requests must contain an AbortController signal");
-        let { location , matches , shortCircuitState  } = matchRequest(request, routeId);
         try {
-            if (shortCircuitState) return {
-                location,
-                result: shortCircuitState
-            };
-            if (request.method !== "GET") {
-                let result = await submit(request, matches, getTargetMatch(matches, location), routeId != null);
-                return {
-                    location,
-                    result
-                };
+            if (isSubmissionMethod(request.method.toLowerCase())) {
+                let result = await submit(request, matches, routeMatch || getTargetMatch(matches, location), routeMatch != null);
+                return result;
             }
-            let result1 = await loadRouteData(request, matches, routeId != null);
-            return {
-                location,
-                result: _extends({}, result1, {
-                    actionData: null,
-                    actionHeaders: {}
-                })
-            };
+            let result1 = await loadRouteData(request, matches, routeMatch);
+            return result1 instanceof Response ? result1 : _extends({}, result1, {
+                actionData: null,
+                actionHeaders: {}
+            });
         } catch (e) {
-            if (e instanceof Response) return {
-                location,
-                result: e
-            };
+            // If the user threw/returned a Response in callLoaderOrAction, we throw
+            // it to bail out and then return or throw here based on whether the user
+            // returned or threw
+            if (isQueryRouteResponse(e)) {
+                if (e.type === ResultType.error && !isRedirectResponse(e.response)) throw e.response;
+                return e.response;
+            } // Redirects are always returned since they don't propagate to catch
+            // boundaries
+            if (isRedirectResponse(e)) return e;
             throw e;
         }
     }
     async function submit(request, matches, actionMatch, isRouteRequest) {
         let result;
         if (!actionMatch.route.action) {
-            let href = createHref(new URL(request.url));
-            result = getMethodNotAllowedResult(href);
+            let error = getInternalRouterError(405, {
+                method: request.method,
+                pathname: createURL(request.url).pathname,
+                routeId: actionMatch.route.id
+            });
+            if (isRouteRequest) throw error;
+            result = {
+                type: ResultType.error,
+                error
+            };
         } else {
-            result = await callLoaderOrAction("action", request, actionMatch, true, isRouteRequest);
+            result = await callLoaderOrAction("action", request, actionMatch, matches, basename, true, isRouteRequest);
             if (request.signal.aborted) {
                 let method = isRouteRequest ? "queryRoute" : "query";
                 throw new Error(method + "() call aborted");
             }
         }
         if (isRedirectResult(result)) // Uhhhh - this should never happen, we should always throw these from
-        // calLoaderOrAction, but the type narrowing here keeps TS happy and we
+        // callLoaderOrAction, but the type narrowing here keeps TS happy and we
         // can get back on the "throw all redirect responses" train here should
         // this ever happen :/
         throw new Response(null, {
@@ -42510,24 +42256,9 @@ function unstable_createStaticHandler(routes) {
         });
         if (isDeferredResult(result)) throw new Error("defer() is not supported in actions");
         if (isRouteRequest) {
-            if (isErrorResult(result)) {
-                let boundaryMatch = findNearestBoundary(matches, actionMatch.route.id);
-                return {
-                    matches: [
-                        actionMatch
-                    ],
-                    loaderData: {},
-                    actionData: null,
-                    errors: {
-                        [boundaryMatch.route.id]: result.error
-                    },
-                    // Note: statusCode + headers are unused here since queryRoute will
-                    // return the raw Response or value
-                    statusCode: 500,
-                    loaderHeaders: {},
-                    actionHeaders: {}
-                };
-            }
+            // Note: This should only be non-Response values if we get here, since
+            // isRouteRequest should throw any Response received in callLoaderOrAction
+            if (isErrorResult(result)) throw result.error;
             return {
                 matches: [
                     actionMatch
@@ -42547,9 +42278,9 @@ function unstable_createStaticHandler(routes) {
         if (isErrorResult(result)) {
             // Store off the pending error - we use it to determine which loaders
             // to call and will commit it when we complete the navigation
-            let boundaryMatch1 = findNearestBoundary(matches, actionMatch.route.id);
-            let context = await loadRouteData(request, matches, isRouteRequest, {
-                [boundaryMatch1.route.id]: result.error
+            let boundaryMatch = findNearestBoundary(matches, actionMatch.route.id);
+            let context = await loadRouteData(request, matches, undefined, {
+                [boundaryMatch.route.id]: result.error
             }); // action status codes take precedence over loader status codes
             return _extends({}, context, {
                 statusCode: isRouteErrorResponse(result.error) ? result.error.status : 500,
@@ -42559,7 +42290,7 @@ function unstable_createStaticHandler(routes) {
                 } : {})
             });
         }
-        let context1 = await loadRouteData(request, matches, isRouteRequest);
+        let context1 = await loadRouteData(request, matches);
         return _extends({}, context1, result.statusCode ? {
             statusCode: result.statusCode
         } : {}, {
@@ -42571,8 +42302,17 @@ function unstable_createStaticHandler(routes) {
             } : {})
         });
     }
-    async function loadRouteData(request, matches, isRouteRequest, pendingActionError) {
-        let matchesToLoad = getLoaderMatchesUntilBoundary(matches, Object.keys(pendingActionError || {})[0]).filter((m)=>m.route.loader); // Short circuit if we have no loaders to run
+    async function loadRouteData(request, matches, routeMatch, pendingActionError) {
+        let isRouteRequest = routeMatch != null; // Short circuit if we have no loaders to run (queryRoute())
+        if (isRouteRequest && !(routeMatch != null && routeMatch.route.loader)) throw getInternalRouterError(400, {
+            method: request.method,
+            pathname: createURL(request.url).pathname,
+            routeId: routeMatch == null ? void 0 : routeMatch.route.id
+        });
+        let requestMatches = routeMatch ? [
+            routeMatch
+        ] : getLoaderMatchesUntilBoundary(matches, Object.keys(pendingActionError || {})[0]);
+        let matchesToLoad = requestMatches.filter((m)=>m.route.loader); // Short circuit if we have no loaders to run (query())
         if (matchesToLoad.length === 0) return {
             matches,
             loaderData: {},
@@ -42581,7 +42321,7 @@ function unstable_createStaticHandler(routes) {
             loaderHeaders: {}
         };
         let results = await Promise.all([
-            ...matchesToLoad.map((m)=>callLoaderOrAction("loader", request, m, true, isRouteRequest))
+            ...matchesToLoad.map((match)=>callLoaderOrAction("loader", request, match, matches, basename, true, isRouteRequest))
         ]);
         if (request.signal.aborted) {
             let method = isRouteRequest ? "queryRoute" : "query";
@@ -42595,35 +42335,6 @@ function unstable_createStaticHandler(routes) {
         return _extends({}, context, {
             matches
         });
-    }
-    function matchRequest(req, routeId) {
-        let url = new URL(req.url);
-        let location = createLocation("", createPath(url), null, "default");
-        let matches = matchRoutes(dataRoutes, location);
-        if (matches && routeId) matches = matches.filter((m)=>m.route.id === routeId);
-         // Short circuit with a 404 if we match nothing
-        if (!matches) {
-            let { matches: notFoundMatches , route , error  } = getNotFoundMatches(dataRoutes);
-            return {
-                location,
-                matches: notFoundMatches,
-                shortCircuitState: {
-                    matches: notFoundMatches,
-                    loaderData: {},
-                    actionData: null,
-                    errors: {
-                        [route.id]: error
-                    },
-                    statusCode: 404,
-                    loaderHeaders: {},
-                    actionHeaders: {}
-                }
-            };
-        }
-        return {
-            location,
-            matches
-        };
     }
     return {
         dataRoutes,
@@ -42645,27 +42356,32 @@ function unstable_createStaticHandler(routes) {
         }
     });
     return newContext;
+}
+function isSubmissionNavigation(opts) {
+    return opts != null && "formData" in opts;
 } // Normalize navigation options by converting formMethod=GET formData objects to
 // URLSearchParams so they behave identically to links with query params
 function normalizeNavigateOptions(to, opts, isFetcher) {
     if (isFetcher === void 0) isFetcher = false;
     let path = typeof to === "string" ? to : createPath(to); // Return location verbatim on non-submission navigations
-    if (!opts || !("formMethod" in opts) && !("formData" in opts)) return {
+    if (!opts || !isSubmissionNavigation(opts)) return {
         path
     };
+    if (opts.formMethod && !isValidMethod(opts.formMethod)) return {
+        path,
+        error: getInternalRouterError(405, {
+            method: opts.formMethod
+        })
+    };
      // Create a Submission on non-GET navigations
-    if (opts.formMethod != null && opts.formMethod !== "get") return {
+    if (opts.formMethod && isSubmissionMethod(opts.formMethod)) return {
         path,
         submission: {
             formMethod: opts.formMethod,
-            formAction: createHref(parsePath(path)),
+            formAction: stripHashFromPath(path),
             formEncType: opts && opts.formEncType || "application/x-www-form-urlencoded",
             formData: opts.formData
         }
-    };
-     // No formData to flatten for GET submission
-    if (!opts.formData) return {
-        path
     };
      // Flatten submission onto URLSearchParams for GET submissions
     let parsedPath = parsePath(path);
@@ -42678,24 +42394,12 @@ function normalizeNavigateOptions(to, opts, isFetcher) {
     } catch (e) {
         return {
             path,
-            error: new ErrorResponse(400, "Bad Request", "Cannot submit binary form data using GET")
+            error: getInternalRouterError(400)
         };
     }
     return {
         path: createPath(parsedPath)
     };
-}
-function getLoaderRedirect(state, redirect) {
-    let { formMethod , formAction , formEncType , formData  } = state.navigation;
-    let navigation = {
-        state: "loading",
-        location: createLocation(state.location, redirect.location),
-        formMethod: formMethod || undefined,
-        formAction: formAction || undefined,
-        formEncType: formEncType || undefined,
-        formData: formData || undefined
-    };
-    return navigation;
 } // Filter out all routes below any caught error as they aren't going to
 // render so we don't need to load them
 function getLoaderMatchesUntilBoundary(matches, boundaryId) {
@@ -42710,22 +42414,25 @@ function getMatchesToLoad(state, matches, submission, location, isRevalidationRe
     let actionResult = pendingError ? Object.values(pendingError)[0] : pendingActionData ? Object.values(pendingActionData)[0] : null; // Pick navigation matches that are net-new or qualify for revalidation
     let boundaryId = pendingError ? Object.keys(pendingError)[0] : undefined;
     let boundaryMatches = getLoaderMatchesUntilBoundary(matches, boundaryId);
-    let navigationMatches = boundaryMatches.filter((match, index)=>match.route.loader != null && (isNewLoader(state.loaderData, state.matches[index], match) || cancelledDeferredRoutes.some((id)=>id === match.route.id) || shouldRevalidateLoader(state.location, state.matches[index], submission, location, match, isRevalidationRequired, actionResult))); // Pick fetcher.loads that need to be revalidated
+    let navigationMatches = boundaryMatches.filter((match, index)=>match.route.loader != null && (isNewLoader(state.loaderData, state.matches[index], match) || // If this route had a pending deferred cancelled it must be revalidated
+        cancelledDeferredRoutes.some((id)=>id === match.route.id) || shouldRevalidateLoader(state.location, state.matches[index], submission, location, match, isRevalidationRequired, actionResult))); // Pick fetcher.loads that need to be revalidated
     let revalidatingFetchers = [];
     fetchLoadMatches && fetchLoadMatches.forEach((_ref10, key)=>{
-        let [href, match] = _ref10;
+        let [href, match, fetchMatches] = _ref10;
         // This fetcher was cancelled from a prior action submission - force reload
         if (cancelledFetcherLoads.includes(key)) revalidatingFetchers.push([
             key,
             href,
-            match
+            match,
+            fetchMatches
         ]);
         else if (isRevalidationRequired) {
             let shouldRevalidate = shouldRevalidateLoader(href, match, submission, href, match, isRevalidationRequired, actionResult);
             if (shouldRevalidate) revalidatingFetchers.push([
                 key,
                 href,
-                match
+                match,
+                fetchMatches
             ]);
         }
     });
@@ -42735,14 +42442,16 @@ function getMatchesToLoad(state, matches, submission, location, isRevalidationRe
     ];
 }
 function isNewLoader(currentLoaderData, currentMatch, match) {
-    let isNew = !currentMatch || match.route.id !== currentMatch.route.id; // Handle the case that we don't have data for a re-used route, potentially
+    let isNew = !currentMatch || // [a, b] -> [a, c]
+    match.route.id !== currentMatch.route.id; // Handle the case that we don't have data for a re-used route, potentially
     // from a prior error or from a cancelled pending deferred
     let isMissingData = currentLoaderData[match.route.id] === undefined; // Always load if this is a net-new route or we don't yet have data
     return isNew || isMissingData;
 }
 function isNewRouteInstance(currentMatch, match) {
     let currentPath = currentMatch.route.path;
-    return currentMatch.pathname !== match.pathname || // e.g. /files/images/avatar.jpg -> files/finances.xls
+    return currentMatch.pathname !== match.pathname || // splat param changed, which is not present in match.path
+    // e.g. /files/images/avatar.jpg -> files/finances.xls
     currentPath && currentPath.endsWith("*") && currentMatch.params["*"] !== match.params["*"];
 }
 function shouldRevalidateLoader(currentLocation, currentMatch, submission, location, match, isRevalidationRequired, actionResult) {
@@ -42755,7 +42464,10 @@ function shouldRevalidateLoader(currentLocation, currentMatch, submission, locat
     // their own specific use cases
     // Note that fetchers always provide the same current/next locations so the
     // URL-based checks here don't apply to fetcher shouldRevalidate calls
-    let defaultShouldRevalidate = isNewRouteInstance(currentMatch, match) || currentUrl.toString() === nextUrl.toString() || currentUrl.search !== nextUrl.search || isRevalidationRequired;
+    let defaultShouldRevalidate = isNewRouteInstance(currentMatch, match) || // Clicked the same link, resubmitted a GET form
+    currentUrl.toString() === nextUrl.toString() || // Search params affect all loaders
+    currentUrl.search !== nextUrl.search || // Forced revalidation due to submission, useRevalidate, or X-Remix-Revalidate
+    isRevalidationRequired;
     if (match.route.shouldRevalidate) {
         let routeChoice = match.route.shouldRevalidate(_extends({
             currentUrl,
@@ -42770,8 +42482,9 @@ function shouldRevalidateLoader(currentLocation, currentMatch, submission, locat
     }
     return defaultShouldRevalidate;
 }
-async function callLoaderOrAction(type, request, match, skipRedirects, isRouteRequest) {
-    if (skipRedirects === void 0) skipRedirects = false;
+async function callLoaderOrAction(type, request, match, matches, basename, isStaticRequest, isRouteRequest) {
+    if (basename === void 0) basename = "/";
+    if (isStaticRequest === void 0) isStaticRequest = false;
     if (isRouteRequest === void 0) isRouteRequest = false;
     let resultType;
     let result; // Setup a promise we can race against so that abort signals short circuit
@@ -42789,6 +42502,7 @@ async function callLoaderOrAction(type, request, match, skipRedirects, isRouteRe
             }),
             abortPromise
         ]);
+        invariant(result !== undefined, "You defined " + (type === "action" ? "an action" : "a loader") + " for route " + ('"' + match.route.id + "\" but didn't return anything from your `" + type + "` ") + "function. Please return a value or `null`.");
     } catch (e) {
         resultType = ResultType.error;
         result = e;
@@ -42796,23 +42510,48 @@ async function callLoaderOrAction(type, request, match, skipRedirects, isRouteRe
         request.signal.removeEventListener("abort", onReject);
     }
     if (result instanceof Response) {
-        // Process redirects
-        let status = result.status;
-        let location = result.headers.get("Location"); // For SSR single-route requests, we want to hand Responses back directly
-        // without unwrapping
-        if (isRouteRequest) throw result;
-        if (status >= 300 && status <= 399 && location != null) {
-            // Don't process redirects in the router during SSR document requests.
+        let status = result.status; // Process redirects
+        if (redirectStatusCodes.has(status)) {
+            let location = result.headers.get("Location");
+            invariant(location, "Redirects returned/thrown from loaders/actions must have a Location header"); // Check if this an external redirect that goes to a new origin
+            let external = createURL(location).origin !== createURL("/").origin; // Support relative routing in internal redirects
+            if (!external) {
+                let activeMatches = matches.slice(0, matches.indexOf(match) + 1);
+                let routePathnames = getPathContributingMatches(activeMatches).map((match)=>match.pathnameBase);
+                let requestPath = createURL(request.url).pathname;
+                let resolvedLocation = resolveTo(location, routePathnames, requestPath);
+                invariant(createPath(resolvedLocation), "Unable to resolve redirect location: " + location); // Prepend the basename to the redirect location if we have one
+                if (basename) {
+                    let path = resolvedLocation.pathname;
+                    resolvedLocation.pathname = path === "/" ? basename : joinPaths([
+                        basename,
+                        path
+                    ]);
+                }
+                location = createPath(resolvedLocation);
+            } // Don't process redirects in the router during static requests requests.
             // Instead, throw the Response and let the server handle it with an HTTP
-            // redirect
-            if (skipRedirects) throw result;
+            // redirect.  We also update the Location header in place in this flow so
+            // basename and relative routing is taken into account
+            if (isStaticRequest) {
+                result.headers.set("Location", location);
+                throw result;
+            }
             return {
                 type: ResultType.redirect,
                 status,
                 location,
-                revalidate: result.headers.get("X-Remix-Revalidate") !== null
+                revalidate: result.headers.get("X-Remix-Revalidate") !== null,
+                external
             };
-        }
+        } // For SSR single-route requests, we want to hand Responses back directly
+        // without unwrapping.  We do this with the QueryRouteResponse wrapper
+        // interface so we can know whether it was returned or thrown
+        if (isRouteRequest) // eslint-disable-next-line no-throw-literal
+        throw {
+            type: resultType || ResultType.data,
+            response: result
+        };
         let data;
         let contentType = result.headers.get("Content-Type");
         if (contentType && contentType.startsWith("application/json")) data = await result.json();
@@ -42843,7 +42582,7 @@ async function callLoaderOrAction(type, request, match, skipRedirects, isRouteRe
     };
 }
 function createRequest(location, signal, submission) {
-    let url = createURL(location).toString();
+    let url = createURL(stripHashFromPath(location)).toString();
     let init = {
         signal
     };
@@ -42962,10 +42701,10 @@ function findNearestBoundary(matches, routeId) {
     ];
     return eligibleMatches.reverse().find((m)=>m.route.hasErrorBoundary === true) || matches[0];
 }
-function getNotFoundMatches(routes) {
+function getShortCircuitMatches(routes) {
     // Prefer a root layout route if present, otherwise shim in a route object
-    let route = routes.find((r)=>r.index || r.path === "" || r.path === "/") || {
-        id: "__shim-404-route__"
+    let route = routes.find((r)=>r.index || !r.path || r.path === "/") || {
+        id: "__shim-error-route__"
     };
     return {
         matches: [
@@ -42976,26 +42715,41 @@ function getNotFoundMatches(routes) {
                 route
             }
         ],
-        route,
-        error: new ErrorResponse(404, "Not Found", null)
+        route
     };
 }
-function getMethodNotAllowedResult(path) {
-    let href = typeof path === "string" ? path : createHref(path);
-    console.warn("You're trying to submit to a route that does not have an action.  To fix this, please add an `action` function to the route for " + ("[" + href + "]"));
-    return {
-        type: ResultType.error,
-        error: new ErrorResponse(405, "Method Not Allowed", "No action found for [" + href + "]")
-    };
+function getInternalRouterError(status, _temp) {
+    let { pathname , routeId , method , message  } = _temp === void 0 ? {} : _temp;
+    let statusText = "Unknown Server Error";
+    let errorMessage = "Unknown @remix-run/router error";
+    if (status === 400) {
+        statusText = "Bad Request";
+        if (method && pathname && routeId) errorMessage = "You made a " + method + ' request to "' + pathname + '" but ' + ('did not provide a `loader` for route "' + routeId + '", ') + "so there is no way to handle the request.";
+        else errorMessage = "Cannot submit binary form data using GET";
+    } else if (status === 403) {
+        statusText = "Forbidden";
+        errorMessage = 'Route "' + routeId + '" does not match URL "' + pathname + '"';
+    } else if (status === 404) {
+        statusText = "Not Found";
+        errorMessage = 'No route matches URL "' + pathname + '"';
+    } else if (status === 405) {
+        statusText = "Method Not Allowed";
+        if (method && pathname && routeId) errorMessage = "You made a " + method.toUpperCase() + ' request to "' + pathname + '" but ' + ('did not provide an `action` for route "' + routeId + '", ') + "so there is no way to handle the request.";
+        else if (method) errorMessage = 'Invalid request method "' + method.toUpperCase() + '"';
+    }
+    return new ErrorResponse(status || 500, statusText, new Error(errorMessage), true);
 } // Find any returned redirect errors, starting from the lowest match
 function findRedirect(results) {
     for(let i = results.length - 1; i >= 0; i--){
         let result = results[i];
         if (isRedirectResult(result)) return result;
     }
-} // Create an href to represent a "server" URL without the hash
-function createHref(location) {
-    return (location.pathname || "") + (location.search || "");
+}
+function stripHashFromPath(path) {
+    let parsedPath = typeof path === "string" ? parsePath(path) : path;
+    return createPath(_extends({}, parsedPath, {
+        hash: ""
+    }));
 }
 function isHashChangeOnly(a, b) {
     return a.pathname === b.pathname && a.search === b.search && a.hash !== b.hash;
@@ -43008,6 +42762,21 @@ function isErrorResult(result) {
 }
 function isRedirectResult(result) {
     return (result && result.type) === ResultType.redirect;
+}
+function isRedirectResponse(result) {
+    if (!(result instanceof Response)) return false;
+    let status = result.status;
+    let location = result.headers.get("Location");
+    return status >= 300 && status <= 399 && location != null;
+}
+function isQueryRouteResponse(obj) {
+    return obj && obj.response instanceof Response && (obj.type === ResultType.data || ResultType.error);
+}
+function isValidMethod(method) {
+    return validRequestMethods.has(method);
+}
+function isSubmissionMethod(method) {
+    return validActionMethods.has(method);
 }
 async function resolveDeferredResults(currentMatches, matchesToLoad, results, signal, isFetcher, currentLoaderData) {
     for(let index = 0; index < results.length; index++){
@@ -43060,16 +42829,666 @@ function createUseMatchesMatch(match, loaderData) {
 }
 function getTargetMatch(matches, location) {
     let search = typeof location === "string" ? parsePath(location).search : location.search;
-    if (matches[matches.length - 1].route.index && !hasNakedIndexQuery(search || "")) return matches.slice(-2)[0];
-    return matches.slice(-1)[0];
-}
-function createURL(location) {
-    let base = typeof window !== "undefined" && typeof window.location !== "undefined" ? window.location.origin : "unknown://unknown";
-    let href = typeof location === "string" ? location : createHref(location);
-    return new URL(href, base);
+    if (matches[matches.length - 1].route.index && hasNakedIndexQuery(search || "")) // Return the leaf index route when index is present
+    return matches[matches.length - 1];
+     // Otherwise grab the deepest "path contributing" match (ignoring index and
+    // pathless layout routes)
+    let pathMatches = getPathContributingMatches(matches);
+    return pathMatches[pathMatches.length - 1];
 } //#endregion
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"bwuIu":[function(require,module,exports) {
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"9YtA0":[function(require,module,exports) {
+var $parcel$ReactRefreshHelpers$9fee = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+$parcel$ReactRefreshHelpers$9fee.prelude(module);
+
+try {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "LoginView", ()=>LoginView);
+var _jsxDevRuntime = require("react/jsx-dev-runtime");
+var _react = require("react");
+var _reactDefault = parcelHelpers.interopDefault(_react);
+var _propTypes = require("prop-types");
+var _propTypesDefault = parcelHelpers.interopDefault(_propTypes);
+var _reactBootstrap = require("react-bootstrap");
+var _axios = require("axios");
+var _axiosDefault = parcelHelpers.interopDefault(_axios);
+var _s = $RefreshSig$();
+function LoginView(props) {
+    _s();
+    const [username, setUsername] = (0, _react.useState)("");
+    const [password, setPassword] = (0, _react.useState)("");
+    // Declare hook for each input
+    const [usernameErr, setUsernameErr] = (0, _react.useState)("");
+    const [passwordErr, setPasswordErr] = (0, _react.useState)("");
+    // validate user inputs
+    const validate = ()=>{
+        let isReq = true;
+        if (!username) {
+            setUsernameErr("Username Required");
+            isReq = false;
+        } else if (username.length < 2) {
+            setUsernameErr("Username must be 2 characters long");
+            isReq = false;
+        }
+        if (!password) {
+            setPasswordErr("Password Required");
+            isReq = false;
+        } else if (password.length < 6) {
+            setPassword("Password must be 6 characters long");
+            isReq = false;
+        }
+        return isReq;
+    };
+    const handleLogin = (e)=>{
+        e.preventDefault();
+        const isReq = validate();
+        if (isReq) /* Send request to the server for authentication */ (0, _axiosDefault.default).post("https://nixflix.herokuapp.com/login", {
+            Username: username,
+            Password: password
+        }).then((response)=>{
+            const data = response.data;
+            console.log("username: ", username);
+            console.log("password: ", password);
+            console.log("data from handleLogin function", data);
+            props.onLoggedIn(data);
+        }).catch((e)=>{
+            console.log("Login Error", e);
+        });
+    };
+    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form), {
+        children: [
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form).Group, {
+                controlId: "formUsername",
+                children: [
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form).Label, {
+                        children: "Username:"
+                    }, void 0, false, {
+                        fileName: "src/components/login-view/login-view.jsx",
+                        lineNumber: 60,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form).Control, {
+                        type: "text",
+                        placeholder: "Enter username",
+                        value: username,
+                        onChange: (e)=>setUsername(e.target.value)
+                    }, void 0, false, {
+                        fileName: "src/components/login-view/login-view.jsx",
+                        lineNumber: 61,
+                        columnNumber: 9
+                    }, this),
+                    usernameErr && /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
+                        children: usernameErr
+                    }, void 0, false, {
+                        fileName: "src/components/login-view/login-view.jsx",
+                        lineNumber: 68,
+                        columnNumber: 25
+                    }, this)
+                ]
+            }, void 0, true, {
+                fileName: "src/components/login-view/login-view.jsx",
+                lineNumber: 59,
+                columnNumber: 7
+            }, this),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form).Group, {
+                controlId: "formPassword",
+                children: [
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form).Label, {
+                        children: "Password"
+                    }, void 0, false, {
+                        fileName: "src/components/login-view/login-view.jsx",
+                        lineNumber: 72,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form).Control, {
+                        type: "password",
+                        placeholder: "Password",
+                        value: password,
+                        onChange: (e)=>setPassword(e.target.value)
+                    }, void 0, false, {
+                        fileName: "src/components/login-view/login-view.jsx",
+                        lineNumber: 73,
+                        columnNumber: 9
+                    }, this),
+                    passwordErr && /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
+                        children: passwordErr
+                    }, void 0, false, {
+                        fileName: "src/components/login-view/login-view.jsx",
+                        lineNumber: 80,
+                        columnNumber: 25
+                    }, this)
+                ]
+            }, void 0, true, {
+                fileName: "src/components/login-view/login-view.jsx",
+                lineNumber: 71,
+                columnNumber: 7
+            }, this),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Button), {
+                variant: "primary",
+                type: "submit",
+                onClick: handleLogin,
+                children: "Submit"
+            }, void 0, false, {
+                fileName: "src/components/login-view/login-view.jsx",
+                lineNumber: 82,
+                columnNumber: 7
+            }, this)
+        ]
+    }, void 0, true, {
+        fileName: "src/components/login-view/login-view.jsx",
+        lineNumber: 58,
+        columnNumber: 5
+    }, this);
+}
+_s(LoginView, "8pGqNa6D1L55vC7VE2hBm7jlBGo=");
+_c = LoginView;
+var _c;
+$RefreshReg$(_c, "LoginView");
+
+  $parcel$ReactRefreshHelpers$9fee.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","prop-types":"7wKI2","react-bootstrap":"3AD9A","axios":"jo6P5","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"km3Ru":[function(require,module,exports) {
+"use strict";
+var Refresh = require("react-refresh/runtime");
+function debounce(func, delay) {
+    var args;
+    {
+        let timeout = undefined;
+        let lastTime = 0;
+        return function(args) {
+            // Call immediately if last call was more than the delay ago.
+            // Otherwise, set a timeout. This means the first call is fast
+            // (for the common case of a single update), and subsequent updates
+            // are batched.
+            let now = Date.now();
+            if (now - lastTime > delay) {
+                lastTime = now;
+                func.call(null, args);
+            } else {
+                clearTimeout(timeout);
+                timeout = setTimeout(function() {
+                    timeout = undefined;
+                    lastTime = Date.now();
+                    func.call(null, args);
+                }, delay);
+            }
+        };
+    }
+}
+var enqueueUpdate = debounce(function() {
+    Refresh.performReactRefresh();
+}, 30); // Everthing below is either adapted or copied from
+// https://github.com/facebook/metro/blob/61de16bd1edd7e738dd0311c89555a644023ab2d/packages/metro/src/lib/polyfills/require.js
+// MIT License - Copyright (c) Facebook, Inc. and its affiliates.
+module.exports.prelude = function(module1) {
+    window.$RefreshReg$ = function(type, id) {
+        Refresh.register(type, module1.id + " " + id);
+    };
+    window.$RefreshSig$ = Refresh.createSignatureFunctionForTransform;
+};
+module.exports.postlude = function(module1) {
+    if (isReactRefreshBoundary(module1.exports)) {
+        registerExportsForReactRefresh(module1);
+        if (module1.hot) {
+            module1.hot.dispose(function(data) {
+                if (Refresh.hasUnrecoverableErrors()) window.location.reload();
+                data.prevExports = module1.exports;
+            });
+            module1.hot.accept(function(getParents) {
+                var prevExports = module1.hot.data.prevExports;
+                var nextExports = module1.exports; // Since we just executed the code for it, it's possible
+                // that the new exports make it ineligible for being a boundary.
+                var isNoLongerABoundary = !isReactRefreshBoundary(nextExports); // It can also become ineligible if its exports are incompatible
+                // with the previous exports.
+                // For example, if you add/remove/change exports, we'll want
+                // to re-execute the importing modules, and force those components
+                // to re-render. Similarly, if you convert a class component
+                // to a function, we want to invalidate the boundary.
+                var didInvalidate = shouldInvalidateReactRefreshBoundary(prevExports, nextExports);
+                if (isNoLongerABoundary || didInvalidate) {
+                    // We'll be conservative. The only case in which we won't do a full
+                    // reload is if all parent modules are also refresh boundaries.
+                    // In that case we'll add them to the current queue.
+                    var parents = getParents();
+                    if (parents.length === 0) {
+                        // Looks like we bubbled to the root. Can't recover from that.
+                        window.location.reload();
+                        return;
+                    }
+                    return parents;
+                }
+                enqueueUpdate();
+            });
+        }
+    }
+};
+function isReactRefreshBoundary(exports) {
+    if (Refresh.isLikelyComponentType(exports)) return true;
+    if (exports == null || typeof exports !== "object") // Exit if we can't iterate over exports.
+    return false;
+    var hasExports = false;
+    var areAllExportsComponents = true;
+    let isESM = "__esModule" in exports;
+    for(var key in exports){
+        hasExports = true;
+        if (key === "__esModule") continue;
+        var desc = Object.getOwnPropertyDescriptor(exports, key);
+        if (desc && desc.get && !isESM) // Don't invoke getters for CJS as they may have side effects.
+        return false;
+        var exportValue = exports[key];
+        if (!Refresh.isLikelyComponentType(exportValue)) areAllExportsComponents = false;
+    }
+    return hasExports && areAllExportsComponents;
+}
+function shouldInvalidateReactRefreshBoundary(prevExports, nextExports) {
+    var prevSignature = getRefreshBoundarySignature(prevExports);
+    var nextSignature = getRefreshBoundarySignature(nextExports);
+    if (prevSignature.length !== nextSignature.length) return true;
+    for(var i = 0; i < nextSignature.length; i++){
+        if (prevSignature[i] !== nextSignature[i]) return true;
+    }
+    return false;
+} // When this signature changes, it's unsafe to stop at this refresh boundary.
+function getRefreshBoundarySignature(exports) {
+    var signature = [];
+    signature.push(Refresh.getFamilyByType(exports));
+    if (exports == null || typeof exports !== "object") // Exit if we can't iterate over exports.
+    // (This is important for legacy environments.)
+    return signature;
+    let isESM = "__esModule" in exports;
+    for(var key in exports){
+        if (key === "__esModule") continue;
+        var desc = Object.getOwnPropertyDescriptor(exports, key);
+        if (desc && desc.get && !isESM) continue;
+        var exportValue = exports[key];
+        signature.push(key);
+        signature.push(Refresh.getFamilyByType(exportValue));
+    }
+    return signature;
+}
+function registerExportsForReactRefresh(module1) {
+    var exports = module1.exports, id = module1.id;
+    Refresh.register(exports, id + " %exports%");
+    if (exports == null || typeof exports !== "object") // Exit if we can't iterate over exports.
+    // (This is important for legacy environments.)
+    return;
+    let isESM = "__esModule" in exports;
+    for(var key in exports){
+        var desc = Object.getOwnPropertyDescriptor(exports, key);
+        if (desc && desc.get && !isESM) continue;
+        var exportValue = exports[key];
+        Refresh.register(exportValue, id + " %exports% " + key);
+    }
+}
+
+},{"react-refresh/runtime":"786KC"}],"ggaUx":[function(require,module,exports) {
+var $parcel$ReactRefreshHelpers$e9f6 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+$parcel$ReactRefreshHelpers$e9f6.prelude(module);
+
+try {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "MovieView", ()=>MovieView);
+var _jsxDevRuntime = require("react/jsx-dev-runtime");
+var _react = require("react");
+var _propTypes = require("prop-types");
+var _propTypesDefault = parcelHelpers.interopDefault(_propTypes);
+var _reactBootstrap = require("react-bootstrap");
+var _axios = require("axios");
+var _axiosDefault = parcelHelpers.interopDefault(_axios);
+var _reactRouterDom = require("react-router-dom");
+var _movieViewScss = require("./movie-view.scss");
+var _movieCard = require("../movie-card/movie-card");
+var _s = $RefreshSig$();
+function MovieView(props) {
+    _s();
+    const user = localStorage.getItem("user");
+    const userInfo = JSON.parse(user);
+    const username = userInfo.Username;
+    const { movieId  } = (0, _reactRouterDom.useParams)();
+    let navigate = (0, _reactRouterDom.useNavigate)();
+    let [movie, setMovie] = (0, _react.useState)({});
+    console.log("Movies from movie-view: ", movie);
+    console.log("movieId from movie-view: ", movieId);
+    console.log("username from movie-view: ", username);
+    console.log("userInfo from movie-view: ", userInfo);
+    console.log("user from movie-view: ", user);
+    //Works!
+    function addFavorite(movieId) {
+        const token = localStorage.getItem("token");
+        (0, _axiosDefault.default).post(`https://nixflix.herokuapp.com/users/${username}/movies/${movieId}`, {
+            username: localStorage.getItem("user")
+        }, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        }).then((response)=>{
+            console.log(response);
+            alert("Movie added");
+        }).catch((error)=>console.error(error));
+    }
+    // does not work
+    function removeFavorite(movieId) {
+        const token = localStorage.getItem("token");
+        (0, _axiosDefault.default).delete(`https://nixflix.herokuapp.com/users/${username}/movies/${movieId}`, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        }).then((response)=>{
+            console.log(response);
+            alert("Movie removed");
+        }).catch((error)=>console.error(error));
+    }
+    (0, _react.useEffect)(()=>{
+        let film = props.movies.find(function(m) {
+            return m._id == movieId;
+        });
+        setMovie(film);
+    }, []);
+    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+        className: "movie-view",
+        children: [
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Row), {
+                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Col), {
+                    children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                        className: "movie-poster",
+                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("img", {
+                            className: "img-fluid",
+                            src: movie.ImagePath
+                        }, void 0, false, {
+                            fileName: "src/components/movie-view/movie-view.jsx",
+                            lineNumber: 73,
+                            columnNumber: 13
+                        }, this)
+                    }, void 0, false, {
+                        fileName: "src/components/movie-view/movie-view.jsx",
+                        lineNumber: 72,
+                        columnNumber: 11
+                    }, this)
+                }, void 0, false, {
+                    fileName: "src/components/movie-view/movie-view.jsx",
+                    lineNumber: 71,
+                    columnNumber: 9
+                }, this)
+            }, void 0, false, {
+                fileName: "src/components/movie-view/movie-view.jsx",
+                lineNumber: 70,
+                columnNumber: 7
+            }, this),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Row), {
+                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Col), {
+                    className: "fs-2",
+                    children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                        className: "movie-title",
+                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
+                            className: "value",
+                            children: movie.Title
+                        }, void 0, false, {
+                            fileName: "src/components/movie-view/movie-view.jsx",
+                            lineNumber: 81,
+                            columnNumber: 13
+                        }, this)
+                    }, void 0, false, {
+                        fileName: "src/components/movie-view/movie-view.jsx",
+                        lineNumber: 80,
+                        columnNumber: 11
+                    }, this)
+                }, void 0, false, {
+                    fileName: "src/components/movie-view/movie-view.jsx",
+                    lineNumber: 79,
+                    columnNumber: 9
+                }, this)
+            }, void 0, false, {
+                fileName: "src/components/movie-view/movie-view.jsx",
+                lineNumber: 78,
+                columnNumber: 7
+            }, this),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Row), {
+                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Col), {
+                    className: "fs-6",
+                    children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                        className: "movie-release-year",
+                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
+                            className: "value",
+                            children: movie.ReleaseYear
+                        }, void 0, false, {
+                            fileName: "src/components/movie-view/movie-view.jsx",
+                            lineNumber: 89,
+                            columnNumber: 13
+                        }, this)
+                    }, void 0, false, {
+                        fileName: "src/components/movie-view/movie-view.jsx",
+                        lineNumber: 88,
+                        columnNumber: 11
+                    }, this)
+                }, void 0, false, {
+                    fileName: "src/components/movie-view/movie-view.jsx",
+                    lineNumber: 87,
+                    columnNumber: 9
+                }, this)
+            }, void 0, false, {
+                fileName: "src/components/movie-view/movie-view.jsx",
+                lineNumber: 86,
+                columnNumber: 7
+            }, this),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Row), {
+                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Col), {
+                    className: "fs-4",
+                    children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                        className: "movie-description",
+                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
+                            className: "value",
+                            children: movie.Description
+                        }, void 0, false, {
+                            fileName: "src/components/movie-view/movie-view.jsx",
+                            lineNumber: 97,
+                            columnNumber: 13
+                        }, this)
+                    }, void 0, false, {
+                        fileName: "src/components/movie-view/movie-view.jsx",
+                        lineNumber: 96,
+                        columnNumber: 11
+                    }, this)
+                }, void 0, false, {
+                    fileName: "src/components/movie-view/movie-view.jsx",
+                    lineNumber: 95,
+                    columnNumber: 9
+                }, this)
+            }, void 0, false, {
+                fileName: "src/components/movie-view/movie-view.jsx",
+                lineNumber: 94,
+                columnNumber: 7
+            }, this),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Row), {
+                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Col), {
+                    children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                        className: "movie-genre",
+                        children: [
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
+                                className: "label",
+                                children: "Genre: "
+                            }, void 0, false, {
+                                fileName: "src/components/movie-view/movie-view.jsx",
+                                lineNumber: 105,
+                                columnNumber: 13
+                            }, this),
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Button), {
+                                type: "button",
+                                variant: "link",
+                                onClick: ()=>navigate(`/genres/${movie.Genre.Name}`, {
+                                        state: {
+                                            Genre: movie
+                                        }
+                                    }),
+                                children: movie.Genre?.Name
+                            }, void 0, false, {
+                                fileName: "src/components/movie-view/movie-view.jsx",
+                                lineNumber: 106,
+                                columnNumber: 13
+                            }, this)
+                        ]
+                    }, void 0, true, {
+                        fileName: "src/components/movie-view/movie-view.jsx",
+                        lineNumber: 104,
+                        columnNumber: 11
+                    }, this)
+                }, void 0, false, {
+                    fileName: "src/components/movie-view/movie-view.jsx",
+                    lineNumber: 103,
+                    columnNumber: 9
+                }, this)
+            }, void 0, false, {
+                fileName: "src/components/movie-view/movie-view.jsx",
+                lineNumber: 102,
+                columnNumber: 7
+            }, this),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Row), {
+                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Col), {
+                    children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                        className: "movie-director",
+                        children: [
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("span", {
+                                className: "label",
+                                children: "Director: "
+                            }, void 0, false, {
+                                fileName: "src/components/movie-view/movie-view.jsx",
+                                lineNumber: 124,
+                                columnNumber: 13
+                            }, this),
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Button), {
+                                type: "button",
+                                variant: "link",
+                                onClick: ()=>navigate(`/directors/${movie.Director.Name}`, {
+                                        state: {
+                                            director: movie
+                                        }
+                                    }),
+                                children: movie.Director?.Name
+                            }, void 0, false, {
+                                fileName: "src/components/movie-view/movie-view.jsx",
+                                lineNumber: 125,
+                                columnNumber: 13
+                            }, this)
+                        ]
+                    }, void 0, true, {
+                        fileName: "src/components/movie-view/movie-view.jsx",
+                        lineNumber: 123,
+                        columnNumber: 11
+                    }, this)
+                }, void 0, false, {
+                    fileName: "src/components/movie-view/movie-view.jsx",
+                    lineNumber: 122,
+                    columnNumber: 9
+                }, this)
+            }, void 0, false, {
+                fileName: "src/components/movie-view/movie-view.jsx",
+                lineNumber: 121,
+                columnNumber: 7
+            }, this),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Col), {
+                className: "movie-view-favorite-button",
+                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
+                    type: "button",
+                    className: "btn btn-secondary",
+                    onClick: ()=>addFavorite(movieId),
+                    children: "Add to favorites"
+                }, void 0, false, {
+                    fileName: "src/components/movie-view/movie-view.jsx",
+                    lineNumber: 141,
+                    columnNumber: 9
+                }, this)
+            }, void 0, false, {
+                fileName: "src/components/movie-view/movie-view.jsx",
+                lineNumber: 140,
+                columnNumber: 7
+            }, this),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Col), {
+                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Button), {
+                    className: "movie-view-remove-favorite-button",
+                    variant: "btn btn-secondary",
+                    size: "sm",
+                    type: "button",
+                    onClick: ()=>removeFavorite(movieId),
+                    children: "Remove from favorites"
+                }, void 0, false, {
+                    fileName: "src/components/movie-view/movie-view.jsx",
+                    lineNumber: 150,
+                    columnNumber: 9
+                }, this)
+            }, void 0, false, {
+                fileName: "src/components/movie-view/movie-view.jsx",
+                lineNumber: 149,
+                columnNumber: 7
+            }, this),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Col), {
+                className: "movie-view-back-button",
+                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
+                    type: "button",
+                    className: "btn btn-secondary",
+                    onClick: ()=>navigate("/", {
+                            replace: true
+                        }),
+                    children: "Back to Movies"
+                }, void 0, false, {
+                    fileName: "src/components/movie-view/movie-view.jsx",
+                    lineNumber: 170,
+                    columnNumber: 9
+                }, this)
+            }, void 0, false, {
+                fileName: "src/components/movie-view/movie-view.jsx",
+                lineNumber: 169,
+                columnNumber: 7
+            }, this)
+        ]
+    }, void 0, true, {
+        fileName: "src/components/movie-view/movie-view.jsx",
+        lineNumber: 69,
+        columnNumber: 5
+    }, this);
+}
+_s(MovieView, "M2qqWdwQR/YBcXgrZppb99yBWpA=", false, function() {
+    return [
+        (0, _reactRouterDom.useParams),
+        (0, _reactRouterDom.useNavigate)
+    ];
+});
+_c = MovieView;
+MovieView.propTypes = {
+    movie: (0, _propTypesDefault.default).shape({
+        Title: (0, _propTypesDefault.default).string,
+        Description: (0, _propTypesDefault.default).string,
+        ImagePath: (0, _propTypesDefault.default).string,
+        Genre: (0, _propTypesDefault.default).shape({
+            Name: (0, _propTypesDefault.default).string,
+            Description: (0, _propTypesDefault.default).string
+        }),
+        Actors: (0, _propTypesDefault.default).array,
+        Director: (0, _propTypesDefault.default).shape({
+            Name: (0, _propTypesDefault.default).string,
+            Bio: (0, _propTypesDefault.default).string,
+            Birth: (0, _propTypesDefault.default).string,
+            Death: (0, _propTypesDefault.default).string
+        })
+    }),
+    onBackClick: (0, _propTypesDefault.default).func
+};
+var _c;
+$RefreshReg$(_c, "MovieView");
+
+  $parcel$ReactRefreshHelpers$e9f6.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","prop-types":"7wKI2","react-bootstrap":"3AD9A","axios":"jo6P5","react-router-dom":"9xmpe","./movie-view.scss":"jnlR5","../movie-card/movie-card":"bwuIu","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"jnlR5":[function() {},{}],"bwuIu":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$67b2 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -43186,21 +43605,7 @@ MovieCard.propTypes = {
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","prop-types":"7wKI2","react-bootstrap":"3AD9A","react-router-dom":"9xmpe","./movie-card.scss":"d6HH4","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"d6HH4":[function() {},{}],"eBaMl":[function() {},{}],"en4he":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-const Utils = {
-    removeDuplicates: function(array) {
-        let tempSet = new Set(array);
-        array = [
-            ...tempSet
-        ];
-        return array;
-    }
-};
-exports.default = Utils;
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"3U8r7":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","prop-types":"7wKI2","react-bootstrap":"3AD9A","react-router-dom":"9xmpe","./movie-card.scss":"d6HH4","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"d6HH4":[function() {},{}],"3U8r7":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$789c = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -43617,7 +44022,6 @@ function ProfileView(props) {
             });
         }
     };
-    console.log(user.FavoriteMovies);
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Container), {
         className: "profile-container",
         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card), {
@@ -43631,7 +44035,7 @@ function ProfileView(props) {
                     children: "Profile"
                 }, void 0, false, {
                     fileName: "src/components/profile-view/profile-view.jsx",
-                    lineNumber: 96,
+                    lineNumber: 94,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Body, {
@@ -43647,12 +44051,12 @@ function ProfileView(props) {
                         ]
                     }, void 0, true, {
                         fileName: "src/components/profile-view/profile-view.jsx",
-                        lineNumber: 100,
+                        lineNumber: 98,
                         columnNumber: 11
                     }, this)
                 }, void 0, false, {
                     fileName: "src/components/profile-view/profile-view.jsx",
-                    lineNumber: 99,
+                    lineNumber: 97,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Body, {
@@ -43669,12 +44073,12 @@ function ProfileView(props) {
                         ]
                     }, void 0, true, {
                         fileName: "src/components/profile-view/profile-view.jsx",
-                        lineNumber: 105,
+                        lineNumber: 103,
                         columnNumber: 11
                     }, this)
                 }, void 0, false, {
                     fileName: "src/components/profile-view/profile-view.jsx",
-                    lineNumber: 104,
+                    lineNumber: 102,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Header, {
@@ -43683,7 +44087,7 @@ function ProfileView(props) {
                     children: "Favorites:"
                 }, void 0, false, {
                     fileName: "src/components/profile-view/profile-view.jsx",
-                    lineNumber: 109,
+                    lineNumber: 107,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card), {
@@ -43692,17 +44096,17 @@ function ProfileView(props) {
                                 movie: movie
                             }, void 0, false, {
                                 fileName: "src/components/profile-view/profile-view.jsx",
-                                lineNumber: 117,
+                                lineNumber: 115,
                                 columnNumber: 17
                             }, this))
                     }, void 0, false, {
                         fileName: "src/components/profile-view/profile-view.jsx",
-                        lineNumber: 113,
+                        lineNumber: 111,
                         columnNumber: 11
                     }, this)
                 }, void 0, false, {
                     fileName: "src/components/profile-view/profile-view.jsx",
-                    lineNumber: 112,
+                    lineNumber: 110,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Body, {
@@ -43719,7 +44123,7 @@ function ProfileView(props) {
                                     children: "Update profile information"
                                 }, void 0, false, {
                                     fileName: "src/components/profile-view/profile-view.jsx",
-                                    lineNumber: 124,
+                                    lineNumber: 122,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form), {
@@ -43734,7 +44138,7 @@ function ProfileView(props) {
                                                     children: "Username:"
                                                 }, void 0, false, {
                                                     fileName: "src/components/profile-view/profile-view.jsx",
-                                                    lineNumber: 132,
+                                                    lineNumber: 130,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form).Control, {
@@ -43744,20 +44148,20 @@ function ProfileView(props) {
                                                     onChange: (e)=>setUsername(e.target.value)
                                                 }, void 0, false, {
                                                     fileName: "src/components/profile-view/profile-view.jsx",
-                                                    lineNumber: 133,
+                                                    lineNumber: 131,
                                                     columnNumber: 17
                                                 }, this),
                                                 usernameErr && /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
                                                     children: usernameErr
                                                 }, void 0, false, {
                                                     fileName: "src/components/profile-view/profile-view.jsx",
-                                                    lineNumber: 139,
+                                                    lineNumber: 137,
                                                     columnNumber: 33
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "src/components/profile-view/profile-view.jsx",
-                                            lineNumber: 128,
+                                            lineNumber: 126,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form).Group, {
@@ -43768,7 +44172,7 @@ function ProfileView(props) {
                                                     children: "Email:"
                                                 }, void 0, false, {
                                                     fileName: "src/components/profile-view/profile-view.jsx",
-                                                    lineNumber: 146,
+                                                    lineNumber: 144,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form).Control, {
@@ -43778,20 +44182,20 @@ function ProfileView(props) {
                                                     required: true
                                                 }, void 0, false, {
                                                     fileName: "src/components/profile-view/profile-view.jsx",
-                                                    lineNumber: 147,
+                                                    lineNumber: 145,
                                                     columnNumber: 17
                                                 }, this),
                                                 emailErr && /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
                                                     children: emailErr
                                                 }, void 0, false, {
                                                     fileName: "src/components/profile-view/profile-view.jsx",
-                                                    lineNumber: 153,
+                                                    lineNumber: 151,
                                                     columnNumber: 30
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "src/components/profile-view/profile-view.jsx",
-                                            lineNumber: 142,
+                                            lineNumber: 140,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form).Group, {
@@ -43802,7 +44206,7 @@ function ProfileView(props) {
                                                     children: "Date of birth:"
                                                 }, void 0, false, {
                                                     fileName: "src/components/profile-view/profile-view.jsx",
-                                                    lineNumber: 159,
+                                                    lineNumber: 157,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Form).Control, {
@@ -43811,32 +44215,32 @@ function ProfileView(props) {
                                                     placeholder: "Enter your birthday"
                                                 }, void 0, false, {
                                                     fileName: "src/components/profile-view/profile-view.jsx",
-                                                    lineNumber: 160,
+                                                    lineNumber: 158,
                                                     columnNumber: 17
                                                 }, this),
                                                 birthdayErr && /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
                                                     children: birthdayErr
                                                 }, void 0, false, {
                                                     fileName: "src/components/profile-view/profile-view.jsx",
-                                                    lineNumber: 165,
+                                                    lineNumber: 163,
                                                     columnNumber: 33
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "src/components/profile-view/profile-view.jsx",
-                                            lineNumber: 155,
+                                            lineNumber: 153,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "src/components/profile-view/profile-view.jsx",
-                                    lineNumber: 127,
+                                    lineNumber: 125,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "src/components/profile-view/profile-view.jsx",
-                            lineNumber: 123,
+                            lineNumber: 121,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card), {
@@ -43851,18 +44255,18 @@ function ProfileView(props) {
                                 children: "Update"
                             }, void 0, false, {
                                 fileName: "src/components/profile-view/profile-view.jsx",
-                                lineNumber: 173,
+                                lineNumber: 171,
                                 columnNumber: 13
                             }, this)
                         }, void 0, false, {
                             fileName: "src/components/profile-view/profile-view.jsx",
-                            lineNumber: 169,
+                            lineNumber: 167,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "src/components/profile-view/profile-view.jsx",
-                    lineNumber: 122,
+                    lineNumber: 120,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Body, {
@@ -43880,22 +44284,22 @@ function ProfileView(props) {
                                 children: "DELETE ACCOUNT"
                             }, void 0, false, {
                                 fileName: "src/components/profile-view/profile-view.jsx",
-                                lineNumber: 187,
+                                lineNumber: 185,
                                 columnNumber: 15
                             }, this)
                         }, void 0, false, {
                             fileName: "src/components/profile-view/profile-view.jsx",
-                            lineNumber: 186,
+                            lineNumber: 184,
                             columnNumber: 13
                         }, this)
                     }, void 0, false, {
                         fileName: "src/components/profile-view/profile-view.jsx",
-                        lineNumber: 185,
+                        lineNumber: 183,
                         columnNumber: 11
                     }, this)
                 }, void 0, false, {
                     fileName: "src/components/profile-view/profile-view.jsx",
-                    lineNumber: 184,
+                    lineNumber: 182,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Card).Footer, {
@@ -43909,23 +44313,23 @@ function ProfileView(props) {
                         children: "All Movies"
                     }, void 0, false, {
                         fileName: "src/components/profile-view/profile-view.jsx",
-                        lineNumber: 200,
+                        lineNumber: 198,
                         columnNumber: 11
                     }, this)
                 }, void 0, false, {
                     fileName: "src/components/profile-view/profile-view.jsx",
-                    lineNumber: 199,
+                    lineNumber: 197,
                     columnNumber: 9
                 }, this)
             ]
         }, void 0, true, {
             fileName: "src/components/profile-view/profile-view.jsx",
-            lineNumber: 95,
+            lineNumber: 93,
             columnNumber: 7
         }, this)
     }, void 0, false, {
         fileName: "src/components/profile-view/profile-view.jsx",
-        lineNumber: 94,
+        lineNumber: 92,
         columnNumber: 5
     }, this);
 }
@@ -44483,2301 +44887,6 @@ $RefreshReg$(_c, "GenreView");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","react-router-dom":"9xmpe","react-bootstrap":"3AD9A","../movie-card/movie-card":"bwuIu","prop-types":"7wKI2","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"bdVon":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "batch", ()=>(0, _reactBatchedUpdates.unstable_batchedUpdates));
-// The primary entry point assumes we're working with standard ReactDOM/RN, but
-// older versions that do not include `useSyncExternalStore` (React 16.9 - 17.x).
-// Because of that, the useSyncExternalStore compat shim is needed.
-var _shim = require("use-sync-external-store/shim");
-var _withSelector = require("use-sync-external-store/shim/with-selector");
-var _reactBatchedUpdates = require("./utils/reactBatchedUpdates");
-var _batch = require("./utils/batch");
-var _useSelector = require("./hooks/useSelector");
-var _connect = require("./components/connect");
-var _exports = require("./exports");
-parcelHelpers.exportAll(_exports, exports);
-(0, _useSelector.initializeUseSelector)((0, _withSelector.useSyncExternalStoreWithSelector));
-(0, _connect.initializeConnect)((0, _shim.useSyncExternalStore)); // Enable batched updates in our subscriptions for use
-// with standard React renderers (ReactDOM, React Native)
-(0, _batch.setBatch)((0, _reactBatchedUpdates.unstable_batchedUpdates));
-
-},{"use-sync-external-store/shim":"hyxdF","use-sync-external-store/shim/with-selector":"iDrhg","./utils/reactBatchedUpdates":"5K86X","./utils/batch":"ikw0G","./hooks/useSelector":"l3rFI","./components/connect":"5gOIw","./exports":"iAa1P","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"hyxdF":[function(require,module,exports) {
-"use strict";
-module.exports = require("../cjs/use-sync-external-store-shim.development.js");
-
-},{"../cjs/use-sync-external-store-shim.development.js":"khU3l"}],"khU3l":[function(require,module,exports) {
-/**
- * @license React
- * use-sync-external-store-shim.development.js
- *
- * Copyright (c) Facebook, Inc. and its affiliates.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */ "use strict";
-(function() {
-    "use strict";
-    /* global __REACT_DEVTOOLS_GLOBAL_HOOK__ */ if (typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ !== "undefined" && typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart === "function") __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart(new Error());
-    var React = require("react");
-    var ReactSharedInternals = React.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
-    function error(format) {
-        for(var _len2 = arguments.length, args = new Array(_len2 > 1 ? _len2 - 1 : 0), _key2 = 1; _key2 < _len2; _key2++)args[_key2 - 1] = arguments[_key2];
-        printWarning("error", format, args);
-    }
-    function printWarning(level, format, args) {
-        var ReactDebugCurrentFrame = ReactSharedInternals.ReactDebugCurrentFrame;
-        var stack = ReactDebugCurrentFrame.getStackAddendum();
-        if (stack !== "") {
-            format += "%s";
-            args = args.concat([
-                stack
-            ]);
-        } // eslint-disable-next-line react-internal/safe-string-coercion
-        var argsWithFormat = args.map(function(item) {
-            return String(item);
-        }); // Careful: RN currently depends on this prefix
-        argsWithFormat.unshift("Warning: " + format); // We intentionally don't use spread (or .apply) directly because it
-        // breaks IE9: https://github.com/facebook/react/issues/13610
-        // eslint-disable-next-line react-internal/no-production-logging
-        Function.prototype.apply.call(console[level], console, argsWithFormat);
-    }
-    /**
- * inlined Object.is polyfill to avoid requiring consumers ship their own
- * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is
- */ function is(x, y) {
-        return x === y && (x !== 0 || 1 / x === 1 / y) || x !== x && y !== y // eslint-disable-line no-self-compare
-        ;
-    }
-    var objectIs = typeof Object.is === "function" ? Object.is : is;
-    // dispatch for CommonJS interop named imports.
-    var useState = React.useState, useEffect = React.useEffect, useLayoutEffect = React.useLayoutEffect, useDebugValue = React.useDebugValue;
-    var didWarnOld18Alpha = false;
-    var didWarnUncachedGetSnapshot = false; // Disclaimer: This shim breaks many of the rules of React, and only works
-    // because of a very particular set of implementation details and assumptions
-    // -- change any one of them and it will break. The most important assumption
-    // is that updates are always synchronous, because concurrent rendering is
-    // only available in versions of React that also have a built-in
-    // useSyncExternalStore API. And we only use this shim when the built-in API
-    // does not exist.
-    //
-    // Do not assume that the clever hacks used by this hook also work in general.
-    // The point of this shim is to replace the need for hacks by other libraries.
-    function useSyncExternalStore(subscribe, getSnapshot, // React do not expose a way to check if we're hydrating. So users of the shim
-    // will need to track that themselves and return the correct value
-    // from `getSnapshot`.
-    getServerSnapshot) {
-        if (!didWarnOld18Alpha) {
-            if (React.startTransition !== undefined) {
-                didWarnOld18Alpha = true;
-                error("You are using an outdated, pre-release alpha of React 18 that does not support useSyncExternalStore. The use-sync-external-store shim will not work correctly. Upgrade to a newer pre-release.");
-            }
-        }
-        // breaks the rules of React, and only works here because of specific
-        // implementation details, most importantly that updates are
-        // always synchronous.
-        var value = getSnapshot();
-        if (!didWarnUncachedGetSnapshot) {
-            var cachedValue = getSnapshot();
-            if (!objectIs(value, cachedValue)) {
-                error("The result of getSnapshot should be cached to avoid an infinite loop");
-                didWarnUncachedGetSnapshot = true;
-            }
-        }
-        // re-render whenever the subscribed state changes by updating an some
-        // arbitrary useState hook. Then, during render, we call getSnapshot to read
-        // the current value.
-        //
-        // Because we don't actually use the state returned by the useState hook, we
-        // can save a bit of memory by storing other stuff in that slot.
-        //
-        // To implement the early bailout, we need to track some things on a mutable
-        // object. Usually, we would put that in a useRef hook, but we can stash it in
-        // our useState hook instead.
-        //
-        // To force a re-render, we call forceUpdate({inst}). That works because the
-        // new object always fails an equality check.
-        var _useState = useState({
-            inst: {
-                value: value,
-                getSnapshot: getSnapshot
-            }
-        }), inst = _useState[0].inst, forceUpdate = _useState[1]; // Track the latest getSnapshot function with a ref. This needs to be updated
-        // in the layout phase so we can access it during the tearing check that
-        // happens on subscribe.
-        useLayoutEffect(function() {
-            inst.value = value;
-            inst.getSnapshot = getSnapshot; // Whenever getSnapshot or subscribe changes, we need to check in the
-            // commit phase if there was an interleaved mutation. In concurrent mode
-            // this can happen all the time, but even in synchronous mode, an earlier
-            // effect may have mutated the store.
-            if (checkIfSnapshotChanged(inst)) // Force a re-render.
-            forceUpdate({
-                inst: inst
-            });
-        }, [
-            subscribe,
-            value,
-            getSnapshot
-        ]);
-        useEffect(function() {
-            // Check for changes right before subscribing. Subsequent changes will be
-            // detected in the subscription handler.
-            if (checkIfSnapshotChanged(inst)) // Force a re-render.
-            forceUpdate({
-                inst: inst
-            });
-            var handleStoreChange = function() {
-                // TODO: Because there is no cross-renderer API for batching updates, it's
-                // up to the consumer of this library to wrap their subscription event
-                // with unstable_batchedUpdates. Should we try to detect when this isn't
-                // the case and print a warning in development?
-                // The store changed. Check if the snapshot changed since the last time we
-                // read from the store.
-                if (checkIfSnapshotChanged(inst)) // Force a re-render.
-                forceUpdate({
-                    inst: inst
-                });
-            }; // Subscribe to the store and return a clean-up function.
-            return subscribe(handleStoreChange);
-        }, [
-            subscribe
-        ]);
-        useDebugValue(value);
-        return value;
-    }
-    function checkIfSnapshotChanged(inst) {
-        var latestGetSnapshot = inst.getSnapshot;
-        var prevValue = inst.value;
-        try {
-            var nextValue = latestGetSnapshot();
-            return !objectIs(prevValue, nextValue);
-        } catch (error) {
-            return true;
-        }
-    }
-    function useSyncExternalStore$1(subscribe, getSnapshot, getServerSnapshot) {
-        // Note: The shim does not use getServerSnapshot, because pre-18 versions of
-        // React do not expose a way to check if we're hydrating. So users of the shim
-        // will need to track that themselves and return the correct value
-        // from `getSnapshot`.
-        return getSnapshot();
-    }
-    var canUseDOM = !!(typeof window !== "undefined" && typeof window.document !== "undefined" && typeof window.document.createElement !== "undefined");
-    var isServerEnvironment = !canUseDOM;
-    var shim = isServerEnvironment ? useSyncExternalStore$1 : useSyncExternalStore;
-    var useSyncExternalStore$2 = React.useSyncExternalStore !== undefined ? React.useSyncExternalStore : shim;
-    exports.useSyncExternalStore = useSyncExternalStore$2;
-    /* global __REACT_DEVTOOLS_GLOBAL_HOOK__ */ if (typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ !== "undefined" && typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStop === "function") __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStop(new Error());
-})();
-
-},{"react":"21dqq"}],"iDrhg":[function(require,module,exports) {
-"use strict";
-module.exports = require("../cjs/use-sync-external-store-shim/with-selector.development.js");
-
-},{"../cjs/use-sync-external-store-shim/with-selector.development.js":"vU6Qe"}],"vU6Qe":[function(require,module,exports) {
-/**
- * @license React
- * use-sync-external-store-shim/with-selector.development.js
- *
- * Copyright (c) Facebook, Inc. and its affiliates.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */ "use strict";
-(function() {
-    "use strict";
-    /* global __REACT_DEVTOOLS_GLOBAL_HOOK__ */ if (typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ !== "undefined" && typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart === "function") __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart(new Error());
-    var React = require("react");
-    var shim = require("use-sync-external-store/shim");
-    /**
- * inlined Object.is polyfill to avoid requiring consumers ship their own
- * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is
- */ function is(x, y) {
-        return x === y && (x !== 0 || 1 / x === 1 / y) || x !== x && y !== y // eslint-disable-line no-self-compare
-        ;
-    }
-    var objectIs = typeof Object.is === "function" ? Object.is : is;
-    var useSyncExternalStore = shim.useSyncExternalStore;
-    // for CommonJS interop.
-    var useRef = React.useRef, useEffect = React.useEffect, useMemo = React.useMemo, useDebugValue = React.useDebugValue; // Same as useSyncExternalStore, but supports selector and isEqual arguments.
-    function useSyncExternalStoreWithSelector(subscribe, getSnapshot, getServerSnapshot, selector, isEqual) {
-        // Use this to track the rendered snapshot.
-        var instRef = useRef(null);
-        var inst;
-        if (instRef.current === null) {
-            inst = {
-                hasValue: false,
-                value: null
-            };
-            instRef.current = inst;
-        } else inst = instRef.current;
-        var _useMemo = useMemo(function() {
-            // Track the memoized state using closure variables that are local to this
-            // memoized instance of a getSnapshot function. Intentionally not using a
-            // useRef hook, because that state would be shared across all concurrent
-            // copies of the hook/component.
-            var hasMemo = false;
-            var memoizedSnapshot;
-            var memoizedSelection;
-            var memoizedSelector = function(nextSnapshot) {
-                if (!hasMemo) {
-                    // The first time the hook is called, there is no memoized result.
-                    hasMemo = true;
-                    memoizedSnapshot = nextSnapshot;
-                    var _nextSelection = selector(nextSnapshot);
-                    if (isEqual !== undefined) // Even if the selector has changed, the currently rendered selection
-                    // may be equal to the new selection. We should attempt to reuse the
-                    // current value if possible, to preserve downstream memoizations.
-                    {
-                        if (inst.hasValue) {
-                            var currentSelection = inst.value;
-                            if (isEqual(currentSelection, _nextSelection)) {
-                                memoizedSelection = currentSelection;
-                                return currentSelection;
-                            }
-                        }
-                    }
-                    memoizedSelection = _nextSelection;
-                    return _nextSelection;
-                } // We may be able to reuse the previous invocation's result.
-                // We may be able to reuse the previous invocation's result.
-                var prevSnapshot = memoizedSnapshot;
-                var prevSelection = memoizedSelection;
-                if (objectIs(prevSnapshot, nextSnapshot)) // The snapshot is the same as last time. Reuse the previous selection.
-                return prevSelection;
-                 // The snapshot has changed, so we need to compute a new selection.
-                // The snapshot has changed, so we need to compute a new selection.
-                var nextSelection = selector(nextSnapshot); // If a custom isEqual function is provided, use that to check if the data
-                // has changed. If it hasn't, return the previous selection. That signals
-                // to React that the selections are conceptually equal, and we can bail
-                // out of rendering.
-                // If a custom isEqual function is provided, use that to check if the data
-                // has changed. If it hasn't, return the previous selection. That signals
-                // to React that the selections are conceptually equal, and we can bail
-                // out of rendering.
-                if (isEqual !== undefined && isEqual(prevSelection, nextSelection)) return prevSelection;
-                memoizedSnapshot = nextSnapshot;
-                memoizedSelection = nextSelection;
-                return nextSelection;
-            }; // Assigning this to a constant so that Flow knows it can't change.
-            // Assigning this to a constant so that Flow knows it can't change.
-            var maybeGetServerSnapshot = getServerSnapshot === undefined ? null : getServerSnapshot;
-            var getSnapshotWithSelector = function() {
-                return memoizedSelector(getSnapshot());
-            };
-            var getServerSnapshotWithSelector = maybeGetServerSnapshot === null ? undefined : function() {
-                return memoizedSelector(maybeGetServerSnapshot());
-            };
-            return [
-                getSnapshotWithSelector,
-                getServerSnapshotWithSelector
-            ];
-        }, [
-            getSnapshot,
-            getServerSnapshot,
-            selector,
-            isEqual
-        ]), getSelection = _useMemo[0], getServerSelection = _useMemo[1];
-        var value = useSyncExternalStore(subscribe, getSelection, getServerSelection);
-        useEffect(function() {
-            inst.hasValue = true;
-            inst.value = value;
-        }, [
-            value
-        ]);
-        useDebugValue(value);
-        return value;
-    }
-    exports.useSyncExternalStoreWithSelector = useSyncExternalStoreWithSelector;
-    /* global __REACT_DEVTOOLS_GLOBAL_HOOK__ */ if (typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ !== "undefined" && typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStop === "function") __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStop(new Error());
-})();
-
-},{"react":"21dqq","use-sync-external-store/shim":"hyxdF"}],"5K86X":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "unstable_batchedUpdates", ()=>(0, _reactDom.unstable_batchedUpdates));
-var _reactDom = require("react-dom");
-
-},{"react-dom":"j6uA9","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"ikw0G":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "setBatch", ()=>setBatch);
-parcelHelpers.export(exports, "getBatch", ()=>getBatch);
-// Default to a dummy "batch" implementation that just runs the callback
-function defaultNoopBatch(callback) {
-    callback();
-}
-let batch = defaultNoopBatch; // Allow injecting another batching function later
-const setBatch = (newBatch)=>batch = newBatch; // Supply a getter just to skip dealing with ESM bindings
-const getBatch = ()=>batch;
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"l3rFI":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "initializeUseSelector", ()=>initializeUseSelector);
-/**
- * Hook factory, which creates a `useSelector` hook bound to a given context.
- *
- * @param {React.Context} [context=ReactReduxContext] Context passed to your `<Provider>`.
- * @returns {Function} A `useSelector` hook bound to the specified context.
- */ parcelHelpers.export(exports, "createSelectorHook", ()=>createSelectorHook);
-parcelHelpers.export(exports, "useSelector", ()=>useSelector);
-var _react = require("react");
-var _useReduxContext = require("./useReduxContext");
-var _context = require("../components/Context");
-var _useSyncExternalStore = require("../utils/useSyncExternalStore");
-let useSyncExternalStoreWithSelector = (0, _useSyncExternalStore.notInitialized);
-const initializeUseSelector = (fn)=>{
-    useSyncExternalStoreWithSelector = fn;
-};
-const refEquality = (a, b)=>a === b;
-function createSelectorHook(context = (0, _context.ReactReduxContext)) {
-    const useReduxContext = context === (0, _context.ReactReduxContext) ? (0, _useReduxContext.useReduxContext) : ()=>(0, _react.useContext)(context);
-    return function useSelector(selector, equalityFn = refEquality) {
-        if (!selector) throw new Error(`You must pass a selector to useSelector`);
-        if (typeof selector !== "function") throw new Error(`You must pass a function as a selector to useSelector`);
-        if (typeof equalityFn !== "function") throw new Error(`You must pass a function as an equality function to useSelector`);
-        const { store , subscription , getServerState  } = useReduxContext();
-        const selectedState = useSyncExternalStoreWithSelector(subscription.addNestedSub, store.getState, getServerState || store.getState, selector, equalityFn);
-        (0, _react.useDebugValue)(selectedState);
-        return selectedState;
-    };
-}
-const useSelector = /*#__PURE__*/ createSelectorHook();
-
-},{"react":"21dqq","./useReduxContext":"3828k","../components/Context":"ji81o","../utils/useSyncExternalStore":"dSsKl","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"3828k":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-/**
- * A hook to access the value of the `ReactReduxContext`. This is a low-level
- * hook that you should usually not need to call directly.
- *
- * @returns {any} the value of the `ReactReduxContext`
- *
- * @example
- *
- * import React from 'react'
- * import { useReduxContext } from 'react-redux'
- *
- * export const CounterComponent = () => {
- *   const { store } = useReduxContext()
- *   return <div>{store.getState()}</div>
- * }
- */ parcelHelpers.export(exports, "useReduxContext", ()=>useReduxContext);
-var _react = require("react");
-var _context = require("../components/Context");
-function useReduxContext() {
-    const contextValue = (0, _react.useContext)((0, _context.ReactReduxContext));
-    if (!contextValue) throw new Error("could not find react-redux context value; please ensure the component is wrapped in a <Provider>");
-    return contextValue;
-}
-
-},{"react":"21dqq","../components/Context":"ji81o","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"ji81o":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "ReactReduxContext", ()=>ReactReduxContext);
-var _react = require("react");
-const ReactReduxContext = /*#__PURE__*/ (0, _react.createContext)(null);
-ReactReduxContext.displayName = "ReactRedux";
-exports.default = ReactReduxContext;
-
-},{"react":"21dqq","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"dSsKl":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "notInitialized", ()=>notInitialized);
-const notInitialized = ()=>{
-    throw new Error("uSES not initialized!");
-};
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"5gOIw":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "initializeConnect", ()=>initializeConnect);
-var _extends = require("@babel/runtime/helpers/esm/extends");
-var _extendsDefault = parcelHelpers.interopDefault(_extends);
-var _objectWithoutPropertiesLoose = require("@babel/runtime/helpers/esm/objectWithoutPropertiesLoose");
-var _objectWithoutPropertiesLooseDefault = parcelHelpers.interopDefault(_objectWithoutPropertiesLoose);
-/* eslint-disable valid-jsdoc, @typescript-eslint/no-unused-vars */ var _hoistNonReactStatics = require("hoist-non-react-statics");
-var _hoistNonReactStaticsDefault = parcelHelpers.interopDefault(_hoistNonReactStatics);
-var _react = require("react");
-var _reactDefault = parcelHelpers.interopDefault(_react);
-var _reactIs = require("react-is");
-var _selectorFactory = require("../connect/selectorFactory");
-var _selectorFactoryDefault = parcelHelpers.interopDefault(_selectorFactory);
-var _mapDispatchToProps = require("../connect/mapDispatchToProps");
-var _mapStateToProps = require("../connect/mapStateToProps");
-var _mergeProps = require("../connect/mergeProps");
-var _subscription = require("../utils/Subscription");
-var _useIsomorphicLayoutEffect = require("../utils/useIsomorphicLayoutEffect");
-var _shallowEqual = require("../utils/shallowEqual");
-var _shallowEqualDefault = parcelHelpers.interopDefault(_shallowEqual);
-var _warning = require("../utils/warning");
-var _warningDefault = parcelHelpers.interopDefault(_warning);
-var _context = require("./Context");
-var _useSyncExternalStore = require("../utils/useSyncExternalStore");
-const _excluded = [
-    "reactReduxForwardedRef"
-];
-let useSyncExternalStore = (0, _useSyncExternalStore.notInitialized);
-const initializeConnect = (fn)=>{
-    useSyncExternalStore = fn;
-}; // Define some constant arrays just to avoid re-creating these
-const EMPTY_ARRAY = [
-    null,
-    0
-];
-const NO_SUBSCRIPTION_ARRAY = [
-    null,
-    null
-]; // Attempts to stringify whatever not-really-a-component value we were given
-// for logging in an error message
-const stringifyComponent = (Comp)=>{
-    try {
-        return JSON.stringify(Comp);
-    } catch (err) {
-        return String(Comp);
-    }
-};
-// This is "just" a `useLayoutEffect`, but with two modifications:
-// - we need to fall back to `useEffect` in SSR to avoid annoying warnings
-// - we extract this to a separate function to avoid closing over values
-//   and causing memory leaks
-function useIsomorphicLayoutEffectWithArgs(effectFunc, effectArgs, dependencies) {
-    (0, _useIsomorphicLayoutEffect.useIsomorphicLayoutEffect)(()=>effectFunc(...effectArgs), dependencies);
-} // Effect callback, extracted: assign the latest props values to refs for later usage
-function captureWrapperProps(lastWrapperProps, lastChildProps, renderIsScheduled, wrapperProps, childPropsFromStoreUpdate, notifyNestedSubs) {
-    // We want to capture the wrapper props and child props we used for later comparisons
-    lastWrapperProps.current = wrapperProps;
-    renderIsScheduled.current = false; // If the render was from a store update, clear out that reference and cascade the subscriber update
-    if (childPropsFromStoreUpdate.current) {
-        childPropsFromStoreUpdate.current = null;
-        notifyNestedSubs();
-    }
-} // Effect callback, extracted: subscribe to the Redux store or nearest connected ancestor,
-// check for updates after dispatched actions, and trigger re-renders.
-function subscribeUpdates(shouldHandleStateChanges, store, subscription, childPropsSelector, lastWrapperProps, lastChildProps, renderIsScheduled, isMounted, childPropsFromStoreUpdate, notifyNestedSubs, additionalSubscribeListener) {
-    // If we're not subscribed to the store, nothing to do here
-    if (!shouldHandleStateChanges) return ()=>{}; // Capture values for checking if and when this component unmounts
-    let didUnsubscribe = false;
-    let lastThrownError = null; // We'll run this callback every time a store subscription update propagates to this component
-    const checkForUpdates = ()=>{
-        if (didUnsubscribe || !isMounted.current) // Don't run stale listeners.
-        // Redux doesn't guarantee unsubscriptions happen until next dispatch.
-        return;
-         // TODO We're currently calling getState ourselves here, rather than letting `uSES` do it
-        const latestStoreState = store.getState();
-        let newChildProps, error;
-        try {
-            // Actually run the selector with the most recent store state and wrapper props
-            // to determine what the child props should be
-            newChildProps = childPropsSelector(latestStoreState, lastWrapperProps.current);
-        } catch (e) {
-            error = e;
-            lastThrownError = e;
-        }
-        if (!error) lastThrownError = null;
-         // If the child props haven't changed, nothing to do here - cascade the subscription update
-        if (newChildProps === lastChildProps.current) {
-            if (!renderIsScheduled.current) notifyNestedSubs();
-        } else {
-            // Save references to the new child props.  Note that we track the "child props from store update"
-            // as a ref instead of a useState/useReducer because we need a way to determine if that value has
-            // been processed.  If this went into useState/useReducer, we couldn't clear out the value without
-            // forcing another re-render, which we don't want.
-            lastChildProps.current = newChildProps;
-            childPropsFromStoreUpdate.current = newChildProps;
-            renderIsScheduled.current = true; // TODO This is hacky and not how `uSES` is meant to be used
-            // Trigger the React `useSyncExternalStore` subscriber
-            additionalSubscribeListener();
-        }
-    }; // Actually subscribe to the nearest connected ancestor (or store)
-    subscription.onStateChange = checkForUpdates;
-    subscription.trySubscribe(); // Pull data from the store after first render in case the store has
-    // changed since we began.
-    checkForUpdates();
-    const unsubscribeWrapper = ()=>{
-        didUnsubscribe = true;
-        subscription.tryUnsubscribe();
-        subscription.onStateChange = null;
-        if (lastThrownError) // It's possible that we caught an error due to a bad mapState function, but the
-        // parent re-rendered without this component and we're about to unmount.
-        // This shouldn't happen as long as we do top-down subscriptions correctly, but
-        // if we ever do those wrong, this throw will surface the error in our tests.
-        // In that case, throw the error from here so it doesn't get lost.
-        throw lastThrownError;
-    };
-    return unsubscribeWrapper;
-} // Reducer initial state creation for our update reducer
-const initStateUpdates = ()=>EMPTY_ARRAY;
-function strictEqual(a, b) {
-    return a === b;
-}
-/**
- * Infers the type of props that a connector will inject into a component.
- */ let hasWarnedAboutDeprecatedPureOption = false;
-/**
- * Connects a React component to a Redux store.
- *
- * - Without arguments, just wraps the component, without changing the behavior / props
- *
- * - If 2 params are passed (3rd param, mergeProps, is skipped), default behavior
- * is to override ownProps (as stated in the docs), so what remains is everything that's
- * not a state or dispatch prop
- *
- * - When 3rd param is passed, we don't know if ownProps propagate and whether they
- * should be valid component props, because it depends on mergeProps implementation.
- * As such, it is the user's responsibility to extend ownProps interface from state or
- * dispatch props or both when applicable
- *
- * @param mapStateToProps A function that extracts values from state
- * @param mapDispatchToProps Setup for dispatching actions
- * @param mergeProps Optional callback to merge state and dispatch props together
- * @param options Options for configuring the connection
- *
- */ function connect(mapStateToProps, mapDispatchToProps, mergeProps, { // The `pure` option has been removed, so TS doesn't like us destructuring this to check its existence.
-// @ts-ignore
-pure , areStatesEqual =strictEqual , areOwnPropsEqual =(0, _shallowEqualDefault.default) , areStatePropsEqual =(0, _shallowEqualDefault.default) , areMergedPropsEqual =(0, _shallowEqualDefault.default) , // use React's forwardRef to expose a ref of the wrapped component
-forwardRef =false , // the context consumer to use
-context =(0, _context.ReactReduxContext)  } = {}) {
-    if (pure !== undefined && !hasWarnedAboutDeprecatedPureOption) {
-        hasWarnedAboutDeprecatedPureOption = true;
-        (0, _warningDefault.default)('The `pure` option has been removed. `connect` is now always a "pure/memoized" component');
-    }
-    const Context = context;
-    const initMapStateToProps = (0, _mapStateToProps.mapStateToPropsFactory)(mapStateToProps);
-    const initMapDispatchToProps = (0, _mapDispatchToProps.mapDispatchToPropsFactory)(mapDispatchToProps);
-    const initMergeProps = (0, _mergeProps.mergePropsFactory)(mergeProps);
-    const shouldHandleStateChanges = Boolean(mapStateToProps);
-    const wrapWithConnect = (WrappedComponent)=>{
-        if (!(0, _reactIs.isValidElementType)(WrappedComponent)) throw new Error(`You must pass a component to the function returned by connect. Instead received ${stringifyComponent(WrappedComponent)}`);
-        const wrappedComponentName = WrappedComponent.displayName || WrappedComponent.name || "Component";
-        const displayName = `Connect(${wrappedComponentName})`;
-        const selectorFactoryOptions = {
-            shouldHandleStateChanges,
-            displayName,
-            wrappedComponentName,
-            WrappedComponent,
-            // @ts-ignore
-            initMapStateToProps,
-            // @ts-ignore
-            initMapDispatchToProps,
-            initMergeProps,
-            areStatesEqual,
-            areStatePropsEqual,
-            areOwnPropsEqual,
-            areMergedPropsEqual
-        };
-        function ConnectFunction(props) {
-            const [propsContext, reactReduxForwardedRef, wrapperProps] = (0, _react.useMemo)(()=>{
-                // Distinguish between actual "data" props that were passed to the wrapper component,
-                // and values needed to control behavior (forwarded refs, alternate context instances).
-                // To maintain the wrapperProps object reference, memoize this destructuring.
-                const { reactReduxForwardedRef  } = props, wrapperProps = (0, _objectWithoutPropertiesLooseDefault.default)(props, _excluded);
-                return [
-                    props.context,
-                    reactReduxForwardedRef,
-                    wrapperProps
-                ];
-            }, [
-                props
-            ]);
-            const ContextToUse = (0, _react.useMemo)(()=>{
-                // Users may optionally pass in a custom context instance to use instead of our ReactReduxContext.
-                // Memoize the check that determines which context instance we should use.
-                return propsContext && propsContext.Consumer && (0, _reactIs.isContextConsumer)(/*#__PURE__*/ (0, _reactDefault.default).createElement(propsContext.Consumer, null)) ? propsContext : Context;
-            }, [
-                propsContext,
-                Context
-            ]); // Retrieve the store and ancestor subscription via context, if available
-            const contextValue = (0, _react.useContext)(ContextToUse); // The store _must_ exist as either a prop or in context.
-            // We'll check to see if it _looks_ like a Redux store first.
-            // This allows us to pass through a `store` prop that is just a plain value.
-            const didStoreComeFromProps = Boolean(props.store) && Boolean(props.store.getState) && Boolean(props.store.dispatch);
-            const didStoreComeFromContext = Boolean(contextValue) && Boolean(contextValue.store);
-            if (!didStoreComeFromProps && !didStoreComeFromContext) throw new Error(`Could not find "store" in the context of ` + `"${displayName}". Either wrap the root component in a <Provider>, ` + `or pass a custom React context provider to <Provider> and the corresponding ` + `React context consumer to ${displayName} in connect options.`);
-             // Based on the previous check, one of these must be true
-            const store = didStoreComeFromProps ? props.store : contextValue.store;
-            const getServerState = didStoreComeFromContext ? contextValue.getServerState : store.getState;
-            const childPropsSelector = (0, _react.useMemo)(()=>{
-                // The child props selector needs the store reference as an input.
-                // Re-create this selector whenever the store changes.
-                return (0, _selectorFactoryDefault.default)(store.dispatch, selectorFactoryOptions);
-            }, [
-                store
-            ]);
-            const [subscription, notifyNestedSubs] = (0, _react.useMemo)(()=>{
-                if (!shouldHandleStateChanges) return NO_SUBSCRIPTION_ARRAY; // This Subscription's source should match where store came from: props vs. context. A component
-                // connected to the store via props shouldn't use subscription from context, or vice versa.
-                const subscription = (0, _subscription.createSubscription)(store, didStoreComeFromProps ? undefined : contextValue.subscription); // `notifyNestedSubs` is duplicated to handle the case where the component is unmounted in
-                // the middle of the notification loop, where `subscription` will then be null. This can
-                // probably be avoided if Subscription's listeners logic is changed to not call listeners
-                // that have been unsubscribed in the  middle of the notification loop.
-                const notifyNestedSubs = subscription.notifyNestedSubs.bind(subscription);
-                return [
-                    subscription,
-                    notifyNestedSubs
-                ];
-            }, [
-                store,
-                didStoreComeFromProps,
-                contextValue
-            ]); // Determine what {store, subscription} value should be put into nested context, if necessary,
-            // and memoize that value to avoid unnecessary context updates.
-            const overriddenContextValue = (0, _react.useMemo)(()=>{
-                if (didStoreComeFromProps) // This component is directly subscribed to a store from props.
-                // We don't want descendants reading from this store - pass down whatever
-                // the existing context value is from the nearest connected ancestor.
-                return contextValue;
-                 // Otherwise, put this component's subscription instance into context, so that
-                // connected descendants won't update until after this component is done
-                return (0, _extendsDefault.default)({}, contextValue, {
-                    subscription
-                });
-            }, [
-                didStoreComeFromProps,
-                contextValue,
-                subscription
-            ]); // Set up refs to coordinate values between the subscription effect and the render logic
-            const lastChildProps = (0, _react.useRef)();
-            const lastWrapperProps = (0, _react.useRef)(wrapperProps);
-            const childPropsFromStoreUpdate = (0, _react.useRef)();
-            const renderIsScheduled = (0, _react.useRef)(false);
-            const isProcessingDispatch = (0, _react.useRef)(false);
-            const isMounted = (0, _react.useRef)(false);
-            const latestSubscriptionCallbackError = (0, _react.useRef)();
-            (0, _useIsomorphicLayoutEffect.useIsomorphicLayoutEffect)(()=>{
-                isMounted.current = true;
-                return ()=>{
-                    isMounted.current = false;
-                };
-            }, []);
-            const actualChildPropsSelector = (0, _react.useMemo)(()=>{
-                const selector = ()=>{
-                    // Tricky logic here:
-                    // - This render may have been triggered by a Redux store update that produced new child props
-                    // - However, we may have gotten new wrapper props after that
-                    // If we have new child props, and the same wrapper props, we know we should use the new child props as-is.
-                    // But, if we have new wrapper props, those might change the child props, so we have to recalculate things.
-                    // So, we'll use the child props from store update only if the wrapper props are the same as last time.
-                    if (childPropsFromStoreUpdate.current && wrapperProps === lastWrapperProps.current) return childPropsFromStoreUpdate.current;
-                     // TODO We're reading the store directly in render() here. Bad idea?
-                    // This will likely cause Bad Things (TM) to happen in Concurrent Mode.
-                    // Note that we do this because on renders _not_ caused by store updates, we need the latest store state
-                    // to determine what the child props should be.
-                    return childPropsSelector(store.getState(), wrapperProps);
-                };
-                return selector;
-            }, [
-                store,
-                wrapperProps
-            ]); // We need this to execute synchronously every time we re-render. However, React warns
-            // about useLayoutEffect in SSR, so we try to detect environment and fall back to
-            // just useEffect instead to avoid the warning, since neither will run anyway.
-            const subscribeForReact = (0, _react.useMemo)(()=>{
-                const subscribe = (reactListener)=>{
-                    if (!subscription) return ()=>{};
-                    return subscribeUpdates(shouldHandleStateChanges, store, subscription, childPropsSelector, lastWrapperProps, lastChildProps, renderIsScheduled, isMounted, childPropsFromStoreUpdate, notifyNestedSubs, reactListener);
-                };
-                return subscribe;
-            }, [
-                subscription
-            ]);
-            useIsomorphicLayoutEffectWithArgs(captureWrapperProps, [
-                lastWrapperProps,
-                lastChildProps,
-                renderIsScheduled,
-                wrapperProps,
-                childPropsFromStoreUpdate,
-                notifyNestedSubs
-            ]);
-            let actualChildProps;
-            try {
-                actualChildProps = useSyncExternalStore(subscribeForReact, // TODO and we're just passing that through so it triggers a re-render for us rather than relying on `uSES`.
-                actualChildPropsSelector, getServerState ? ()=>childPropsSelector(getServerState(), wrapperProps) : actualChildPropsSelector);
-            } catch (err) {
-                if (latestSubscriptionCallbackError.current) err.message += `\nThe error may be correlated with this previous error:\n${latestSubscriptionCallbackError.current.stack}\n\n`;
-                throw err;
-            }
-            (0, _useIsomorphicLayoutEffect.useIsomorphicLayoutEffect)(()=>{
-                latestSubscriptionCallbackError.current = undefined;
-                childPropsFromStoreUpdate.current = undefined;
-                lastChildProps.current = actualChildProps;
-            }); // Now that all that's done, we can finally try to actually render the child component.
-            // We memoize the elements for the rendered child component as an optimization.
-            const renderedWrappedComponent = (0, _react.useMemo)(()=>{
-                return(/*#__PURE__*/ // @ts-ignore
-                (0, _reactDefault.default).createElement(WrappedComponent, (0, _extendsDefault.default)({}, actualChildProps, {
-                    ref: reactReduxForwardedRef
-                })));
-            }, [
-                reactReduxForwardedRef,
-                WrappedComponent,
-                actualChildProps
-            ]); // If React sees the exact same element reference as last time, it bails out of re-rendering
-            // that child, same as if it was wrapped in React.memo() or returned false from shouldComponentUpdate.
-            const renderedChild = (0, _react.useMemo)(()=>{
-                if (shouldHandleStateChanges) // If this component is subscribed to store updates, we need to pass its own
-                // subscription instance down to our descendants. That means rendering the same
-                // Context instance, and putting a different value into the context.
-                return /*#__PURE__*/ (0, _reactDefault.default).createElement(ContextToUse.Provider, {
-                    value: overriddenContextValue
-                }, renderedWrappedComponent);
-                return renderedWrappedComponent;
-            }, [
-                ContextToUse,
-                renderedWrappedComponent,
-                overriddenContextValue
-            ]);
-            return renderedChild;
-        }
-        const _Connect = (0, _reactDefault.default).memo(ConnectFunction);
-        // Add a hacky cast to get the right output type
-        const Connect = _Connect;
-        Connect.WrappedComponent = WrappedComponent;
-        Connect.displayName = ConnectFunction.displayName = displayName;
-        if (forwardRef) {
-            const _forwarded = (0, _reactDefault.default).forwardRef(function forwardConnectRef(props, ref) {
-                // @ts-ignore
-                return /*#__PURE__*/ (0, _reactDefault.default).createElement(Connect, (0, _extendsDefault.default)({}, props, {
-                    reactReduxForwardedRef: ref
-                }));
-            });
-            const forwarded = _forwarded;
-            forwarded.displayName = displayName;
-            forwarded.WrappedComponent = WrappedComponent;
-            return (0, _hoistNonReactStaticsDefault.default)(forwarded, WrappedComponent);
-        }
-        return (0, _hoistNonReactStaticsDefault.default)(Connect, WrappedComponent);
-    };
-    return wrapWithConnect;
-}
-exports.default = connect;
-
-},{"@babel/runtime/helpers/esm/extends":"fTBFS","@babel/runtime/helpers/esm/objectWithoutPropertiesLoose":"adHgr","hoist-non-react-statics":"1GfsB","react":"21dqq","react-is":"lb6Ui","../connect/selectorFactory":"e9uH3","../connect/mapDispatchToProps":"5QhPl","../connect/mapStateToProps":"4Hl4c","../connect/mergeProps":"hQpBj","../utils/Subscription":"ieuHT","../utils/useIsomorphicLayoutEffect":"kNbVc","../utils/shallowEqual":"gV5L4","../utils/warning":"cUQUw","./Context":"ji81o","../utils/useSyncExternalStore":"dSsKl","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"1GfsB":[function(require,module,exports) {
-"use strict";
-var reactIs = require("react-is");
-/**
- * Copyright 2015, Yahoo! Inc.
- * Copyrights licensed under the New BSD License. See the accompanying LICENSE file for terms.
- */ var REACT_STATICS = {
-    childContextTypes: true,
-    contextType: true,
-    contextTypes: true,
-    defaultProps: true,
-    displayName: true,
-    getDefaultProps: true,
-    getDerivedStateFromError: true,
-    getDerivedStateFromProps: true,
-    mixins: true,
-    propTypes: true,
-    type: true
-};
-var KNOWN_STATICS = {
-    name: true,
-    length: true,
-    prototype: true,
-    caller: true,
-    callee: true,
-    arguments: true,
-    arity: true
-};
-var FORWARD_REF_STATICS = {
-    "$$typeof": true,
-    render: true,
-    defaultProps: true,
-    displayName: true,
-    propTypes: true
-};
-var MEMO_STATICS = {
-    "$$typeof": true,
-    compare: true,
-    defaultProps: true,
-    displayName: true,
-    propTypes: true,
-    type: true
-};
-var TYPE_STATICS = {};
-TYPE_STATICS[reactIs.ForwardRef] = FORWARD_REF_STATICS;
-TYPE_STATICS[reactIs.Memo] = MEMO_STATICS;
-function getStatics(component) {
-    // React v16.11 and below
-    if (reactIs.isMemo(component)) return MEMO_STATICS;
-     // React v16.12 and above
-    return TYPE_STATICS[component["$$typeof"]] || REACT_STATICS;
-}
-var defineProperty = Object.defineProperty;
-var getOwnPropertyNames = Object.getOwnPropertyNames;
-var getOwnPropertySymbols = Object.getOwnPropertySymbols;
-var getOwnPropertyDescriptor = Object.getOwnPropertyDescriptor;
-var getPrototypeOf = Object.getPrototypeOf;
-var objectPrototype = Object.prototype;
-function hoistNonReactStatics(targetComponent, sourceComponent, blacklist) {
-    if (typeof sourceComponent !== "string") {
-        // don't hoist over string (html) components
-        if (objectPrototype) {
-            var inheritedComponent = getPrototypeOf(sourceComponent);
-            if (inheritedComponent && inheritedComponent !== objectPrototype) hoistNonReactStatics(targetComponent, inheritedComponent, blacklist);
-        }
-        var keys = getOwnPropertyNames(sourceComponent);
-        if (getOwnPropertySymbols) keys = keys.concat(getOwnPropertySymbols(sourceComponent));
-        var targetStatics = getStatics(targetComponent);
-        var sourceStatics = getStatics(sourceComponent);
-        for(var i = 0; i < keys.length; ++i){
-            var key = keys[i];
-            if (!KNOWN_STATICS[key] && !(blacklist && blacklist[key]) && !(sourceStatics && sourceStatics[key]) && !(targetStatics && targetStatics[key])) {
-                var descriptor = getOwnPropertyDescriptor(sourceComponent, key);
-                try {
-                    // Avoid failures from read-only properties
-                    defineProperty(targetComponent, key, descriptor);
-                } catch (e) {}
-            }
-        }
-    }
-    return targetComponent;
-}
-module.exports = hoistNonReactStatics;
-
-},{"react-is":"7EuwB"}],"lb6Ui":[function(require,module,exports) {
-"use strict";
-module.exports = require("./cjs/react-is.development.js");
-
-},{"./cjs/react-is.development.js":"idDA8"}],"idDA8":[function(require,module,exports) {
-/**
- * @license React
- * react-is.development.js
- *
- * Copyright (c) Facebook, Inc. and its affiliates.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */ "use strict";
-(function() {
-    "use strict";
-    // ATTENTION
-    // When adding new symbols to this file,
-    // Please consider also adding to 'react-devtools-shared/src/backend/ReactSymbols'
-    // The Symbol used to tag the ReactElement-like types.
-    var REACT_ELEMENT_TYPE = Symbol.for("react.element");
-    var REACT_PORTAL_TYPE = Symbol.for("react.portal");
-    var REACT_FRAGMENT_TYPE = Symbol.for("react.fragment");
-    var REACT_STRICT_MODE_TYPE = Symbol.for("react.strict_mode");
-    var REACT_PROFILER_TYPE = Symbol.for("react.profiler");
-    var REACT_PROVIDER_TYPE = Symbol.for("react.provider");
-    var REACT_CONTEXT_TYPE = Symbol.for("react.context");
-    var REACT_SERVER_CONTEXT_TYPE = Symbol.for("react.server_context");
-    var REACT_FORWARD_REF_TYPE = Symbol.for("react.forward_ref");
-    var REACT_SUSPENSE_TYPE = Symbol.for("react.suspense");
-    var REACT_SUSPENSE_LIST_TYPE = Symbol.for("react.suspense_list");
-    var REACT_MEMO_TYPE = Symbol.for("react.memo");
-    var REACT_LAZY_TYPE = Symbol.for("react.lazy");
-    var REACT_OFFSCREEN_TYPE = Symbol.for("react.offscreen");
-    // -----------------------------------------------------------------------------
-    var enableScopeAPI = false; // Experimental Create Event Handle API.
-    var enableCacheElement = false;
-    var enableTransitionTracing = false; // No known bugs, but needs performance testing
-    var enableLegacyHidden = false; // Enables unstable_avoidThisFallback feature in Fiber
-    // stuff. Intended to enable React core members to more easily debug scheduling
-    // issues in DEV builds.
-    var enableDebugTracing = false; // Track which Fiber(s) schedule render work.
-    var REACT_MODULE_REFERENCE;
-    REACT_MODULE_REFERENCE = Symbol.for("react.module.reference");
-    function isValidElementType(type) {
-        if (typeof type === "string" || typeof type === "function") return true;
-         // Note: typeof might be other than 'symbol' or 'number' (e.g. if it's a polyfill).
-        if (type === REACT_FRAGMENT_TYPE || type === REACT_PROFILER_TYPE || enableDebugTracing || type === REACT_STRICT_MODE_TYPE || type === REACT_SUSPENSE_TYPE || type === REACT_SUSPENSE_LIST_TYPE || enableLegacyHidden || type === REACT_OFFSCREEN_TYPE || enableScopeAPI || enableCacheElement || enableTransitionTracing) return true;
-        if (typeof type === "object" && type !== null) {
-            if (type.$$typeof === REACT_LAZY_TYPE || type.$$typeof === REACT_MEMO_TYPE || type.$$typeof === REACT_PROVIDER_TYPE || type.$$typeof === REACT_CONTEXT_TYPE || type.$$typeof === REACT_FORWARD_REF_TYPE || // types supported by any Flight configuration anywhere since
-            // we don't know which Flight build this will end up being used
-            // with.
-            type.$$typeof === REACT_MODULE_REFERENCE || type.getModuleId !== undefined) return true;
-        }
-        return false;
-    }
-    function typeOf(object) {
-        if (typeof object === "object" && object !== null) {
-            var $$typeof = object.$$typeof;
-            switch($$typeof){
-                case REACT_ELEMENT_TYPE:
-                    var type = object.type;
-                    switch(type){
-                        case REACT_FRAGMENT_TYPE:
-                        case REACT_PROFILER_TYPE:
-                        case REACT_STRICT_MODE_TYPE:
-                        case REACT_SUSPENSE_TYPE:
-                        case REACT_SUSPENSE_LIST_TYPE:
-                            return type;
-                        default:
-                            var $$typeofType = type && type.$$typeof;
-                            switch($$typeofType){
-                                case REACT_SERVER_CONTEXT_TYPE:
-                                case REACT_CONTEXT_TYPE:
-                                case REACT_FORWARD_REF_TYPE:
-                                case REACT_LAZY_TYPE:
-                                case REACT_MEMO_TYPE:
-                                case REACT_PROVIDER_TYPE:
-                                    return $$typeofType;
-                                default:
-                                    return $$typeof;
-                            }
-                    }
-                case REACT_PORTAL_TYPE:
-                    return $$typeof;
-            }
-        }
-        return undefined;
-    }
-    var ContextConsumer = REACT_CONTEXT_TYPE;
-    var ContextProvider = REACT_PROVIDER_TYPE;
-    var Element = REACT_ELEMENT_TYPE;
-    var ForwardRef = REACT_FORWARD_REF_TYPE;
-    var Fragment = REACT_FRAGMENT_TYPE;
-    var Lazy = REACT_LAZY_TYPE;
-    var Memo = REACT_MEMO_TYPE;
-    var Portal = REACT_PORTAL_TYPE;
-    var Profiler = REACT_PROFILER_TYPE;
-    var StrictMode = REACT_STRICT_MODE_TYPE;
-    var Suspense = REACT_SUSPENSE_TYPE;
-    var SuspenseList = REACT_SUSPENSE_LIST_TYPE;
-    var hasWarnedAboutDeprecatedIsAsyncMode = false;
-    var hasWarnedAboutDeprecatedIsConcurrentMode = false; // AsyncMode should be deprecated
-    function isAsyncMode(object) {
-        if (!hasWarnedAboutDeprecatedIsAsyncMode) {
-            hasWarnedAboutDeprecatedIsAsyncMode = true; // Using console['warn'] to evade Babel and ESLint
-            console["warn"]("The ReactIs.isAsyncMode() alias has been deprecated, and will be removed in React 18+.");
-        }
-        return false;
-    }
-    function isConcurrentMode(object) {
-        if (!hasWarnedAboutDeprecatedIsConcurrentMode) {
-            hasWarnedAboutDeprecatedIsConcurrentMode = true; // Using console['warn'] to evade Babel and ESLint
-            console["warn"]("The ReactIs.isConcurrentMode() alias has been deprecated, and will be removed in React 18+.");
-        }
-        return false;
-    }
-    function isContextConsumer(object) {
-        return typeOf(object) === REACT_CONTEXT_TYPE;
-    }
-    function isContextProvider(object) {
-        return typeOf(object) === REACT_PROVIDER_TYPE;
-    }
-    function isElement(object) {
-        return typeof object === "object" && object !== null && object.$$typeof === REACT_ELEMENT_TYPE;
-    }
-    function isForwardRef(object) {
-        return typeOf(object) === REACT_FORWARD_REF_TYPE;
-    }
-    function isFragment(object) {
-        return typeOf(object) === REACT_FRAGMENT_TYPE;
-    }
-    function isLazy(object) {
-        return typeOf(object) === REACT_LAZY_TYPE;
-    }
-    function isMemo(object) {
-        return typeOf(object) === REACT_MEMO_TYPE;
-    }
-    function isPortal(object) {
-        return typeOf(object) === REACT_PORTAL_TYPE;
-    }
-    function isProfiler(object) {
-        return typeOf(object) === REACT_PROFILER_TYPE;
-    }
-    function isStrictMode(object) {
-        return typeOf(object) === REACT_STRICT_MODE_TYPE;
-    }
-    function isSuspense(object) {
-        return typeOf(object) === REACT_SUSPENSE_TYPE;
-    }
-    function isSuspenseList(object) {
-        return typeOf(object) === REACT_SUSPENSE_LIST_TYPE;
-    }
-    exports.ContextConsumer = ContextConsumer;
-    exports.ContextProvider = ContextProvider;
-    exports.Element = Element;
-    exports.ForwardRef = ForwardRef;
-    exports.Fragment = Fragment;
-    exports.Lazy = Lazy;
-    exports.Memo = Memo;
-    exports.Portal = Portal;
-    exports.Profiler = Profiler;
-    exports.StrictMode = StrictMode;
-    exports.Suspense = Suspense;
-    exports.SuspenseList = SuspenseList;
-    exports.isAsyncMode = isAsyncMode;
-    exports.isConcurrentMode = isConcurrentMode;
-    exports.isContextConsumer = isContextConsumer;
-    exports.isContextProvider = isContextProvider;
-    exports.isElement = isElement;
-    exports.isForwardRef = isForwardRef;
-    exports.isFragment = isFragment;
-    exports.isLazy = isLazy;
-    exports.isMemo = isMemo;
-    exports.isPortal = isPortal;
-    exports.isProfiler = isProfiler;
-    exports.isStrictMode = isStrictMode;
-    exports.isSuspense = isSuspense;
-    exports.isSuspenseList = isSuspenseList;
-    exports.isValidElementType = isValidElementType;
-    exports.typeOf = typeOf;
-})();
-
-},{}],"e9uH3":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "pureFinalPropsSelectorFactory", ()=>pureFinalPropsSelectorFactory);
-var _objectWithoutPropertiesLoose = require("@babel/runtime/helpers/esm/objectWithoutPropertiesLoose");
-var _objectWithoutPropertiesLooseDefault = parcelHelpers.interopDefault(_objectWithoutPropertiesLoose);
-var _verifySubselectors = require("./verifySubselectors");
-var _verifySubselectorsDefault = parcelHelpers.interopDefault(_verifySubselectors);
-const _excluded = [
-    "initMapStateToProps",
-    "initMapDispatchToProps",
-    "initMergeProps"
-];
-function pureFinalPropsSelectorFactory(mapStateToProps, mapDispatchToProps, mergeProps, dispatch, { areStatesEqual , areOwnPropsEqual , areStatePropsEqual  }) {
-    let hasRunAtLeastOnce = false;
-    let state;
-    let ownProps;
-    let stateProps;
-    let dispatchProps;
-    let mergedProps;
-    function handleFirstCall(firstState, firstOwnProps) {
-        state = firstState;
-        ownProps = firstOwnProps;
-        stateProps = mapStateToProps(state, ownProps);
-        dispatchProps = mapDispatchToProps(dispatch, ownProps);
-        mergedProps = mergeProps(stateProps, dispatchProps, ownProps);
-        hasRunAtLeastOnce = true;
-        return mergedProps;
-    }
-    function handleNewPropsAndNewState() {
-        stateProps = mapStateToProps(state, ownProps);
-        if (mapDispatchToProps.dependsOnOwnProps) dispatchProps = mapDispatchToProps(dispatch, ownProps);
-        mergedProps = mergeProps(stateProps, dispatchProps, ownProps);
-        return mergedProps;
-    }
-    function handleNewProps() {
-        if (mapStateToProps.dependsOnOwnProps) stateProps = mapStateToProps(state, ownProps);
-        if (mapDispatchToProps.dependsOnOwnProps) dispatchProps = mapDispatchToProps(dispatch, ownProps);
-        mergedProps = mergeProps(stateProps, dispatchProps, ownProps);
-        return mergedProps;
-    }
-    function handleNewState() {
-        const nextStateProps = mapStateToProps(state, ownProps);
-        const statePropsChanged = !areStatePropsEqual(nextStateProps, stateProps);
-        stateProps = nextStateProps;
-        if (statePropsChanged) mergedProps = mergeProps(stateProps, dispatchProps, ownProps);
-        return mergedProps;
-    }
-    function handleSubsequentCalls(nextState, nextOwnProps) {
-        const propsChanged = !areOwnPropsEqual(nextOwnProps, ownProps);
-        const stateChanged = !areStatesEqual(nextState, state, nextOwnProps, ownProps);
-        state = nextState;
-        ownProps = nextOwnProps;
-        if (propsChanged && stateChanged) return handleNewPropsAndNewState();
-        if (propsChanged) return handleNewProps();
-        if (stateChanged) return handleNewState();
-        return mergedProps;
-    }
-    return function pureFinalPropsSelector(nextState, nextOwnProps) {
-        return hasRunAtLeastOnce ? handleSubsequentCalls(nextState, nextOwnProps) : handleFirstCall(nextState, nextOwnProps);
-    };
-}
-function finalPropsSelectorFactory(dispatch, _ref) {
-    let { initMapStateToProps , initMapDispatchToProps , initMergeProps  } = _ref, options = (0, _objectWithoutPropertiesLooseDefault.default)(_ref, _excluded);
-    const mapStateToProps = initMapStateToProps(dispatch, options);
-    const mapDispatchToProps = initMapDispatchToProps(dispatch, options);
-    const mergeProps = initMergeProps(dispatch, options);
-    (0, _verifySubselectorsDefault.default)(mapStateToProps, mapDispatchToProps, mergeProps);
-    return pureFinalPropsSelectorFactory(mapStateToProps, mapDispatchToProps, mergeProps, dispatch, options);
-}
-exports.default = finalPropsSelectorFactory;
-
-},{"@babel/runtime/helpers/esm/objectWithoutPropertiesLoose":"adHgr","./verifySubselectors":"10wWL","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"10wWL":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var _warning = require("../utils/warning");
-var _warningDefault = parcelHelpers.interopDefault(_warning);
-function verify(selector, methodName) {
-    if (!selector) throw new Error(`Unexpected value for ${methodName} in connect.`);
-    else if (methodName === "mapStateToProps" || methodName === "mapDispatchToProps") {
-        if (!Object.prototype.hasOwnProperty.call(selector, "dependsOnOwnProps")) (0, _warningDefault.default)(`The selector for ${methodName} of connect did not specify a value for dependsOnOwnProps.`);
-    }
-}
-function verifySubselectors(mapStateToProps, mapDispatchToProps, mergeProps) {
-    verify(mapStateToProps, "mapStateToProps");
-    verify(mapDispatchToProps, "mapDispatchToProps");
-    verify(mergeProps, "mergeProps");
-}
-exports.default = verifySubselectors;
-
-},{"../utils/warning":"cUQUw","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"cUQUw":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-function warning(message) {
-    /* eslint-disable no-console */ if (typeof console !== "undefined" && typeof console.error === "function") console.error(message);
-    /* eslint-enable no-console */ try {
-        // This error was thrown as a convenience so that if you enable
-        // "break on all exceptions" in your console,
-        // it would pause the execution at this line.
-        throw new Error(message);
-    /* eslint-disable no-empty */ } catch (e) {}
-/* eslint-enable no-empty */ }
-exports.default = warning;
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"5QhPl":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "mapDispatchToPropsFactory", ()=>mapDispatchToPropsFactory);
-var _bindActionCreators = require("../utils/bindActionCreators");
-var _bindActionCreatorsDefault = parcelHelpers.interopDefault(_bindActionCreators);
-var _wrapMapToProps = require("./wrapMapToProps");
-var _invalidArgFactory = require("./invalidArgFactory");
-function mapDispatchToPropsFactory(mapDispatchToProps) {
-    return mapDispatchToProps && typeof mapDispatchToProps === "object" ? (0, _wrapMapToProps.wrapMapToPropsConstant)((dispatch)=>(0, _bindActionCreatorsDefault.default)(mapDispatchToProps, dispatch)) : !mapDispatchToProps ? (0, _wrapMapToProps.wrapMapToPropsConstant)((dispatch)=>({
-            dispatch
-        })) : typeof mapDispatchToProps === "function" ? (0, _wrapMapToProps.wrapMapToPropsFunc)(mapDispatchToProps, "mapDispatchToProps") : (0, _invalidArgFactory.createInvalidArgFactory)(mapDispatchToProps, "mapDispatchToProps");
-}
-
-},{"../utils/bindActionCreators":"afPZO","./wrapMapToProps":"bSgjL","./invalidArgFactory":"fnbUv","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"afPZO":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-function bindActionCreators(actionCreators, dispatch) {
-    const boundActionCreators = {};
-    for(const key in actionCreators){
-        const actionCreator = actionCreators[key];
-        if (typeof actionCreator === "function") boundActionCreators[key] = (...args)=>dispatch(actionCreator(...args));
-    }
-    return boundActionCreators;
-}
-exports.default = bindActionCreators;
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"bSgjL":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "wrapMapToPropsConstant", ()=>wrapMapToPropsConstant) // dependsOnOwnProps is used by createMapToPropsProxy to determine whether to pass props as args
-;
-// to the mapToProps function being wrapped. It is also used by makePurePropsSelector to determine
-// whether mapToProps needs to be invoked when props have changed.
-//
-// A length of one signals that mapToProps does not depend on props from the parent component.
-// A length of zero is assumed to mean mapToProps is getting args via arguments or ...args and
-// therefore not reporting its length accurately..
-// TODO Can this get pulled out so that we can subscribe directly to the store if we don't need ownProps?
-parcelHelpers.export(exports, "getDependsOnOwnProps", ()=>getDependsOnOwnProps) // Used by whenMapStateToPropsIsFunction and whenMapDispatchToPropsIsFunction,
-;
-// this function wraps mapToProps in a proxy function which does several things:
-//
-//  * Detects whether the mapToProps function being called depends on props, which
-//    is used by selectorFactory to decide if it should reinvoke on props changes.
-//
-//  * On first call, handles mapToProps if returns another function, and treats that
-//    new function as the true mapToProps for subsequent calls.
-//
-//  * On first call, verifies the first result is a plain object, in order to warn
-//    the developer that their mapToProps function is not returning a valid result.
-//
-parcelHelpers.export(exports, "wrapMapToPropsFunc", ()=>wrapMapToPropsFunc);
-var _verifyPlainObject = require("../utils/verifyPlainObject");
-var _verifyPlainObjectDefault = parcelHelpers.interopDefault(_verifyPlainObject);
-function wrapMapToPropsConstant(//  It seems that the dispatch argument
-//  could be a dispatch function in some cases (ex: whenMapDispatchToPropsIsMissing)
-//  and a state object in some others (ex: whenMapStateToPropsIsMissing)
-// eslint-disable-next-line no-unused-vars
-getConstant) {
-    return function initConstantSelector(dispatch) {
-        const constant = getConstant(dispatch);
-        function constantSelector() {
-            return constant;
-        }
-        constantSelector.dependsOnOwnProps = false;
-        return constantSelector;
-    };
-}
-function getDependsOnOwnProps(mapToProps) {
-    return mapToProps.dependsOnOwnProps ? Boolean(mapToProps.dependsOnOwnProps) : mapToProps.length !== 1;
-}
-function wrapMapToPropsFunc(mapToProps, methodName) {
-    return function initProxySelector(dispatch, { displayName  }) {
-        const proxy = function mapToPropsProxy(stateOrDispatch, ownProps) {
-            return proxy.dependsOnOwnProps ? proxy.mapToProps(stateOrDispatch, ownProps) : proxy.mapToProps(stateOrDispatch, undefined);
-        }; // allow detectFactoryAndVerify to get ownProps
-        proxy.dependsOnOwnProps = true;
-        proxy.mapToProps = function detectFactoryAndVerify(stateOrDispatch, ownProps) {
-            proxy.mapToProps = mapToProps;
-            proxy.dependsOnOwnProps = getDependsOnOwnProps(mapToProps);
-            let props = proxy(stateOrDispatch, ownProps);
-            if (typeof props === "function") {
-                proxy.mapToProps = props;
-                proxy.dependsOnOwnProps = getDependsOnOwnProps(props);
-                props = proxy(stateOrDispatch, ownProps);
-            }
-            (0, _verifyPlainObjectDefault.default)(props, displayName, methodName);
-            return props;
-        };
-        return proxy;
-    };
-}
-
-},{"../utils/verifyPlainObject":"f6LbZ","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"f6LbZ":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var _isPlainObject = require("./isPlainObject");
-var _isPlainObjectDefault = parcelHelpers.interopDefault(_isPlainObject);
-var _warning = require("./warning");
-var _warningDefault = parcelHelpers.interopDefault(_warning);
-function verifyPlainObject(value, displayName, methodName) {
-    if (!(0, _isPlainObjectDefault.default)(value)) (0, _warningDefault.default)(`${methodName}() in ${displayName} must return a plain object. Instead received ${value}.`);
-}
-exports.default = verifyPlainObject;
-
-},{"./isPlainObject":"lM8m6","./warning":"cUQUw","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"lM8m6":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-function isPlainObject(obj) {
-    if (typeof obj !== "object" || obj === null) return false;
-    let proto = Object.getPrototypeOf(obj);
-    if (proto === null) return true;
-    let baseProto = proto;
-    while(Object.getPrototypeOf(baseProto) !== null)baseProto = Object.getPrototypeOf(baseProto);
-    return proto === baseProto;
-}
-exports.default = isPlainObject;
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"fnbUv":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "createInvalidArgFactory", ()=>createInvalidArgFactory);
-function createInvalidArgFactory(arg, name) {
-    return (dispatch, options)=>{
-        throw new Error(`Invalid value of type ${typeof arg} for ${name} argument when connecting component ${options.wrappedComponentName}.`);
-    };
-}
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"4Hl4c":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "mapStateToPropsFactory", ()=>mapStateToPropsFactory);
-var _wrapMapToProps = require("./wrapMapToProps");
-var _invalidArgFactory = require("./invalidArgFactory");
-function mapStateToPropsFactory(mapStateToProps) {
-    return !mapStateToProps ? (0, _wrapMapToProps.wrapMapToPropsConstant)(()=>({})) : typeof mapStateToProps === "function" ? (0, _wrapMapToProps.wrapMapToPropsFunc)(mapStateToProps, "mapStateToProps") : (0, _invalidArgFactory.createInvalidArgFactory)(mapStateToProps, "mapStateToProps");
-}
-
-},{"./wrapMapToProps":"bSgjL","./invalidArgFactory":"fnbUv","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"hQpBj":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "defaultMergeProps", ()=>defaultMergeProps);
-parcelHelpers.export(exports, "wrapMergePropsFunc", ()=>wrapMergePropsFunc);
-parcelHelpers.export(exports, "mergePropsFactory", ()=>mergePropsFactory);
-var _extends = require("@babel/runtime/helpers/esm/extends");
-var _extendsDefault = parcelHelpers.interopDefault(_extends);
-var _verifyPlainObject = require("../utils/verifyPlainObject");
-var _verifyPlainObjectDefault = parcelHelpers.interopDefault(_verifyPlainObject);
-var _invalidArgFactory = require("./invalidArgFactory");
-function defaultMergeProps(stateProps, dispatchProps, ownProps) {
-    // @ts-ignore
-    return (0, _extendsDefault.default)({}, ownProps, stateProps, dispatchProps);
-}
-function wrapMergePropsFunc(mergeProps) {
-    return function initMergePropsProxy(dispatch, { displayName , areMergedPropsEqual  }) {
-        let hasRunOnce = false;
-        let mergedProps;
-        return function mergePropsProxy(stateProps, dispatchProps, ownProps) {
-            const nextMergedProps = mergeProps(stateProps, dispatchProps, ownProps);
-            if (hasRunOnce) {
-                if (!areMergedPropsEqual(nextMergedProps, mergedProps)) mergedProps = nextMergedProps;
-            } else {
-                hasRunOnce = true;
-                mergedProps = nextMergedProps;
-                (0, _verifyPlainObjectDefault.default)(mergedProps, displayName, "mergeProps");
-            }
-            return mergedProps;
-        };
-    };
-}
-function mergePropsFactory(mergeProps) {
-    return !mergeProps ? ()=>defaultMergeProps : typeof mergeProps === "function" ? wrapMergePropsFunc(mergeProps) : (0, _invalidArgFactory.createInvalidArgFactory)(mergeProps, "mergeProps");
-}
-
-},{"@babel/runtime/helpers/esm/extends":"fTBFS","../utils/verifyPlainObject":"f6LbZ","./invalidArgFactory":"fnbUv","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"ieuHT":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "createSubscription", ()=>createSubscription);
-var _batch = require("./batch"); // encapsulates the subscription logic for connecting a component to the redux store, as
-// well as nesting subscriptions of descendant components, so that we can ensure the
-// ancestor components re-render before descendants
-function createListenerCollection() {
-    const batch = (0, _batch.getBatch)();
-    let first = null;
-    let last = null;
-    return {
-        clear () {
-            first = null;
-            last = null;
-        },
-        notify () {
-            batch(()=>{
-                let listener = first;
-                while(listener){
-                    listener.callback();
-                    listener = listener.next;
-                }
-            });
-        },
-        get () {
-            let listeners = [];
-            let listener = first;
-            while(listener){
-                listeners.push(listener);
-                listener = listener.next;
-            }
-            return listeners;
-        },
-        subscribe (callback) {
-            let isSubscribed = true;
-            let listener = last = {
-                callback,
-                next: null,
-                prev: last
-            };
-            if (listener.prev) listener.prev.next = listener;
-            else first = listener;
-            return function unsubscribe() {
-                if (!isSubscribed || first === null) return;
-                isSubscribed = false;
-                if (listener.next) listener.next.prev = listener.prev;
-                else last = listener.prev;
-                if (listener.prev) listener.prev.next = listener.next;
-                else first = listener.next;
-            };
-        }
-    };
-}
-const nullListeners = {
-    notify () {},
-    get: ()=>[]
-};
-function createSubscription(store, parentSub) {
-    let unsubscribe;
-    let listeners = nullListeners;
-    function addNestedSub(listener) {
-        trySubscribe();
-        return listeners.subscribe(listener);
-    }
-    function notifyNestedSubs() {
-        listeners.notify();
-    }
-    function handleChangeWrapper() {
-        if (subscription.onStateChange) subscription.onStateChange();
-    }
-    function isSubscribed() {
-        return Boolean(unsubscribe);
-    }
-    function trySubscribe() {
-        if (!unsubscribe) {
-            unsubscribe = parentSub ? parentSub.addNestedSub(handleChangeWrapper) : store.subscribe(handleChangeWrapper);
-            listeners = createListenerCollection();
-        }
-    }
-    function tryUnsubscribe() {
-        if (unsubscribe) {
-            unsubscribe();
-            unsubscribe = undefined;
-            listeners.clear();
-            listeners = nullListeners;
-        }
-    }
-    const subscription = {
-        addNestedSub,
-        notifyNestedSubs,
-        handleChangeWrapper,
-        isSubscribed,
-        trySubscribe,
-        tryUnsubscribe,
-        getListeners: ()=>listeners
-    };
-    return subscription;
-}
-
-},{"./batch":"ikw0G","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"kNbVc":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "canUseDOM", ()=>canUseDOM);
-parcelHelpers.export(exports, "useIsomorphicLayoutEffect", ()=>useIsomorphicLayoutEffect);
-var _react = require("react"); // React currently throws a warning when using useLayoutEffect on the server.
-const canUseDOM = !!(typeof window !== "undefined" && typeof window.document !== "undefined" && typeof window.document.createElement !== "undefined");
-const useIsomorphicLayoutEffect = canUseDOM ? (0, _react.useLayoutEffect) : (0, _react.useEffect);
-
-},{"react":"21dqq","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"gV5L4":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-function is(x, y) {
-    if (x === y) return x !== 0 || y !== 0 || 1 / x === 1 / y;
-    else return x !== x && y !== y;
-}
-function shallowEqual(objA, objB) {
-    if (is(objA, objB)) return true;
-    if (typeof objA !== "object" || objA === null || typeof objB !== "object" || objB === null) return false;
-    const keysA = Object.keys(objA);
-    const keysB = Object.keys(objB);
-    if (keysA.length !== keysB.length) return false;
-    for(let i = 0; i < keysA.length; i++){
-        if (!Object.prototype.hasOwnProperty.call(objB, keysA[i]) || !is(objA[keysA[i]], objB[keysA[i]])) return false;
-    }
-    return true;
-}
-exports.default = shallowEqual;
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"iAa1P":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "Provider", ()=>(0, _providerDefault.default));
-parcelHelpers.export(exports, "ReactReduxContext", ()=>(0, _context.ReactReduxContext));
-parcelHelpers.export(exports, "connect", ()=>(0, _connectDefault.default));
-parcelHelpers.export(exports, "useDispatch", ()=>(0, _useDispatch.useDispatch));
-parcelHelpers.export(exports, "createDispatchHook", ()=>(0, _useDispatch.createDispatchHook));
-parcelHelpers.export(exports, "useSelector", ()=>(0, _useSelector.useSelector));
-parcelHelpers.export(exports, "createSelectorHook", ()=>(0, _useSelector.createSelectorHook));
-parcelHelpers.export(exports, "useStore", ()=>(0, _useStore.useStore));
-parcelHelpers.export(exports, "createStoreHook", ()=>(0, _useStore.createStoreHook));
-parcelHelpers.export(exports, "shallowEqual", ()=>(0, _shallowEqualDefault.default));
-var _provider = require("./components/Provider");
-var _providerDefault = parcelHelpers.interopDefault(_provider);
-var _connect = require("./components/connect");
-var _connectDefault = parcelHelpers.interopDefault(_connect);
-var _context = require("./components/Context");
-var _useDispatch = require("./hooks/useDispatch");
-var _useSelector = require("./hooks/useSelector");
-var _useStore = require("./hooks/useStore");
-var _shallowEqual = require("./utils/shallowEqual");
-var _shallowEqualDefault = parcelHelpers.interopDefault(_shallowEqual);
-var _types = require("./types");
-parcelHelpers.exportAll(_types, exports);
-
-},{"./components/Provider":"bdd6J","./components/connect":"5gOIw","./components/Context":"ji81o","./hooks/useDispatch":"aOjNn","./hooks/useSelector":"l3rFI","./hooks/useStore":"39JZU","./utils/shallowEqual":"gV5L4","./types":"8RiCo","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"bdd6J":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var _react = require("react");
-var _reactDefault = parcelHelpers.interopDefault(_react);
-var _context = require("./Context");
-var _subscription = require("../utils/Subscription");
-var _useIsomorphicLayoutEffect = require("../utils/useIsomorphicLayoutEffect");
-function Provider({ store , context , children , serverState  }) {
-    const contextValue = (0, _react.useMemo)(()=>{
-        const subscription = (0, _subscription.createSubscription)(store);
-        return {
-            store,
-            subscription,
-            getServerState: serverState ? ()=>serverState : undefined
-        };
-    }, [
-        store,
-        serverState
-    ]);
-    const previousState = (0, _react.useMemo)(()=>store.getState(), [
-        store
-    ]);
-    (0, _useIsomorphicLayoutEffect.useIsomorphicLayoutEffect)(()=>{
-        const { subscription  } = contextValue;
-        subscription.onStateChange = subscription.notifyNestedSubs;
-        subscription.trySubscribe();
-        if (previousState !== store.getState()) subscription.notifyNestedSubs();
-        return ()=>{
-            subscription.tryUnsubscribe();
-            subscription.onStateChange = undefined;
-        };
-    }, [
-        contextValue,
-        previousState
-    ]);
-    const Context = context || (0, _context.ReactReduxContext); // @ts-ignore 'AnyAction' is assignable to the constraint of type 'A', but 'A' could be instantiated with a different subtype
-    return /*#__PURE__*/ (0, _reactDefault.default).createElement(Context.Provider, {
-        value: contextValue
-    }, children);
-}
-exports.default = Provider;
-
-},{"react":"21dqq","./Context":"ji81o","../utils/Subscription":"ieuHT","../utils/useIsomorphicLayoutEffect":"kNbVc","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"aOjNn":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-/**
- * Hook factory, which creates a `useDispatch` hook bound to a given context.
- *
- * @param {React.Context} [context=ReactReduxContext] Context passed to your `<Provider>`.
- * @returns {Function} A `useDispatch` hook bound to the specified context.
- */ parcelHelpers.export(exports, "createDispatchHook", ()=>createDispatchHook);
-parcelHelpers.export(exports, "useDispatch", ()=>useDispatch);
-var _context = require("../components/Context");
-var _useStore = require("./useStore");
-function createDispatchHook(context = (0, _context.ReactReduxContext)) {
-    const useStore = context === (0, _context.ReactReduxContext) ? (0, _useStore.useStore) : (0, _useStore.createStoreHook)(context);
-    return function useDispatch() {
-        const store = useStore(); // @ts-ignore
-        return store.dispatch;
-    };
-}
-const useDispatch = /*#__PURE__*/ createDispatchHook();
-
-},{"../components/Context":"ji81o","./useStore":"39JZU","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"39JZU":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-/**
- * Hook factory, which creates a `useStore` hook bound to a given context.
- *
- * @param {React.Context} [context=ReactReduxContext] Context passed to your `<Provider>`.
- * @returns {Function} A `useStore` hook bound to the specified context.
- */ parcelHelpers.export(exports, "createStoreHook", ()=>createStoreHook);
-parcelHelpers.export(exports, "useStore", ()=>useStore);
-var _react = require("react");
-var _context = require("../components/Context");
-var _useReduxContext = require("./useReduxContext");
-function createStoreHook(context = (0, _context.ReactReduxContext)) {
-    const useReduxContext = context === (0, _context.ReactReduxContext) ? (0, _useReduxContext.useReduxContext) : ()=>(0, _react.useContext)(context);
-    return function useStore() {
-        const { store  } = useReduxContext(); // @ts-ignore
-        return store;
-    };
-}
-const useStore = /*#__PURE__*/ createStoreHook();
-
-},{"react":"21dqq","../components/Context":"ji81o","./useReduxContext":"3828k","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"8RiCo":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"biFwH":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "SET_MOVIES", ()=>SET_MOVIES);
-parcelHelpers.export(exports, "SET_FILTER", ()=>SET_FILTER);
-parcelHelpers.export(exports, "setMovies", ()=>setMovies);
-parcelHelpers.export(exports, "setFilter", ()=>setFilter);
-const SET_MOVIES = "SET_MOVIES";
-const SET_FILTER = "SET_FILTER";
-function setMovies(value) {
-    return {
-        type: SET_MOVIES,
-        value
-    };
-}
-function setFilter(value) {
-    return {
-        type: SET_FILTER,
-        value
-    };
-}
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"bPxKK":[function(require,module,exports) {
-var $parcel$ReactRefreshHelpers$89c8 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
-var prevRefreshReg = window.$RefreshReg$;
-var prevRefreshSig = window.$RefreshSig$;
-$parcel$ReactRefreshHelpers$89c8.prelude(module);
-
-try {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var _jsxDevRuntime = require("react/jsx-dev-runtime");
-var _react = require("react");
-var _reactDefault = parcelHelpers.interopDefault(_react);
-var _col = require("react-bootstrap/Col");
-var _colDefault = parcelHelpers.interopDefault(_col);
-var _reactRedux = require("react-redux");
-var _visibilityFilterInput = require("../visibility-filter-input/visibility-filter-input");
-var _visibilityFilterInputDefault = parcelHelpers.interopDefault(_visibilityFilterInput);
-var _movieCard = require("../movie-card/movie-card");
-const mapStateToProps = (state)=>{
-    const { visibilityFilter  } = state;
-    return {
-        visibilityFilter
-    };
-};
-function MoviesList(props) {
-    const { movies , visibilityFilter  } = props;
-    let filteredMovies = movies;
-    if (visibilityFilter !== "") filteredMovies = movies.filter((m)=>m.Title.toLowerCase().includes(visibilityFilter.toLowerCase()));
-    if (!movies) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-        className: "main-view"
-    }, void 0, false, {
-        fileName: "src/components/movies-list/movies-list.jsx",
-        lineNumber: 23,
-        columnNumber: 23
-    }, this);
-    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
-        children: [
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _colDefault.default), {
-                md: 12,
-                style: {
-                    margin: "1em"
-                },
-                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _visibilityFilterInputDefault.default), {
-                    visibilityFilter: visibilityFilter
-                }, void 0, false, {
-                    fileName: "src/components/movies-list/movies-list.jsx",
-                    lineNumber: 28,
-                    columnNumber: 9
-                }, this)
-            }, void 0, false, {
-                fileName: "src/components/movies-list/movies-list.jsx",
-                lineNumber: 27,
-                columnNumber: 7
-            }, this),
-            filteredMovies.map((m)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _colDefault.default), {
-                    md: 3,
-                    children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieCard.MovieCard), {
-                        movie: m
-                    }, void 0, false, {
-                        fileName: "src/components/movies-list/movies-list.jsx",
-                        lineNumber: 32,
-                        columnNumber: 11
-                    }, this)
-                }, m._id, false, {
-                    fileName: "src/components/movies-list/movies-list.jsx",
-                    lineNumber: 31,
-                    columnNumber: 9
-                }, this))
-        ]
-    }, void 0, true);
-}
-_c = MoviesList;
-exports.default = (0, _reactRedux.connect)(mapStateToProps)(MoviesList);
-var _c;
-$RefreshReg$(_c, "MoviesList");
-
-  $parcel$ReactRefreshHelpers$89c8.postlude(module);
-} finally {
-  window.$RefreshReg$ = prevRefreshReg;
-  window.$RefreshSig$ = prevRefreshSig;
-}
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","react-bootstrap/Col":"2L2I6","react-redux":"bdVon","../visibility-filter-input/visibility-filter-input":"gtTIg","../movie-card/movie-card":"bwuIu","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"gtTIg":[function(require,module,exports) {
-var $parcel$ReactRefreshHelpers$dea5 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
-var prevRefreshReg = window.$RefreshReg$;
-var prevRefreshSig = window.$RefreshSig$;
-$parcel$ReactRefreshHelpers$dea5.prelude(module);
-
-try {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var _jsxDevRuntime = require("react/jsx-dev-runtime");
-var _react = require("react");
-var _reactDefault = parcelHelpers.interopDefault(_react);
-var _reactRedux = require("react-redux");
-var _form = require("react-bootstrap/Form");
-var _formDefault = parcelHelpers.interopDefault(_form);
-var _actions = require("../../actions/actions");
-function VisibilityFilterInput(props) {
-    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _formDefault.default).Control, {
-        onChange: (e)=>props.setFilter(e.target.value),
-        value: props.visibilityFilter,
-        placeholder: "filter"
-    }, void 0, false, {
-        fileName: "src/components/visibility-filter-input/visibility-filter-input.jsx",
-        lineNumber: 10,
-        columnNumber: 5
-    }, this);
-}
-_c = VisibilityFilterInput;
-exports.default = (0, _reactRedux.connect)(null, {
-    setFilter: (0, _actions.setFilter)
-})(VisibilityFilterInput);
-var _c;
-$RefreshReg$(_c, "VisibilityFilterInput");
-
-  $parcel$ReactRefreshHelpers$dea5.postlude(module);
-} finally {
-  window.$RefreshReg$ = prevRefreshReg;
-  window.$RefreshSig$ = prevRefreshSig;
-}
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","react-redux":"bdVon","react-bootstrap/Form":"iBZ80","../../actions/actions":"biFwH","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"lJZlQ":[function() {},{}],"cDNB3":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "__DO_NOT_USE__ActionTypes", ()=>ActionTypes);
-parcelHelpers.export(exports, "applyMiddleware", ()=>applyMiddleware);
-parcelHelpers.export(exports, "bindActionCreators", ()=>bindActionCreators);
-parcelHelpers.export(exports, "combineReducers", ()=>combineReducers);
-parcelHelpers.export(exports, "compose", ()=>compose);
-parcelHelpers.export(exports, "createStore", ()=>createStore);
-parcelHelpers.export(exports, "legacy_createStore", ()=>legacy_createStore);
-var _objectSpread2 = require("@babel/runtime/helpers/esm/objectSpread2");
-var _objectSpread2Default = parcelHelpers.interopDefault(_objectSpread2);
-/**
- * Adapted from React: https://github.com/facebook/react/blob/master/packages/shared/formatProdErrorMessage.js
- *
- * Do not require this module directly! Use normal throw error calls. These messages will be replaced with error codes
- * during build.
- * @param {number} code
- */ function formatProdErrorMessage(code) {
-    return "Minified Redux error #" + code + "; visit https://redux.js.org/Errors?code=" + code + " for the full message or " + "use the non-minified dev environment for full errors. ";
-}
-// Inlined version of the `symbol-observable` polyfill
-var $$observable = function() {
-    return typeof Symbol === "function" && Symbol.observable || "@@observable";
-}();
-/**
- * These are private action types reserved by Redux.
- * For any unknown actions, you must return the current state.
- * If the current state is undefined, you must return the initial state.
- * Do not reference these action types directly in your code.
- */ var randomString = function randomString() {
-    return Math.random().toString(36).substring(7).split("").join(".");
-};
-var ActionTypes = {
-    INIT: "@@redux/INIT" + randomString(),
-    REPLACE: "@@redux/REPLACE" + randomString(),
-    PROBE_UNKNOWN_ACTION: function PROBE_UNKNOWN_ACTION() {
-        return "@@redux/PROBE_UNKNOWN_ACTION" + randomString();
-    }
-};
-/**
- * @param {any} obj The object to inspect.
- * @returns {boolean} True if the argument appears to be a plain object.
- */ function isPlainObject(obj) {
-    if (typeof obj !== "object" || obj === null) return false;
-    var proto = obj;
-    while(Object.getPrototypeOf(proto) !== null)proto = Object.getPrototypeOf(proto);
-    return Object.getPrototypeOf(obj) === proto;
-}
-// Inlined / shortened version of `kindOf` from https://github.com/jonschlinkert/kind-of
-function miniKindOf(val) {
-    if (val === void 0) return "undefined";
-    if (val === null) return "null";
-    var type = typeof val;
-    switch(type){
-        case "boolean":
-        case "string":
-        case "number":
-        case "symbol":
-        case "function":
-            return type;
-    }
-    if (Array.isArray(val)) return "array";
-    if (isDate(val)) return "date";
-    if (isError(val)) return "error";
-    var constructorName = ctorName(val);
-    switch(constructorName){
-        case "Symbol":
-        case "Promise":
-        case "WeakMap":
-        case "WeakSet":
-        case "Map":
-        case "Set":
-            return constructorName;
-    } // other
-    return type.slice(8, -1).toLowerCase().replace(/\s/g, "");
-}
-function ctorName(val) {
-    return typeof val.constructor === "function" ? val.constructor.name : null;
-}
-function isError(val) {
-    return val instanceof Error || typeof val.message === "string" && val.constructor && typeof val.constructor.stackTraceLimit === "number";
-}
-function isDate(val) {
-    if (val instanceof Date) return true;
-    return typeof val.toDateString === "function" && typeof val.getDate === "function" && typeof val.setDate === "function";
-}
-function kindOf(val) {
-    var typeOfVal = typeof val;
-    typeOfVal = miniKindOf(val);
-    return typeOfVal;
-}
-/**
- * @deprecated
- *
- * **We recommend using the `configureStore` method
- * of the `@reduxjs/toolkit` package**, which replaces `createStore`.
- *
- * Redux Toolkit is our recommended approach for writing Redux logic today,
- * including store setup, reducers, data fetching, and more.
- *
- * **For more details, please read this Redux docs page:**
- * **https://redux.js.org/introduction/why-rtk-is-redux-today**
- *
- * `configureStore` from Redux Toolkit is an improved version of `createStore` that
- * simplifies setup and helps avoid common bugs.
- *
- * You should not be using the `redux` core package by itself today, except for learning purposes.
- * The `createStore` method from the core `redux` package will not be removed, but we encourage
- * all users to migrate to using Redux Toolkit for all Redux code.
- *
- * If you want to use `createStore` without this visual deprecation warning, use
- * the `legacy_createStore` import instead:
- *
- * `import { legacy_createStore as createStore} from 'redux'`
- *
- */ function createStore(reducer, preloadedState, enhancer) {
-    var _ref2;
-    if (typeof preloadedState === "function" && typeof enhancer === "function" || typeof enhancer === "function" && typeof arguments[3] === "function") throw new Error("It looks like you are passing several store enhancers to createStore(). This is not supported. Instead, compose them together to a single function. See https://redux.js.org/tutorials/fundamentals/part-4-store#creating-a-store-with-enhancers for an example.");
-    if (typeof preloadedState === "function" && typeof enhancer === "undefined") {
-        enhancer = preloadedState;
-        preloadedState = undefined;
-    }
-    if (typeof enhancer !== "undefined") {
-        if (typeof enhancer !== "function") throw new Error("Expected the enhancer to be a function. Instead, received: '" + kindOf(enhancer) + "'");
-        return enhancer(createStore)(reducer, preloadedState);
-    }
-    if (typeof reducer !== "function") throw new Error("Expected the root reducer to be a function. Instead, received: '" + kindOf(reducer) + "'");
-    var currentReducer = reducer;
-    var currentState = preloadedState;
-    var currentListeners = [];
-    var nextListeners = currentListeners;
-    var isDispatching = false;
-    /**
-   * This makes a shallow copy of currentListeners so we can use
-   * nextListeners as a temporary list while dispatching.
-   *
-   * This prevents any bugs around consumers calling
-   * subscribe/unsubscribe in the middle of a dispatch.
-   */ function ensureCanMutateNextListeners() {
-        if (nextListeners === currentListeners) nextListeners = currentListeners.slice();
-    }
-    /**
-   * Reads the state tree managed by the store.
-   *
-   * @returns {any} The current state tree of your application.
-   */ function getState() {
-        if (isDispatching) throw new Error("You may not call store.getState() while the reducer is executing. The reducer has already received the state as an argument. Pass it down from the top reducer instead of reading it from the store.");
-        return currentState;
-    }
-    /**
-   * Adds a change listener. It will be called any time an action is dispatched,
-   * and some part of the state tree may potentially have changed. You may then
-   * call `getState()` to read the current state tree inside the callback.
-   *
-   * You may call `dispatch()` from a change listener, with the following
-   * caveats:
-   *
-   * 1. The subscriptions are snapshotted just before every `dispatch()` call.
-   * If you subscribe or unsubscribe while the listeners are being invoked, this
-   * will not have any effect on the `dispatch()` that is currently in progress.
-   * However, the next `dispatch()` call, whether nested or not, will use a more
-   * recent snapshot of the subscription list.
-   *
-   * 2. The listener should not expect to see all state changes, as the state
-   * might have been updated multiple times during a nested `dispatch()` before
-   * the listener is called. It is, however, guaranteed that all subscribers
-   * registered before the `dispatch()` started will be called with the latest
-   * state by the time it exits.
-   *
-   * @param {Function} listener A callback to be invoked on every dispatch.
-   * @returns {Function} A function to remove this change listener.
-   */ function subscribe(listener) {
-        if (typeof listener !== "function") throw new Error("Expected the listener to be a function. Instead, received: '" + kindOf(listener) + "'");
-        if (isDispatching) throw new Error("You may not call store.subscribe() while the reducer is executing. If you would like to be notified after the store has been updated, subscribe from a component and invoke store.getState() in the callback to access the latest state. See https://redux.js.org/api/store#subscribelistener for more details.");
-        var isSubscribed = true;
-        ensureCanMutateNextListeners();
-        nextListeners.push(listener);
-        return function unsubscribe() {
-            if (!isSubscribed) return;
-            if (isDispatching) throw new Error("You may not unsubscribe from a store listener while the reducer is executing. See https://redux.js.org/api/store#subscribelistener for more details.");
-            isSubscribed = false;
-            ensureCanMutateNextListeners();
-            var index = nextListeners.indexOf(listener);
-            nextListeners.splice(index, 1);
-            currentListeners = null;
-        };
-    }
-    /**
-   * Dispatches an action. It is the only way to trigger a state change.
-   *
-   * The `reducer` function, used to create the store, will be called with the
-   * current state tree and the given `action`. Its return value will
-   * be considered the **next** state of the tree, and the change listeners
-   * will be notified.
-   *
-   * The base implementation only supports plain object actions. If you want to
-   * dispatch a Promise, an Observable, a thunk, or something else, you need to
-   * wrap your store creating function into the corresponding middleware. For
-   * example, see the documentation for the `redux-thunk` package. Even the
-   * middleware will eventually dispatch plain object actions using this method.
-   *
-   * @param {Object} action A plain object representing “what changed”. It is
-   * a good idea to keep actions serializable so you can record and replay user
-   * sessions, or use the time travelling `redux-devtools`. An action must have
-   * a `type` property which may not be `undefined`. It is a good idea to use
-   * string constants for action types.
-   *
-   * @returns {Object} For convenience, the same action object you dispatched.
-   *
-   * Note that, if you use a custom middleware, it may wrap `dispatch()` to
-   * return something else (for example, a Promise you can await).
-   */ function dispatch(action) {
-        if (!isPlainObject(action)) throw new Error("Actions must be plain objects. Instead, the actual type was: '" + kindOf(action) + "'. You may need to add middleware to your store setup to handle dispatching other values, such as 'redux-thunk' to handle dispatching functions. See https://redux.js.org/tutorials/fundamentals/part-4-store#middleware and https://redux.js.org/tutorials/fundamentals/part-6-async-logic#using-the-redux-thunk-middleware for examples.");
-        if (typeof action.type === "undefined") throw new Error('Actions may not have an undefined "type" property. You may have misspelled an action type string constant.');
-        if (isDispatching) throw new Error("Reducers may not dispatch actions.");
-        try {
-            isDispatching = true;
-            currentState = currentReducer(currentState, action);
-        } finally{
-            isDispatching = false;
-        }
-        var listeners = currentListeners = nextListeners;
-        for(var i = 0; i < listeners.length; i++){
-            var listener = listeners[i];
-            listener();
-        }
-        return action;
-    }
-    /**
-   * Replaces the reducer currently used by the store to calculate the state.
-   *
-   * You might need this if your app implements code splitting and you want to
-   * load some of the reducers dynamically. You might also need this if you
-   * implement a hot reloading mechanism for Redux.
-   *
-   * @param {Function} nextReducer The reducer for the store to use instead.
-   * @returns {void}
-   */ function replaceReducer(nextReducer) {
-        if (typeof nextReducer !== "function") throw new Error("Expected the nextReducer to be a function. Instead, received: '" + kindOf(nextReducer));
-        currentReducer = nextReducer; // This action has a similiar effect to ActionTypes.INIT.
-        // Any reducers that existed in both the new and old rootReducer
-        // will receive the previous state. This effectively populates
-        // the new state tree with any relevant data from the old one.
-        dispatch({
-            type: ActionTypes.REPLACE
-        });
-    }
-    /**
-   * Interoperability point for observable/reactive libraries.
-   * @returns {observable} A minimal observable of state changes.
-   * For more information, see the observable proposal:
-   * https://github.com/tc39/proposal-observable
-   */ function observable() {
-        var _ref;
-        var outerSubscribe = subscribe;
-        return _ref = {
-            /**
-       * The minimal observable subscription method.
-       * @param {Object} observer Any object that can be used as an observer.
-       * The observer object should have a `next` method.
-       * @returns {subscription} An object with an `unsubscribe` method that can
-       * be used to unsubscribe the observable from the store, and prevent further
-       * emission of values from the observable.
-       */ subscribe: function subscribe(observer) {
-                if (typeof observer !== "object" || observer === null) throw new Error("Expected the observer to be an object. Instead, received: '" + kindOf(observer) + "'");
-                function observeState() {
-                    if (observer.next) observer.next(getState());
-                }
-                observeState();
-                var unsubscribe = outerSubscribe(observeState);
-                return {
-                    unsubscribe: unsubscribe
-                };
-            }
-        }, _ref[$$observable] = function() {
-            return this;
-        }, _ref;
-    } // When a store is created, an "INIT" action is dispatched so that every
-    // reducer returns their initial state. This effectively populates
-    // the initial state tree.
-    dispatch({
-        type: ActionTypes.INIT
-    });
-    return _ref2 = {
-        dispatch: dispatch,
-        subscribe: subscribe,
-        getState: getState,
-        replaceReducer: replaceReducer
-    }, _ref2[$$observable] = observable, _ref2;
-}
-/**
- * Creates a Redux store that holds the state tree.
- *
- * **We recommend using `configureStore` from the
- * `@reduxjs/toolkit` package**, which replaces `createStore`:
- * **https://redux.js.org/introduction/why-rtk-is-redux-today**
- *
- * The only way to change the data in the store is to call `dispatch()` on it.
- *
- * There should only be a single store in your app. To specify how different
- * parts of the state tree respond to actions, you may combine several reducers
- * into a single reducer function by using `combineReducers`.
- *
- * @param {Function} reducer A function that returns the next state tree, given
- * the current state tree and the action to handle.
- *
- * @param {any} [preloadedState] The initial state. You may optionally specify it
- * to hydrate the state from the server in universal apps, or to restore a
- * previously serialized user session.
- * If you use `combineReducers` to produce the root reducer function, this must be
- * an object with the same shape as `combineReducers` keys.
- *
- * @param {Function} [enhancer] The store enhancer. You may optionally specify it
- * to enhance the store with third-party capabilities such as middleware,
- * time travel, persistence, etc. The only store enhancer that ships with Redux
- * is `applyMiddleware()`.
- *
- * @returns {Store} A Redux store that lets you read the state, dispatch actions
- * and subscribe to changes.
- */ var legacy_createStore = createStore;
-/**
- * Prints a warning in the console if it exists.
- *
- * @param {String} message The warning message.
- * @returns {void}
- */ function warning(message) {
-    /* eslint-disable no-console */ if (typeof console !== "undefined" && typeof console.error === "function") console.error(message);
-    /* eslint-enable no-console */ try {
-        // This error was thrown as a convenience so that if you enable
-        // "break on all exceptions" in your console,
-        // it would pause the execution at this line.
-        throw new Error(message);
-    } catch (e) {} // eslint-disable-line no-empty
-}
-function getUnexpectedStateShapeWarningMessage(inputState, reducers, action, unexpectedKeyCache) {
-    var reducerKeys = Object.keys(reducers);
-    var argumentName = action && action.type === ActionTypes.INIT ? "preloadedState argument passed to createStore" : "previous state received by the reducer";
-    if (reducerKeys.length === 0) return "Store does not have a valid reducer. Make sure the argument passed to combineReducers is an object whose values are reducers.";
-    if (!isPlainObject(inputState)) return "The " + argumentName + ' has unexpected type of "' + kindOf(inputState) + '". Expected argument to be an object with the following ' + ('keys: "' + reducerKeys.join('", "') + '"');
-    var unexpectedKeys = Object.keys(inputState).filter(function(key) {
-        return !reducers.hasOwnProperty(key) && !unexpectedKeyCache[key];
-    });
-    unexpectedKeys.forEach(function(key) {
-        unexpectedKeyCache[key] = true;
-    });
-    if (action && action.type === ActionTypes.REPLACE) return;
-    if (unexpectedKeys.length > 0) return "Unexpected " + (unexpectedKeys.length > 1 ? "keys" : "key") + " " + ('"' + unexpectedKeys.join('", "') + '" found in ' + argumentName + ". ") + "Expected to find one of the known reducer keys instead: " + ('"' + reducerKeys.join('", "') + '". Unexpected keys will be ignored.');
-}
-function assertReducerShape(reducers) {
-    Object.keys(reducers).forEach(function(key) {
-        var reducer = reducers[key];
-        var initialState = reducer(undefined, {
-            type: ActionTypes.INIT
-        });
-        if (typeof initialState === "undefined") throw new Error('The slice reducer for key "' + key + '" returned undefined during initialization. ' + "If the state passed to the reducer is undefined, you must " + "explicitly return the initial state. The initial state may " + "not be undefined. If you don't want to set a value for this reducer, " + "you can use null instead of undefined.");
-        if (typeof reducer(undefined, {
-            type: ActionTypes.PROBE_UNKNOWN_ACTION()
-        }) === "undefined") throw new Error('The slice reducer for key "' + key + '" returned undefined when probed with a random type. ' + ("Don't try to handle '" + ActionTypes.INIT + '\' or other actions in "redux/*" ') + "namespace. They are considered private. Instead, you must return the " + "current state for any unknown actions, unless it is undefined, " + "in which case you must return the initial state, regardless of the " + "action type. The initial state may not be undefined, but can be null.");
-    });
-}
-/**
- * Turns an object whose values are different reducer functions, into a single
- * reducer function. It will call every child reducer, and gather their results
- * into a single state object, whose keys correspond to the keys of the passed
- * reducer functions.
- *
- * @param {Object} reducers An object whose values correspond to different
- * reducer functions that need to be combined into one. One handy way to obtain
- * it is to use ES6 `import * as reducers` syntax. The reducers may never return
- * undefined for any action. Instead, they should return their initial state
- * if the state passed to them was undefined, and the current state for any
- * unrecognized action.
- *
- * @returns {Function} A reducer function that invokes every reducer inside the
- * passed object, and builds a state object with the same shape.
- */ function combineReducers(reducers) {
-    var reducerKeys = Object.keys(reducers);
-    var finalReducers = {};
-    for(var i = 0; i < reducerKeys.length; i++){
-        var key = reducerKeys[i];
-        if (typeof reducers[key] === "undefined") warning('No reducer provided for key "' + key + '"');
-        if (typeof reducers[key] === "function") finalReducers[key] = reducers[key];
-    }
-    var finalReducerKeys = Object.keys(finalReducers); // This is used to make sure we don't warn about the same
-    // keys multiple times.
-    var unexpectedKeyCache;
-    unexpectedKeyCache = {};
-    var shapeAssertionError;
-    try {
-        assertReducerShape(finalReducers);
-    } catch (e) {
-        shapeAssertionError = e;
-    }
-    return function combination(state, action) {
-        if (state === void 0) state = {};
-        if (shapeAssertionError) throw shapeAssertionError;
-        var warningMessage = getUnexpectedStateShapeWarningMessage(state, finalReducers, action, unexpectedKeyCache);
-        if (warningMessage) warning(warningMessage);
-        var hasChanged = false;
-        var nextState = {};
-        for(var _i = 0; _i < finalReducerKeys.length; _i++){
-            var _key = finalReducerKeys[_i];
-            var reducer = finalReducers[_key];
-            var previousStateForKey = state[_key];
-            var nextStateForKey = reducer(previousStateForKey, action);
-            if (typeof nextStateForKey === "undefined") {
-                var actionType = action && action.type;
-                throw new Error("When called with an action of type " + (actionType ? '"' + String(actionType) + '"' : "(unknown type)") + ', the slice reducer for key "' + _key + '" returned undefined. ' + "To ignore an action, you must explicitly return the previous state. " + "If you want this reducer to hold no value, you can return null instead of undefined.");
-            }
-            nextState[_key] = nextStateForKey;
-            hasChanged = hasChanged || nextStateForKey !== previousStateForKey;
-        }
-        hasChanged = hasChanged || finalReducerKeys.length !== Object.keys(state).length;
-        return hasChanged ? nextState : state;
-    };
-}
-function bindActionCreator(actionCreator, dispatch) {
-    return function() {
-        return dispatch(actionCreator.apply(this, arguments));
-    };
-}
-/**
- * Turns an object whose values are action creators, into an object with the
- * same keys, but with every function wrapped into a `dispatch` call so they
- * may be invoked directly. This is just a convenience method, as you can call
- * `store.dispatch(MyActionCreators.doSomething())` yourself just fine.
- *
- * For convenience, you can also pass an action creator as the first argument,
- * and get a dispatch wrapped function in return.
- *
- * @param {Function|Object} actionCreators An object whose values are action
- * creator functions. One handy way to obtain it is to use ES6 `import * as`
- * syntax. You may also pass a single function.
- *
- * @param {Function} dispatch The `dispatch` function available on your Redux
- * store.
- *
- * @returns {Function|Object} The object mimicking the original object, but with
- * every action creator wrapped into the `dispatch` call. If you passed a
- * function as `actionCreators`, the return value will also be a single
- * function.
- */ function bindActionCreators(actionCreators, dispatch) {
-    if (typeof actionCreators === "function") return bindActionCreator(actionCreators, dispatch);
-    if (typeof actionCreators !== "object" || actionCreators === null) throw new Error("bindActionCreators expected an object or a function, but instead received: '" + kindOf(actionCreators) + "'. " + 'Did you write "import ActionCreators from" instead of "import * as ActionCreators from"?');
-    var boundActionCreators = {};
-    for(var key in actionCreators){
-        var actionCreator = actionCreators[key];
-        if (typeof actionCreator === "function") boundActionCreators[key] = bindActionCreator(actionCreator, dispatch);
-    }
-    return boundActionCreators;
-}
-/**
- * Composes single-argument functions from right to left. The rightmost
- * function can take multiple arguments as it provides the signature for
- * the resulting composite function.
- *
- * @param {...Function} funcs The functions to compose.
- * @returns {Function} A function obtained by composing the argument functions
- * from right to left. For example, compose(f, g, h) is identical to doing
- * (...args) => f(g(h(...args))).
- */ function compose() {
-    for(var _len = arguments.length, funcs = new Array(_len), _key = 0; _key < _len; _key++)funcs[_key] = arguments[_key];
-    if (funcs.length === 0) return function(arg) {
-        return arg;
-    };
-    if (funcs.length === 1) return funcs[0];
-    return funcs.reduce(function(a, b) {
-        return function() {
-            return a(b.apply(void 0, arguments));
-        };
-    });
-}
-/**
- * Creates a store enhancer that applies middleware to the dispatch method
- * of the Redux store. This is handy for a variety of tasks, such as expressing
- * asynchronous actions in a concise manner, or logging every action payload.
- *
- * See `redux-thunk` package as an example of the Redux middleware.
- *
- * Because middleware is potentially asynchronous, this should be the first
- * store enhancer in the composition chain.
- *
- * Note that each middleware will be given the `dispatch` and `getState` functions
- * as named arguments.
- *
- * @param {...Function} middlewares The middleware chain to be applied.
- * @returns {Function} A store enhancer applying the middleware.
- */ function applyMiddleware() {
-    for(var _len = arguments.length, middlewares = new Array(_len), _key = 0; _key < _len; _key++)middlewares[_key] = arguments[_key];
-    return function(createStore) {
-        return function() {
-            var store = createStore.apply(void 0, arguments);
-            var _dispatch = function dispatch() {
-                throw new Error("Dispatching while constructing your middleware is not allowed. Other middleware would not be applied to this dispatch.");
-            };
-            var middlewareAPI = {
-                getState: store.getState,
-                dispatch: function dispatch() {
-                    return _dispatch.apply(void 0, arguments);
-                }
-            };
-            var chain = middlewares.map(function(middleware) {
-                return middleware(middlewareAPI);
-            });
-            _dispatch = compose.apply(void 0, chain)(store.dispatch);
-            return (0, _objectSpread2Default.default)((0, _objectSpread2Default.default)({}, store), {}, {
-                dispatch: _dispatch
-            });
-        };
-    };
-}
-/*
- * This is a dummy function to check if the function name has been altered by minification.
- * If the function has been minified and NODE_ENV !== 'production', warn the user.
- */ function isCrushed() {}
-if (typeof isCrushed.name === "string" && isCrushed.name !== "isCrushed") warning('You are currently using minified code outside of NODE_ENV === "production". This means that you are running a slower development build of Redux. You can use loose-envify (https://github.com/zertosh/loose-envify) for browserify or setting mode to production in webpack (https://webpack.js.org/concepts/mode/) to ensure you have the correct code for your production build.');
-
-},{"@babel/runtime/helpers/esm/objectSpread2":"bS0uk","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"bS0uk":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var _definePropertyJs = require("./defineProperty.js");
-var _definePropertyJsDefault = parcelHelpers.interopDefault(_definePropertyJs);
-function ownKeys(object, enumerableOnly) {
-    var keys = Object.keys(object);
-    if (Object.getOwnPropertySymbols) {
-        var symbols = Object.getOwnPropertySymbols(object);
-        enumerableOnly && (symbols = symbols.filter(function(sym) {
-            return Object.getOwnPropertyDescriptor(object, sym).enumerable;
-        })), keys.push.apply(keys, symbols);
-    }
-    return keys;
-}
-function _objectSpread2(target) {
-    for(var i = 1; i < arguments.length; i++){
-        var source = null != arguments[i] ? arguments[i] : {};
-        i % 2 ? ownKeys(Object(source), !0).forEach(function(key) {
-            (0, _definePropertyJsDefault.default)(target, key, source[key]);
-        }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function(key) {
-            Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));
-        });
-    }
-    return target;
-}
-exports.default = _objectSpread2;
-
-},{"./defineProperty.js":"hbmCA","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"hbmCA":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-function _defineProperty(obj, key, value) {
-    if (key in obj) Object.defineProperty(obj, key, {
-        value: value,
-        enumerable: true,
-        configurable: true,
-        writable: true
-    });
-    else obj[key] = value;
-    return obj;
-}
-exports.default = _defineProperty;
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"dgblV":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var _redux = require("redux");
-var _actions = require("../actions/actions");
-function visibilityFilter(state = "", action) {
-    switch(action.type){
-        case 0, _actions.SET_FILTER:
-            return action.value;
-        default:
-            return state;
-    }
-}
-function movies(state = [], action) {
-    switch(action.type){
-        case 0, _actions.SET_MOVIES:
-            return action.value;
-        default:
-            return state;
-    }
-}
-function moviesApp(state = {}, action) {
-    return {
-        visibilityFilter: visibilityFilter(state.visibilityFilter, action),
-        movies: movies(state.movies, action)
-    };
-}
-exports.default = moviesApp;
-
-},{"redux":"cDNB3","../actions/actions":"biFwH","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}]},["1xC6H","jVvJi","d8Dch"], "d8Dch", "parcelRequireaec4")
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","react-router-dom":"9xmpe","react-bootstrap":"3AD9A","../movie-card/movie-card":"bwuIu","prop-types":"7wKI2","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"eBaMl":[function() {},{}],"lJZlQ":[function() {},{}]},["1xC6H","jVvJi","d8Dch"], "d8Dch", "parcelRequireaec4")
 
 //# sourceMappingURL=index.b4b6dfad.js.map

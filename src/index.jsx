@@ -1,14 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import PropTypes from "prop-types";
-import MainView from "./components/main-view/main-view";
+import { MainView } from "./components/main-view/main-view";
 import Container from "react-bootstrap/Container";
-import { configureStore } from "redux";
-import { Provider } from "react-redux";
-import moviesApp from "./reducers/reducers";
-import "./index.scss";
 
-const store = configureStore(moviesApp);
+import "./index.scss";
 
 class MyFlixApplication extends React.Component {
   render() {

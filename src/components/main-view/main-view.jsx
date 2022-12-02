@@ -2,7 +2,6 @@ import React from "react";
 import axios from "axios";
 import propTypes from "prop-types";
 import { Row, Col, Container } from "react-bootstrap";
-import Utils from "../../utils.js";
 
 import {
   BrowserRouter as Router,
@@ -13,8 +12,6 @@ import {
   Routes,
   Link,
 } from "react-router-dom";
-
-//import { render } from "react-dom/cjs/react-dom.production.min";
 
 import { LoginView } from "../login-view/login-view";
 import { MovieView } from "../movie-view/movie-view";
@@ -29,22 +26,16 @@ import "./main-view.scss";
 import { ProfileView } from "../profile-view/profile-view";
 import { DirectorView } from "../director-view/director-view";
 
-import { connect } from "react-redux";
-
-import { setMovies } from "../../actions/actions";
-
-import MoviesList from "../movies-list/movies-list";
-
 export class MainView extends React.Component {
   constructor() {
     super();
-    // this.state = {
-    //   movies: [],
-    //   selectedMovie: null,
-    //   user: null,
-    //   registered: true,
-    //   FavoriteMovies: [],
-    // };
+    this.state = {
+      movies: [],
+      selectedMovie: null,
+      user: null,
+      registered: true,
+      FavoriteMovies: [],
+    };
   }
   componentDidMount() {
     let accessToken = localStorage.getItem("token");
@@ -71,13 +62,16 @@ export class MainView extends React.Component {
 
   getMovies(token) {
     axios
-      .get(`https://nixflix.herokuapp.com/movies`, {
+      .get("https://nixflix.herokuapp.com/movies", {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => {
-        this.props.setMovies(response.data);
+        // Assign the result to the state
+        this.setState({
+          movies: response.data,
+        });
       })
-      .catch((error) => {
+      .catch(function (error) {
         console.log(error);
       });
   }
@@ -136,8 +130,7 @@ export class MainView extends React.Component {
   }
 
   render() {
-    let movies = this.props;
-    let user = this.state;
+    const { movies, movie, user, selectedMovie } = this.state;
     console.log("Movies from mainview: ", movies);
     console.log("User from mainview: ", user);
 
@@ -165,8 +158,7 @@ export class MainView extends React.Component {
                   ) : (
                     movies.map((m) => (
                       <Col key={m._id} className="movie-card">
-                        return <MoviesList movies={movies} />;
-                        {/* <MovieCard movie={m} /> */}
+                        <MovieCard movie={m} />
                       </Col>
                     ))
                   )
@@ -186,7 +178,7 @@ export class MainView extends React.Component {
                 }
               />
 
-              {/* <Route
+              <Route
                 path={`/users/`}
                 element={
                   !user ? (
@@ -197,7 +189,7 @@ export class MainView extends React.Component {
                     </Col>
                   )
                 }
-              /> */}
+              />
 
               <Route
                 path={`/users/:name`}
@@ -217,11 +209,7 @@ export class MainView extends React.Component {
                   path=":movieId"
                   element={
                     <Col md={6}>
-                      <MovieView
-                        addToFavorites={this.addToFavorites}
-                        removeFromFavorites={this.removeFromFavorites}
-                        movies={movies}
-                      />
+                      <MovieView movies={movies} />
                     </Col>
                   }
                 />
@@ -263,8 +251,3 @@ export class MainView extends React.Component {
     );
   }
 }
-let mapStateToProps = (state) => {
-  return { movies: state.movies };
-};
-
-export default connect(mapStateToProps, { setMovies })(MainView);

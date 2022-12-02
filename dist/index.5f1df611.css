@@ -29,7 +29,13 @@ button {
   font-style: italic;
 }
 
+.app-container {
+  background-color: #000;
+}
 
+.movie-card.col {
+  background-color: #d3d3d3;
+}
 
 .main-view {
   text-align: center;
@@ -44,6 +50,8 @@ button {
   transition: all .3s;
   box-shadow: 0 4px 8px #0003;
 }
+
+
 
 .favorite-div, .delete-div {
   margin: 25px;
@@ -66,13 +74,5 @@ span {
 }
 
 
-
-.app-container {
-  background-color: #000;
-}
-
-.movie-card.col {
-  background-color: #d3d3d3;
-}
 
 /*# sourceMappingURL=index.5f1df611.css.map */
