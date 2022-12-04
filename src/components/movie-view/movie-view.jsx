@@ -28,7 +28,7 @@ export function MovieView(props) {
     const token = localStorage.getItem("token");
     axios
       .post(
-        `https://nixflix.herokuapp.com/users/${username}/movies/${movieId}`,
+        `https://nixflix.netlify.app/users/${username}/movies/${movieId}`,
         { username: localStorage.getItem("user") },
         {
           headers: { Authorization: `Bearer ${token}` },
@@ -46,7 +46,7 @@ export function MovieView(props) {
     const token = localStorage.getItem("token");
     axios
       .delete(
-        `https://nixflix.herokuapp.com/users/${username}/movies/${movieId}`,
+        `https://nixflix.netlify.app/users/${username}/movies/${movieId}`,
         {
           headers: { Authorization: `Bearer ${token}` },
         }

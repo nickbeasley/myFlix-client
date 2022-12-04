@@ -73,7 +73,7 @@ export function ProfileView(props) {
       const username = localStorage.getItem("user");
       const token = localStorage.getItem("token");
       axios
-        .delete(`https://nixflix.herokuapp.com/users/${user.Username}`, {
+        .delete(`https://nixflix.netlify.app/users/${user.Username}`, {
           headers: { Authorization: `Bearer ${token}` },
         })
         .then(() => {

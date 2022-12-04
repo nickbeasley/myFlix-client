@@ -62,7 +62,7 @@ export class MainView extends React.Component {
 
   getMovies(token) {
     axios
-      .get("https://nixflix.herokuapp.com/movies", {
+      .get("https://nixflix.netlify.app/movies", {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => {
@@ -80,7 +80,7 @@ export class MainView extends React.Component {
   getUser(token) {
     const user = localStorage.getItem("user");
     axios
-      .get(`https://nixflix.herokuapp.com/users/${user}`, {
+      .get(`https://nixflix.netlify.app/users/${user}`, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => {

@@ -29,28 +29,6 @@ button {
   font-style: italic;
 }
 
-.app-container {
-  background-color: #000;
-}
-
-.movie-card.col {
-  background-color: #d3d3d3;
-}
-
-.main-view {
-  text-align: center;
-  background-color: #789;
-}
-
-.movie-card {
-  cursor: pointer;
-  border: 1px solid #a9a9a9;
-  margin: 5px;
-  padding: 15px;
-  transition: all .3s;
-  box-shadow: 0 4px 8px #0003;
-}
-
 
 
 .favorite-div, .delete-div {
@@ -74,5 +52,27 @@ span {
 }
 
 
+
+.main-view {
+  text-align: center;
+  background-color: #789;
+}
+
+.movie-card {
+  cursor: pointer;
+  border: 1px solid #a9a9a9;
+  margin: 5px;
+  padding: 15px;
+  transition: all .3s;
+  box-shadow: 0 4px 8px #0003;
+}
+
+.app-container {
+  background-color: #000;
+}
+
+.movie-card.col {
+  background-color: #d3d3d3;
+}
 
 /*# sourceMappingURL=index.5f1df611.css.map */
