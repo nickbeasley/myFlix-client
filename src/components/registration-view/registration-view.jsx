@@ -60,7 +60,7 @@ export function RegistrationView(props) {
     const isReq = validate();
     if (isReq) {
       axios
-        .post("https://nixflix.netlify.app/users", {
+        .post("https://nixflix.netlify.app.netlify/functions/server/users", {
           Username: username,
           Password: password,
           Email: email,
