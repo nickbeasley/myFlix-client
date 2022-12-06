@@ -37,7 +37,7 @@ export function LoginView(props) {
     if (isReq) {
       /* Send request to the server for authentication */
       axios
-        .post("https://nixflix.netlify.app/login", {
+        .post("https://nixflix.netlify.app.netlify/functions/server/login", {
           Username: username,
           Password: password,
         })

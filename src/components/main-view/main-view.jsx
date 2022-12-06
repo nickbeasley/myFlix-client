@@ -62,7 +62,7 @@ export class MainView extends React.Component {
 
   getMovies(token) {
     axios
-      .get("https://nixflix.netlify.app/movies", {
+      .get("https://nixflix.netlify.app.netlify/functions/server/movies", {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => {
@@ -80,9 +80,12 @@ export class MainView extends React.Component {
   getUser(token) {
     const user = localStorage.getItem("user");
     axios
-      .get(`https://nixflix.netlify.app/users/${user}`, {
-        headers: { Authorization: `Bearer ${token}` },
-      })
+      .get(
+        `https://nixflix.netlify.app.netlify/functions/server/users/${user}`,
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      )
       .then((response) => {
         this.props.setUser(response.data);
       })
