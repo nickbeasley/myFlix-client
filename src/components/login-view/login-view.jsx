@@ -3,6 +3,8 @@ import PropTypes from "prop-types";
 import { Form, Button, Container, Card, Col, Row } from "react-bootstrap";
 import axios from "axios";
 
+import { MOVIE_API_URL } from "../../config";
+
 export function LoginView(props) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -37,7 +39,7 @@ export function LoginView(props) {
     if (isReq) {
       /* Send request to the server for authentication */
       axios
-        .post("https://nixflix.netlify.app.netlify/functions/server/login", {
+        .post(`${MOVIE_API_URL}/login`, {
           Username: username,
           Password: password,
         })

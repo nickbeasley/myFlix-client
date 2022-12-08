@@ -26,6 +26,8 @@ import "./main-view.scss";
 import { ProfileView } from "../profile-view/profile-view";
 import { DirectorView } from "../director-view/director-view";
 
+import { MOVIE_API_URL } from "../../config";
+
 export class MainView extends React.Component {
   constructor() {
     super();
@@ -62,7 +64,7 @@ export class MainView extends React.Component {
 
   getMovies(token) {
     axios
-      .get("https://nixflix.netlify.app.netlify/functions/server/movies", {
+      .get(`${MOVIE_API_URL}/movies`, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => {
@@ -80,12 +82,9 @@ export class MainView extends React.Component {
   getUser(token) {
     const user = localStorage.getItem("user");
     axios
-      .get(
-        `https://nixflix.netlify.app.netlify/functions/server/users/${user}`,
-        {
-          headers: { Authorization: `Bearer ${token}` },
-        }
-      )
+      .get(`${MOVIE_API_URL}/users/${user}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      })
       .then((response) => {
         this.props.setUser(response.data);
       })

@@ -11,6 +11,8 @@ import { MiniCard } from "../mini-card/mini-card";
 
 import { MovieCard } from "../movie-card/movie-card";
 
+import { MOVIE_API_URL } from "../../config";
+
 export function ProfileView(props) {
   let navigate = useNavigate();
 
@@ -73,12 +75,9 @@ export function ProfileView(props) {
       const username = localStorage.getItem("user");
       const token = localStorage.getItem("token");
       axios
-        .delete(
-          `https://nixflix.netlify.app.netlify/functions/server/users/${user.Username}`,
-          {
-            headers: { Authorization: `Bearer ${token}` },
-          }
-        )
+        .delete(`${MOVIE_API_URL}/users/${user.Username}`, {
+          headers: { Authorization: `Bearer ${token}` },
+        })
         .then(() => {
           localStorage.removeItem("user");
           localStorage.removeItem("token");

@@ -5,7 +5,7 @@ import axios from "axios";
 import { useParams, Link, useNavigate, toArray } from "react-router-dom";
 import "./movie-view.scss";
 import { MovieCard } from "../movie-card/movie-card";
-
+import { MOVIE_API_URL } from "../../config";
 export function MovieView(props) {
   const user = localStorage.getItem("user");
   const userInfo = JSON.parse(user);
@@ -28,7 +28,7 @@ export function MovieView(props) {
     const token = localStorage.getItem("token");
     axios
       .post(
-        `https://nixflix.netlify.app.netlify/functions/server/users/${username}/movies/${movieId}`,
+        `${MOVIE_API_URL}/users/${username}/movies/${movieId}`,
         { username: localStorage.getItem("user") },
         {
           headers: { Authorization: `Bearer ${token}` },
@@ -45,12 +45,9 @@ export function MovieView(props) {
   function removeFavorite(movieId) {
     const token = localStorage.getItem("token");
     axios
-      .delete(
-        `https://nixflix.netlify.app.netlify/functions/server/users/${username}/movies/${movieId}`,
-        {
-          headers: { Authorization: `Bearer ${token}` },
-        }
-      )
+      .delete(`${MOVIE_API_URL}/users/${username}/movies/${movieId}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      })
       .then((response) => {
         console.log(response);
         alert("Movie removed");
