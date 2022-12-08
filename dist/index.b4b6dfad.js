@@ -42510,7 +42510,7 @@ function registerExportsForReactRefresh(module1) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "MOVIE_API_URL", ()=>MOVIE_API_URL);
-const MOVIE_API_URL = "https://nixflix.netlify.app.netlify/functions/server";
+const MOVIE_API_URL = "https://nixflix.netlify.app/.netlify/functions/server/";
 
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"ggaUx":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$e9f6 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
