@@ -1,35 +1,51 @@
 {
-  "name": "myflix-client",
+  "name": "movie_api",
   "version": "1.0.0",
-  "description": "Client side to the NixFlix application. ",
-  "default": "src/index.html",
+  "description": "This web application will provide users with access to information about different movies, directors, and genres. Users will be able to sign up, update their personal information, and create a list of their favorite movies.",
+  "main": "index.js",
+  "engines": {
+    "node": "16.17.0"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon index.js",
+    "start": "node index.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/nickbeasley/myFlix-client.git"
+    "url": "git+https://github.com/nickbeasley/movie_api.git"
   },
+  "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/nickbeasley/myFlix-client/issues"
+    "url": "https://github.com/nickbeasley/movie_api/issues"
   },
-  "homepage": "https://github.com/nickbeasley/myFlix-client#readme",
+  "homepage": "https://github.com/nickbeasley/movie_api#readme",
   "dependencies": {
-    "@parcel/transformer-sass": "^2.7.0",
-    "axios": "^1.1.2",
-    "babel": "^6.23.0",
-    "parcel": "^2.7.0",
-    "prop-types": "^15.8.1",
+    "axios": "^1.2.2",
+    "bcrypt": "^5.0.1",
+    "body-parser": "^1.20.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.1",
+    "express-validator": "^6.14.2",
+    "jsonwebtoken": "^8.5.1",
+    "lodash": "^4.17.21",
+    "method-override": "^3.0.0",
+    "mongoose": "^6.6.1",
+    "morgan": "^1.10.0",
+    "passport": "^0.6.0",
+    "passport-jwt": "^4.0.0",
+    "passport-local": "^1.0.0",
     "react": "^18.2.0",
-    "react-bootstrap": "^2.5.0",
-    "react-dom": "^18.2.0",
-    "react-router-dom": "^6.4.2"
+    "react-bootstrap": "^2.7.0",
+    "react-router-dom": "^6.6.1",
+    "uuid": "^9.0.0"
   },
   "devDependencies": {
-    "buffer": "^5.7.1",
-    "eslint-plugin-react-hooks": "^4.6.0",
-    "process": "^0.11.10"
+    "@parcel/transformer-sass": "^2.0.0-rc.0",
+    "eslint": "^8.23.0",
+    "nodemon": "^2.0.19"
   }
 }

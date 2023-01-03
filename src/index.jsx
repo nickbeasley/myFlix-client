@@ -1,6 +1,5 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import PropTypes from "prop-types";
 import { MainView } from "./components/main-view/main-view";
 import Container from "react-bootstrap/Container";
 
