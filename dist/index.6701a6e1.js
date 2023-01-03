@@ -47890,7 +47890,7 @@ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "MOVIE_API_URL", ()=>MOVIE_API_URL
 );
-const MOVIE_API_URL = "https://nixflix.herokuapp.com";
+const MOVIE_API_URL = "https://nixflix.netlify.app/.netlify/functions/server";
 
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"2ALMa"}],"1F7ps":[function(require,module,exports) {
 "use strict";
@@ -49952,6 +49952,6 @@ $RefreshReg$(_c, "GenreView");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-runtime":"8xIwr","react":"6TuXu","react-router-dom":"jbMYE","react-bootstrap":"h2YVd","../movie-card/movie-card":"6EiBJ","prop-types":"1tgq3","@parcel/transformer-js/src/esmodule-helpers.js":"2ALMa","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"1F7ps"}],"jyMAr":[function() {},{}],"jUTZ8":[function() {},{}]},["bVpN6","1xI8V","dLPEP"], "dLPEP", "parcelRequired328")
+},{"react/jsx-runtime":"8xIwr","react":"6TuXu","react-router-dom":"jbMYE","react-bootstrap":"h2YVd","../movie-card/movie-card":"6EiBJ","prop-types":"1tgq3","@parcel/transformer-js/src/esmodule-helpers.js":"2ALMa","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"1F7ps"}],"jyMAr":[function() {},{}],"jUTZ8":[function() {},{}]},["bVpN6","1xI8V","dLPEP"], "dLPEP", "parcelRequireaec4")
 
 //# sourceMappingURL=index.6701a6e1.js.map
