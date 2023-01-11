@@ -1,3 +1,3 @@
-const MOVIE_API_URL = "https://nixflix.netlify.app/.netlify/functions/server";
+const MOVIE_API_URL = "https://nixflix.vercel.app";
 
 export { MOVIE_API_URL };
