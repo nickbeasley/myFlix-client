@@ -26,7 +26,7 @@ export function LoginView(props) {
       setPasswordErr("Password Required");
       isReq = false;
     } else if (password.length < 6) {
-      setPassword("Password must be 6 characters long");
+      setPasswordErr("Password must be 6 characters long");
       isReq = false;
     }
 
@@ -45,10 +45,14 @@ export function LoginView(props) {
         })
         .then((response) => {
           const data = response.data;
-          console.log("username: ", username);
-          console.log("password: ", password);
+          let token;
+          if (!data.token) {
+            token = data.user.token;
+          } else {
+            token = data.token;
+          }
           console.log("data from handleLogin function", data);
-          props.onLoggedIn(data);
+          props.onLoggedIn({ user: data.user, token });
         })
         .catch((e) => {
           console.log("Login Error", e);

@@ -1,6 +1,6 @@
 .movie-view {
   text-align: center;
-  background-color: lightgray;
+  background-color: #d3d3d3;
   padding: 15px;
 }
 
@@ -20,11 +20,7 @@ button {
   text-decoration: underline;
 }
 
-.movie-view-back-button {
-  padding: 10px;
-}
-
-.movie-view-favorite-button {
+.movie-view-back-button, .movie-view-favorite-button {
   padding: 10px;
 }
 
@@ -33,10 +29,11 @@ button {
   font-style: italic;
 }
 
-.favorite-div,
-.delete-div {
-  padding: 25px;
+
+
+.favorite-div, .delete-div {
   margin: 25px;
+  padding: 25px;
 }
 
 span {
@@ -48,30 +45,34 @@ span {
 }
 
 .submit-button-card {
-  padding: 10px;
   width: 50%;
-  margin-right: auto;
   margin-left: auto;
+  margin-right: auto;
+  padding: 10px;
 }
+
+
 
 .main-view {
   text-align: center;
-  background-color: lightslategray;
+  background-color: #789;
 }
 
 .movie-card {
-  padding: 15px;
-  margin: 5px;
   cursor: pointer;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  transition: 0.3s;
-  border: 1px solid darkgray;
+  border: 1px solid #a9a9a9;
+  margin: 5px;
+  padding: 15px;
+  transition: all .3s;
+  box-shadow: 0 4px 8px #0003;
 }
+
 .app-container {
-  background-color: black;
+  background-color: #000;
 }
 
 .movie-card.col {
-  background-color: lightgray;
+  background-color: #d3d3d3;
 }
-/*# sourceMappingURL=index.c1e31cef.css.map */
+
+/*# sourceMappingURL=index.5f1df611.css.map */

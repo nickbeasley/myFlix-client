@@ -41,28 +41,40 @@ export class MainView extends React.Component {
   }
   componentDidMount() {
     let accessToken = localStorage.getItem("token");
-    if (accessToken !== null) {
-      let user = localStorage.getItem("user");
+    let user = localStorage.getItem("user");
+    console.log("AccessToken:", accessToken);
+    console.log("User:", user);
+    if (accessToken !== null && user !== null) {
       this.setState({
-        user: JSON.parse(user),
+        user: user,
       });
-      this.getMovies(accessToken);
+      if (this.state.user) {
+        this.getMovies(accessToken);
+      }
     }
   }
+
   setSelectedMovie(newSelectedMovie) {
     this.setState({
       selectedMovie: newSelectedMovie,
     });
   }
-
   onLoggedIn(authData) {
-    this.props.setUser(authData.user);
-    localStorage.setItem("token", authData.token);
-    localStorage.setItem("user", authData.user.Username);
-    this.getMovies(authData.token);
+    console.log(authData);
+    const { user, token } = authData;
+    localStorage.setItem("token", token);
+    localStorage.setItem("user", JSON.stringify(user));
+    this.setState({
+      user: authData.user,
+    });
+    this.getMovies(token);
   }
 
   getMovies(token) {
+    if (!token) {
+      console.log("Error: No token found.");
+      return;
+    }
     axios
       .get(`${MOVIE_API_URL}/movies`, {
         headers: { Authorization: `Bearer ${token}` },
@@ -73,16 +85,18 @@ export class MainView extends React.Component {
           movies: response.data,
         });
       })
-      .catch(function (error) {
-        console.log(error);
+      .catch((error) => {
+        console.log(`Error: ${error.message}`);
+        console.log(`Request: ${JSON.stringify(error.config, null, 2)}`);
+        console.log(`Response: ${JSON.stringify(error.response, null, 2)}`);
       });
   }
 
   // Fetch user data
   getUser(token) {
-    const user = localStorage.getItem("user");
+    const userId = localStorage.getItem("user");
     axios
-      .get(`${MOVIE_API_URL}/users/${user}`, {
+      .get(`${MOVIE_API_URL}/users/${userId}`, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => {
@@ -117,6 +131,8 @@ export class MainView extends React.Component {
   onLoggedOut() {
     localStorage.removeItem("token");
     localStorage.removeItem("user");
+    console.log("Token:", localStorage.getItem("token"));
+    console.log("User:", localStorage.getItem("user"));
     this.setState({
       user: null,
     });
