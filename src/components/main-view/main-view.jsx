@@ -53,12 +53,12 @@ export class MainView extends React.Component {
       }
     }
   }
-
   setSelectedMovie(newSelectedMovie) {
     this.setState({
       selectedMovie: newSelectedMovie,
     });
   }
+
   onLoggedIn(authData) {
     console.log(authData);
     const { user, token } = authData;
@@ -71,10 +71,6 @@ export class MainView extends React.Component {
   }
 
   getMovies(token) {
-    if (!token) {
-      console.log("Error: No token found.");
-      return;
-    }
     axios
       .get(`${MOVIE_API_URL}/movies`, {
         headers: { Authorization: `Bearer ${token}` },
@@ -85,18 +81,16 @@ export class MainView extends React.Component {
           movies: response.data,
         });
       })
-      .catch((error) => {
-        console.log(`Error: ${error.message}`);
-        console.log(`Request: ${JSON.stringify(error.config, null, 2)}`);
-        console.log(`Response: ${JSON.stringify(error.response, null, 2)}`);
+      .catch(function (error) {
+        console.log(error);
       });
   }
 
   // Fetch user data
   getUser(token) {
-    const userId = localStorage.getItem("user");
+    const user = localStorage.getItem("user");
     axios
-      .get(`${MOVIE_API_URL}/users/${userId}`, {
+      .get(`${MOVIE_API_URL}/users/${user}`, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => {
@@ -131,8 +125,6 @@ export class MainView extends React.Component {
   onLoggedOut() {
     localStorage.removeItem("token");
     localStorage.removeItem("user");
-    console.log("Token:", localStorage.getItem("token"));
-    console.log("User:", localStorage.getItem("user"));
     this.setState({
       user: null,
     });
@@ -149,8 +141,6 @@ export class MainView extends React.Component {
 
   render() {
     const { movies, movie, user, selectedMovie } = this.state;
-    console.log("Movies from mainview: ", movies);
-    console.log("User from mainview: ", user);
 
     return (
       <Router>

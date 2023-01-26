@@ -2,15 +2,18 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { MainView } from "./components/main-view/main-view";
 import Container from "react-bootstrap/Container";
-
+import { Provider } from "react-redux";
+import store from "./store";
 import "./index.scss";
 
 class MyFlixApplication extends React.Component {
   render() {
     return (
-      <Container>
-        <MainView />
-      </Container>
+      <Provider store={store}>
+        <Container>
+          <MainView />
+        </Container>
+      </Provider>
     );
   }
 }

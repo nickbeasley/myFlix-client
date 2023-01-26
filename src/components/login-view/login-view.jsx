@@ -1,9 +1,12 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import { Form, Button, Container, Card, Col, Row } from "react-bootstrap";
+import { Form, Button } from "react-bootstrap";
 import axios from "axios";
 
 import { MOVIE_API_URL } from "../../config";
+
+import { connect } from "react-redux";
+import { loginSuccess } from "../actions/actions";
 
 export function LoginView(props) {
   const [username, setUsername] = useState("");
@@ -51,7 +54,6 @@ export function LoginView(props) {
           } else {
             token = data.token;
           }
-          console.log("data from handleLogin function", data);
           props.onLoggedIn({ user: data.user, token });
         })
         .catch((e) => {

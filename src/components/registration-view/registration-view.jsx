@@ -60,7 +60,7 @@ export function RegistrationView(props) {
     const isReq = validate();
     if (isReq) {
       axios
-        .post("https://nixflix.herokuapp.com/users", {
+        .post(`${MOVIE_API_URL}/users`, {
           Username: username,
           Password: password,
           Email: email,
