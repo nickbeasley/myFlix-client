@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import { MOVIE_API_URL } from "../../config";
+
 import axios from "axios";
 
 import {
@@ -60,7 +60,7 @@ export function RegistrationView(props) {
     const isReq = validate();
     if (isReq) {
       axios
-        .post(`${MOVIE_API_URL}/users`, {
+        .post("https://nixflix.herokuapp.com/users", {
           Username: username,
           Password: password,
           Email: email,
