@@ -1,4 +1,4 @@
-import { React, useState, useEffect } from "react";
+import { React, useState } from "react";
 import axios from "axios";
 import PropTypes from "prop-types";
 import { Container, Form, Button, Card, Col, Row, Link } from "react-bootstrap";
@@ -13,8 +13,18 @@ import { MovieCard } from "../movie-card/movie-card";
 
 import { MOVIE_API_URL } from "../../config";
 
-export function ProfileView(props) {
+import { connect, useDispatch } from "react-redux";
+
+function ProfileView(props) {
   let navigate = useNavigate();
+
+  const dispatch = useDispatch();
+  const setFaves = (faves) => {
+    dispatch({
+      type: setFaves,
+      value: faves,
+    });
+  };
 
   // Declare hook for each input
   const { user, movies } = props;
@@ -89,7 +99,7 @@ export function ProfileView(props) {
         });
     }
   };
-
+  console.log(typeof user, user);
   return (
     <Container className="profile-container">
       <Card bg="light" border="secondary" className="profile-card">
@@ -209,3 +219,12 @@ export function ProfileView(props) {
     </Container>
   );
 }
+mapStateToProps = (state) => {
+  return {
+    movies: state.movies,
+    user: state.user,
+    favorites: state.favorites,
+  };
+};
+
+export default connect(mapStateToProps)(ProfileView);

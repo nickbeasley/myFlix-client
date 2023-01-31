@@ -1,10 +1,11 @@
-import { React, useState } from "react";
+import { useState } from "react";
 import { Navbar, Nav, Button, Container, NavbarBrand } from "react-bootstrap";
 import NavbarCollapse from "react-bootstrap/esm/NavbarCollapse";
 import { useParams, Link, useNavigate, useLocation } from "react-router-dom";
 import PropTypes from "prop-types";
 import axios from "axios";
-export function Menubar({ user }) {
+import { connect } from "react-redux";
+function Menubar({ user }) {
   const onLoggedOut = () => {
     localStorage.clear();
     window.open("/", "_self");
@@ -23,7 +24,6 @@ export function Menubar({ user }) {
     }
   };
   const [expanded, setExpanded] = useState(false);
-
   return (
     <Navbar
       expanded={expanded}
@@ -106,3 +106,12 @@ export function Menubar({ user }) {
     </Navbar>
   );
 }
+mapStateToProps = (state) => {
+  return {
+    movies: state.movies,
+    user: state.user,
+    favorites: state.favorites,
+  };
+};
+
+export default connect(mapStateToProps)(Menubar);

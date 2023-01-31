@@ -41,7 +41,6 @@ export function MovieView(props) {
       .catch((error) => console.error(error));
   }
 
-  // does not work
   function removeFavorite(movieId) {
     const token = localStorage.getItem("token");
     axios
@@ -170,6 +169,15 @@ export function MovieView(props) {
           onClick={() => navigate("/", { replace: true })}
         >
           Back to Movies
+        </button>
+      </Col>
+      <Col className="movie-view-profile-button">
+        <button
+          type="button"
+          className="btn btn-secondary"
+          onClick={() => navigate("/users/", { replace: true })}
+        >
+          Profile
         </button>
       </Col>
     </div>

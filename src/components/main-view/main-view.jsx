@@ -1,8 +1,8 @@
 import React from "react";
+import { connect, useDispatch } from "react-redux";
 import axios from "axios";
 import propTypes from "prop-types";
 import { Row, Col, Container } from "react-bootstrap";
-
 import {
   BrowserRouter as Router,
   useParams,
@@ -12,23 +12,20 @@ import {
   Routes,
   Link,
 } from "react-router-dom";
-
+import { setMovies, setUser, setFaves, setFilter } from "../actions/actions";
 import { LoginView } from "../login-view/login-view";
 import { MovieView } from "../movie-view/movie-view";
 import { MovieCard } from "../movie-card/movie-card";
 import { RegistrationView } from "../registration-view/registration-view";
-import { ProfileView } from "../profile-view/profile-view";
-import { Menubar } from "../navbar/navbar";
+import ProfileView from "../profile-view/profile-view";
+import Menubar from "../navbar/navbar";
 import { DirectorView } from "../director-view/director-view";
 import { GenreView } from "../genre-view/genre-view";
-
 import "./main-view.scss";
-import { ProfileView } from "../profile-view/profile-view";
-import { DirectorView } from "../director-view/director-view";
-
 import { MOVIE_API_URL } from "../../config";
+import Utils from "../../utils";
 
-export class MainView extends React.Component {
+class MainView extends React.Component {
   constructor() {
     super();
     this.state = {
@@ -39,24 +36,23 @@ export class MainView extends React.Component {
       FavoriteMovies: [],
     };
   }
-  componentDidMount() {
+  componentDidMount = async () => {
     let accessToken = localStorage.getItem("token");
     let user = localStorage.getItem("user");
     console.log("AccessToken:", accessToken);
     console.log("User:", user);
     if (accessToken !== null && user !== null) {
-      this.setState({
+      await this.setState({
         user: user,
       });
+      this.props.setUser(JSON.parse(user));
       if (this.state.user) {
         this.getMovies(accessToken);
       }
     }
-  }
+  };
   setSelectedMovie(newSelectedMovie) {
-    this.setState({
-      selectedMovie: newSelectedMovie,
-    });
+    this.props.setSelectedMovie(newSelectedMovie);
   }
 
   onLoggedIn(authData) {
@@ -76,7 +72,8 @@ export class MainView extends React.Component {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => {
-        // Assign the result to the state
+        this.props.setMovies(response.data);
+        console.log(this.props);
         this.setState({
           movies: response.data,
         });
@@ -86,9 +83,8 @@ export class MainView extends React.Component {
       });
   }
 
-  // Fetch user data
-  getUser(token) {
-    const user = localStorage.getItem("user");
+  getUser(user, token) {
+    const username = localStorage.getItem("user");
     axios
       .get(`${MOVIE_API_URL}/users/${user}`, {
         headers: { Authorization: `Bearer ${token}` },
@@ -109,17 +105,15 @@ export class MainView extends React.Component {
     if (!tempObject.FavoriteMovies.includes(id)) {
       tempObject.FavoriteMovies.push(id);
     }
-    this.setState({ user: tempObject });
+    this.props.dispatch(setUser(tempObject));
   };
 
   removeFromFavorites = (id) => {
     let tempObject = { ...this.state.user };
-    //let indexToDelete = tempObject.FavoriteMovies.indexOf(id);
-    //tempObject.FavoriteMovies.splice(indexToDelete, 1);
     tempObject.FavoriteMovies = tempObject.FavoriteMovies.filter(
       (movie) => movie._id !== id
     );
-    this.setState({ user: tempObject });
+    this.props.dispatch(setUser(tempObject));
   };
 
   onLoggedOut() {
@@ -130,21 +124,20 @@ export class MainView extends React.Component {
     });
   }
 
-  onRegistration(registered) {
-    this.setState({
-      registered,
-    });
-  }
+  onRegistration = (registered) => {
+    this.setState({ registered });
+  };
+
   rootPath(user) {
     if (!user) return <LoginView />;
   }
 
   render() {
     const { movies, movie, user, selectedMovie } = this.state;
-
+    console.log("User:", user);
     return (
       <Router>
-        <Menubar user={user} movies={movies} />
+        <Menubar />
         <Container>
           <Row className="main-view d-flex justify-content-center pb-5 px-3 pt-3">
             <Routes>
@@ -193,7 +186,11 @@ export class MainView extends React.Component {
                     <Navigate to="/" replace />
                   ) : (
                     <Col lg={8} md={8}>
-                      <ProfileView movies={movies} user={user} />
+                      <ProfileView
+                        movies={movies}
+                        user={user}
+                        Username={user.Username}
+                      />
                     </Col>
                   )
                 }
@@ -206,7 +203,7 @@ export class MainView extends React.Component {
                     <Navigate to="/" replace />
                   ) : (
                     <Col lg={8} md={8}>
-                      <ProfileView movies={movies} user={user} />
+                      <ProfileView />
                     </Col>
                   )
                 }
@@ -259,3 +256,17 @@ export class MainView extends React.Component {
     );
   }
 }
+mapStateToProps = (state) => {
+  return {
+    movies: state.movies,
+    user: state.user,
+    favorites: state.favorites,
+  };
+};
+
+export default connect(mapStateToProps, {
+  setMovies,
+  setUser,
+  setFaves,
+  setFilter,
+})(MainView);

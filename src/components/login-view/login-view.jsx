@@ -4,9 +4,9 @@ import { Form, Button } from "react-bootstrap";
 import axios from "axios";
 
 import { MOVIE_API_URL } from "../../config";
-
 import { connect } from "react-redux";
-import { loginSuccess } from "../actions/actions";
+import { setMovies, setUser, setFaves } from "../actions/actions";
+import { movieApp } from "../reducers/reducers";
 
 export function LoginView(props) {
   const [username, setUsername] = useState("");
@@ -93,3 +93,10 @@ export function LoginView(props) {
     </Form>
   );
 }
+let mapStateToProps = (state) => {
+  return { movies: state.movies, user: state.user, favorites: state.favorites };
+};
+
+export default connect(mapStateToProps, { setMovies, setUser, setFaves })(
+  LoginView
+);
