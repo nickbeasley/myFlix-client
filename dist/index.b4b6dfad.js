@@ -47171,13 +47171,13 @@ _s(ProfileView, "KrT73oAH4nOdytFvSaUPvbbJncY=", false, function() {
     ];
 });
 _c = ProfileView;
-mapStateToProps = (state)=>{
+function mapStateToProps(state) {
     return {
         movies: state.movies,
         user: state.user,
         favorites: state.favorites
     };
-};
+}
 exports.default = (0, _reactRedux.connect)(mapStateToProps)(ProfileView);
 var _c;
 $RefreshReg$(_c, "ProfileView");
