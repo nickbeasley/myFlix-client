@@ -10,7 +10,7 @@ function Menubar({ user }) {
     localStorage.clear();
     window.open("/", "_self");
   };
-
+  console.log("user from menubar: ", user);
   let navigate = useNavigate();
 
   const isAuth = () => {
@@ -55,7 +55,7 @@ function Menubar({ user }) {
               Home
             </Nav.Link>
 
-            {user && (
+            {Object.keys(user).length > 0 && (
               <>
                 <Nav.Link
                   onClick={() => setExpanded(false)}
@@ -86,7 +86,7 @@ function Menubar({ user }) {
                 </Nav.Link>
               </>
             )}
-            {!user && (
+            {Object.keys(user).length === 0 && (
               <>
                 <Nav.Link onClick={() => setExpanded(false)} to="/" as={Link}>
                   Sign-in

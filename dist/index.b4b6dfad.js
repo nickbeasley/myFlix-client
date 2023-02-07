@@ -47267,6 +47267,7 @@ function Menubar({ user  }) {
         localStorage.clear();
         window.open("/", "_self");
     };
+    console.log("user from menubar: ", user);
     let navigate = (0, _reactRouterDom.useNavigate)();
     const isAuth = ()=>{
         if (typeof window == "undefined") return false;
@@ -47332,7 +47333,7 @@ function Menubar({ user  }) {
                                 lineNumber: 54,
                                 columnNumber: 13
                             }, this),
-                            user && /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
+                            Object.keys(user).length > 0 && /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
                                 children: [
                                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Nav).Link, {
                                         onClick: ()=>setExpanded(false),
@@ -47375,7 +47376,7 @@ function Menubar({ user  }) {
                                     }, this)
                                 ]
                             }, void 0, true),
-                            !user && /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
+                            Object.keys(user).length === 0 && /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
                                 children: [
                                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactBootstrap.Nav).Link, {
                                         onClick: ()=>setExpanded(false),
