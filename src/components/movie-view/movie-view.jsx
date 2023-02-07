@@ -21,12 +21,25 @@ export function MovieView(props) {
   let [movie, setMovie] = useState({});
   console.log("Movies from movie-view: ", movie);
   console.log("movieId from movie-view: ", movieId);
-
   console.log("username from movie-view: ", username);
   console.log("userInfo from movie-view: ", userInfo);
-
   console.log("user from movie-view: ", user);
-  // works but have to log out and log back in to see the change
+
+  // refreshes user after adding or removing a movie from favorites so it'll be refliected in the profile view
+  function refreshUser() {
+    const token = localStorage.getItem("token");
+    axios
+      .get(`${MOVIE_API_URL}/users/${username}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      .then((response) => {
+        console.log(response);
+        localStorage.setItem("user", JSON.stringify(response.data));
+        dispatch(setUser(response.data));
+      })
+      .catch((error) => console.error(error));
+  }
+  // Add movie to favorites - works
   function addFavorite(movieId) {
     const token = localStorage.getItem("token");
     axios
@@ -41,10 +54,11 @@ export function MovieView(props) {
         console.log(response);
         alert("Movie added");
         dispatch(setFaves(response.data.FavoriteMovies));
+        refreshUser();
       })
       .catch((error) => console.error(error));
   }
-  // works but have to log out and log back in to see the change
+  // Remove movie from favorites - works
   function removeFavorite(movieId) {
     const token = localStorage.getItem("token");
     axios
@@ -55,6 +69,7 @@ export function MovieView(props) {
         console.log(response);
         alert("Movie removed");
         dispatch(setFaves(response.data.FavoriteMovies));
+        refreshUser();
       })
       .catch((error) => console.error(error));
   }
