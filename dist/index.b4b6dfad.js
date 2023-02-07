@@ -27453,13 +27453,13 @@ class MainView extends (0, _reactDefault.default).Component {
         }, this);
     }
 }
-mapStateToProps = (state)=>{
+function mapStateToProps(state) {
     return {
         movies: state.movies,
         user: state.user,
         favorites: state.favorites
     };
-};
+}
 exports.default = (0, _reactRedux.connect)(mapStateToProps, {
     setMovies: (0, _actions.setMovies),
     setUser: (0, _actions.setUser),
