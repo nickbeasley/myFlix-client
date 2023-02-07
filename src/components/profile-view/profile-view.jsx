@@ -90,6 +90,7 @@ function ProfileView(props) {
     }
   };
   console.log(typeof user, user);
+
   return (
     <Container className="profile-container">
       <Card bg="light" border="secondary" className="profile-card">

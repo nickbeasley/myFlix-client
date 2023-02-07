@@ -51,6 +51,7 @@ class MainView extends React.Component {
       }
     }
   };
+
   setSelectedMovie(newSelectedMovie) {
     this.props.setSelectedMovie(newSelectedMovie);
   }
