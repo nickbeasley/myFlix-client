@@ -46289,7 +46289,7 @@ MovieView.propTypes = {
     }),
     onBackClick: (0, _propTypesDefault.default).func
 };
-mapStateToProps = (state)=>{
+const mapStateToProps = (state)=>{
     return {
         movies: state.movies,
         user: state.user,
