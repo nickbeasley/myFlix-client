@@ -106,12 +106,12 @@ function Menubar({ user }) {
     </Navbar>
   );
 }
-mapStateToProps = (state) => {
+function mapStateToProps(state) {
   return {
     movies: state.movies,
     user: state.user,
     favorites: state.favorites,
   };
-};
+}
 
 export default connect(mapStateToProps)(Menubar);

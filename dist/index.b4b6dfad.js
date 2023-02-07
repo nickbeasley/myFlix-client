@@ -47428,13 +47428,13 @@ _s(Menubar, "TxsaFh4J5jkSQSvG0btVoJ8gcZc=", false, function() {
     ];
 });
 _c = Menubar;
-mapStateToProps = (state)=>{
+function mapStateToProps(state) {
     return {
         movies: state.movies,
         user: state.user,
         favorites: state.favorites
     };
-};
+}
 exports.default = (0, _reactRedux.connect)(mapStateToProps)(Menubar);
 var _c;
 $RefreshReg$(_c, "Menubar");
