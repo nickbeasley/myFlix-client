@@ -115,6 +115,18 @@ class MainView extends React.Component {
     );
     this.props.dispatch(setUser(tempObject));
   };
+  getFaves(user, token) {
+    axios
+      .get(`${MOVIE_API_URL}/users/${user}/favorites`, {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      .then((response) => {
+        this.props.setFaves(response.data);
+      })
+      .catch((error) => {
+        console.log(error.response);
+      });
+  }
 
   onLoggedOut() {
     localStorage.removeItem("token");

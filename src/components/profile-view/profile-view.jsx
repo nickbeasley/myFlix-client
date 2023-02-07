@@ -2,22 +2,15 @@ import { React, useState } from "react";
 import axios from "axios";
 import PropTypes from "prop-types";
 import { Container, Form, Button, Card, Col, Row, Link } from "react-bootstrap";
-
 import { Link, useNavigate } from "react-router-dom";
-
 import "./profile-view.scss";
-
 import { MiniCard } from "../mini-card/mini-card";
-
 import { MovieCard } from "../movie-card/movie-card";
-
 import { MOVIE_API_URL } from "../../config";
-
 import { connect, useDispatch } from "react-redux";
 
 function ProfileView(props) {
   let navigate = useNavigate();
-
   const dispatch = useDispatch();
   const setFaves = (faves) => {
     dispatch({
@@ -28,16 +21,13 @@ function ProfileView(props) {
 
   // Declare hook for each input
   const { user, movies } = props;
-
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [birthday, setBirthday] = useState("");
   const [usernameErr, setUsernameErr] = useState("");
   const [emailErr, setEmailErr] = useState("");
   const [birthdayErr, setBirthdayErr] = useState("");
-
   console.log("movies: ", movies);
-
   console.log("User from profile-view: ", user);
 
   // Validate user inputs

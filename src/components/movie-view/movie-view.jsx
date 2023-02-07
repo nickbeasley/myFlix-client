@@ -6,11 +6,15 @@ import { useParams, Link, useNavigate, toArray } from "react-router-dom";
 import "./movie-view.scss";
 import { MovieCard } from "../movie-card/movie-card";
 import { MOVIE_API_URL } from "../../config";
+import { connect, useDispatch } from "react-redux";
+import { setMovies, setUser, setFaves, setFilter } from "../actions/actions";
+
 export function MovieView(props) {
   const user = localStorage.getItem("user");
   const userInfo = JSON.parse(user);
   const username = userInfo.Username;
 
+  const dispatch = useDispatch();
   const { movieId } = useParams();
   let navigate = useNavigate();
 
@@ -22,8 +26,7 @@ export function MovieView(props) {
   console.log("userInfo from movie-view: ", userInfo);
 
   console.log("user from movie-view: ", user);
-
-  //Works!
+  // works but have to log out and log back in to see the change
   function addFavorite(movieId) {
     const token = localStorage.getItem("token");
     axios
@@ -37,10 +40,11 @@ export function MovieView(props) {
       .then((response) => {
         console.log(response);
         alert("Movie added");
+        dispatch(setFaves(response.data.FavoriteMovies));
       })
       .catch((error) => console.error(error));
   }
-
+  // works but have to log out and log back in to see the change
   function removeFavorite(movieId) {
     const token = localStorage.getItem("token");
     axios
@@ -50,6 +54,7 @@ export function MovieView(props) {
       .then((response) => {
         console.log(response);
         alert("Movie removed");
+        dispatch(setFaves(response.data.FavoriteMovies));
       })
       .catch((error) => console.error(error));
   }
@@ -203,3 +208,18 @@ MovieView.propTypes = {
   }),
   onBackClick: PropTypes.func,
 };
+
+mapStateToProps = (state) => {
+  return {
+    movies: state.movies,
+    user: state.user,
+    favorites: state.favorites,
+  };
+};
+
+export default connect(mapStateToProps, {
+  setMovies,
+  setUser,
+  setFaves,
+  setFilter,
+})(MovieView);
