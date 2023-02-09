@@ -152,11 +152,12 @@ export function MovieView(props) {
           </div>
         </Col>
       </Row>
-      <ButtonGroup size="sm" vertical>
+      <ButtonGroup size="sm" vertical className="btn-group">
         <Button
           type="button"
           variant="secondary"
           size="sm"
+          className="mr-2 ml-2"
           onClick={() => addFavorite(movieId)}
         >
           Add favorite
@@ -165,20 +166,25 @@ export function MovieView(props) {
           type="button"
           variant="secondary"
           size="sm"
+          className="mr-2 ml-2"
           onClick={() => removeFavorite(movieId)}
         >
           Remove Favorite
         </Button>
         <Button
           type="button"
-          className="btn btn-secondary"
+          variant="secondary"
+          size="sm"
+          className="mr-2 ml-2"
           onClick={() => navigate("/", { replace: true })}
         >
           Movie List
         </Button>
         <Button
           type="button"
-          className="btn btn-secondary"
+          variant="secondary"
+          size="sm"
+          className="mr-2 ml-2"
           onClick={() => navigate("/users/", { replace: true })}
         >
           Profile

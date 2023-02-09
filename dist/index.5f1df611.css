@@ -29,6 +29,11 @@ button {
   font-style: italic;
 }
 
+.btn-group {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
 
 
 .favorite-div, .delete-div {

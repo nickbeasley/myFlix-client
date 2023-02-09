@@ -98,6 +98,9 @@ function Menubar({ user }) {
                 >
                   Sign-up
                 </Nav.Link>
+                <Nav.Link onClick={onLoggedOut} as={Link}>
+                  Logout
+                </Nav.Link>
               </>
             )}
           </Nav>
