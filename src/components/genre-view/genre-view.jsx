@@ -28,8 +28,6 @@ export function GenreView(props) {
     return uniqueMovies;
   };
   const moviesWithoutDuplicates = removeDuplicates(props.movies);
-  console.log("movies without duplicates:", moviesWithoutDuplicates);
-  console.log("genre name:", name);
 
   if (name === "all") {
     return (
@@ -44,7 +42,6 @@ export function GenreView(props) {
   }
 
   let genre = props.movies.find((movie) => movie.Genre.Name === name);
-  console.log("genre: ", genre);
   return (
     <Container className="genre-view">
       <Card>

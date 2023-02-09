@@ -19,11 +19,6 @@ export function MovieView(props) {
   let navigate = useNavigate();
 
   let [movie, setMovie] = useState({});
-  console.log("Movies from movie-view: ", movie);
-  console.log("movieId from movie-view: ", movieId);
-  console.log("username from movie-view: ", username);
-  console.log("userInfo from movie-view: ", userInfo);
-  console.log("user from movie-view: ", user);
 
   // refreshes user after adding or removing a movie from favorites so it'll be refliected in the profile view
   function refreshUser() {

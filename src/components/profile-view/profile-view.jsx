@@ -27,8 +27,6 @@ function ProfileView(props) {
   const [usernameErr, setUsernameErr] = useState("");
   const [emailErr, setEmailErr] = useState("");
   const [birthdayErr, setBirthdayErr] = useState("");
-  console.log("movies: ", movies);
-  console.log("User from profile-view: ", user);
 
   // Validate user inputs
   const validate = () => {
@@ -89,7 +87,6 @@ function ProfileView(props) {
         });
     }
   };
-  console.log(typeof user, user);
 
   return (
     <Container className="profile-container">

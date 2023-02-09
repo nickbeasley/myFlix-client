@@ -74,7 +74,6 @@ class MainView extends React.Component {
       })
       .then((response) => {
         this.props.setMovies(response.data);
-        console.log(this.props);
         this.setState({
           movies: response.data,
         });
@@ -147,7 +146,6 @@ class MainView extends React.Component {
 
   render() {
     const { movies, movie, user, selectedMovie } = this.state;
-    console.log("User:", user);
     return (
       <Router>
         <Menubar />

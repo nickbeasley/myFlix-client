@@ -27,8 +27,6 @@ export function DirectorView(props) {
     return uniqueMovies;
   };
   const moviesWithoutDuplicates = removeDuplicates(props.movies);
-  console.log("movies without duplicates:", moviesWithoutDuplicates);
-  console.log("director name:", name);
 
   if (name === "all") {
     return (
@@ -44,7 +42,6 @@ export function DirectorView(props) {
     );
   }
   let director = props.movies.find((movie) => movie.Director.Name === name);
-  console.log("director: ", director);
   return (
     <Container className="director-view">
       <Card>
