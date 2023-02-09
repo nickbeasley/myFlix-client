@@ -1,33 +1,39 @@
 import React, { useState, useEffect } from "react";
-
 import { useParams, Link, useNavigate, useLocation } from "react-router-dom";
-
 import {
-  Button,
   Container,
   Col,
   Row,
   Button,
   Card,
   ListGroup,
-  ListGroupItem,
+  ButtonGroup,
 } from "react-bootstrap";
-
 import { MovieCard } from "../movie-card/movie-card";
-
 import PropTypes from "prop-types";
-import { MainView } from "../main-view/main-view";
 
 export function DirectorView(props) {
   const { name } = useParams();
   let navigate = useNavigate();
-
-  console.log("direector name:", name);
+  const removeDuplicates = function (array) {
+    let uniqueDirectors = new Set();
+    let uniqueMovies = [];
+    array.forEach((movie) => {
+      if (!uniqueDirectors.has(movie.Director.Name)) {
+        uniqueDirectors.add(movie.Director.Name);
+        uniqueMovies.push(movie);
+      }
+    });
+    return uniqueMovies;
+  };
+  const moviesWithoutDuplicates = removeDuplicates(props.movies);
+  console.log("movies without duplicates:", moviesWithoutDuplicates);
+  console.log("director name:", name);
 
   if (name === "all") {
     return (
       <ListGroup as="ul">
-        {props.movies.map((movie) => (
+        {moviesWithoutDuplicates.map((movie) => (
           <ListGroup.Item as="li" variant="secondary" key={movie._id}>
             <Link to={`/directors/${movie.Director.Name}`}>
               {movie.Director.Name}
@@ -58,13 +64,24 @@ export function DirectorView(props) {
           <Col className="value">{director.Director.Bio}</Col>
         </Row>
         <Card.Footer>
-          <button
-            type="button"
-            className="btn btn-secondary"
-            onClick={() => navigate("/", { replace: true })}
-          >
-            Return to movies
-          </button>
+          <ButtonGroup>
+            <button
+              type="button"
+              variant="secondary"
+              size="sm"
+              onClick={() => navigate("/", { replace: true })}
+            >
+              Movie List
+            </button>
+            <button
+              type="button"
+              variant="secondary"
+              size="sm"
+              onClick={() => navigate("/directors/all", { replace: true })}
+            >
+              Director List
+            </button>
+          </ButtonGroup>
         </Card.Footer>
       </Card>
     </Container>
