@@ -107,10 +107,11 @@ function ProfileView(props) {
             Email: {user.Email}{" "}
           </Card>
         </Card.Body>
-        <Card.Header className="text-center bg-dark text-light" as="h5">
-          Favorites:
-        </Card.Header>
         <Card>
+          <Card.Header className="text-center bg-dark text-light" as="h5">
+            Favorites:
+          </Card.Header>
+
           <Card.Body>
             {props.movies
               .filter((movie) => user.FavoriteMovies.includes(movie._id))
@@ -203,7 +204,7 @@ function ProfileView(props) {
             variant="secondary"
             onClick={() => navigate("/", { replace: true })}
           >
-            All Movies
+            Movie List
           </Button>
         </Card.Footer>
       </Card>
