@@ -1,6 +1,6 @@
 import { React, useState, useEffect } from "react";
 import PropTypes from "prop-types";
-import { Button, Col, Row } from "react-bootstrap";
+import { Button, ButtonGroup, Col, Row, Button } from "react-bootstrap";
 import axios from "axios";
 import { useParams, Link, useNavigate, toArray } from "react-router-dom";
 import "./movie-view.scss";
@@ -152,54 +152,38 @@ export function MovieView(props) {
           </div>
         </Col>
       </Row>
-
-      <Col className="movie-view-favorite-button">
-        <button
+      <ButtonGroup size="sm" vertical>
+        <Button
           type="button"
-          className="btn btn-secondary"
+          variant="secondary"
+          size="sm"
           onClick={() => addFavorite(movieId)}
         >
-          Add to favorites
-        </button>
-      </Col>
-      <Col>
+          Add favorite
+        </Button>
         <Button
-          className="movie-view-remove-favorite-button"
-          variant="btn btn-secondary"
-          size="sm"
           type="button"
+          variant="secondary"
+          size="sm"
           onClick={() => removeFavorite(movieId)}
         >
-          Remove from favorites
+          Remove Favorite
         </Button>
-      </Col>
-      {/* <Row>
-        <Col>
-          <div className="movie-featured">
-            <span className="label">Featured: </span>
-            <span className="value">{movie.featured ? "true" : "false"}</span>
-          </div>
-        </Col>
-      </Row> */}
-
-      <Col className="movie-view-back-button">
-        <button
+        <Button
           type="button"
           className="btn btn-secondary"
           onClick={() => navigate("/", { replace: true })}
         >
-          Back to Movies
-        </button>
-      </Col>
-      <Col className="movie-view-profile-button">
-        <button
+          Movie List
+        </Button>
+        <Button
           type="button"
           className="btn btn-secondary"
           onClick={() => navigate("/users/", { replace: true })}
         >
           Profile
-        </button>
-      </Col>
+        </Button>
+      </ButtonGroup>
     </div>
   );
 }
