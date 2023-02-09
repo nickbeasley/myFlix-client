@@ -4,15 +4,15 @@ import { Button, Card } from "react-bootstrap";
 import {
   BrowserRouter as Router,
   Route,
-  Navigate,
+  useNavigate,
   Routes,
   Link,
 } from "react-router-dom";
 import "./movie-card.scss";
-
 export class MovieCard extends React.Component {
   render() {
     const { movie, onMovieClick, user } = this.props;
+
     return (
       <Card bg="light" border="light">
         <Card.Img variant="top" crossOrigin="anonymous" src={movie.ImagePath} />
@@ -23,7 +23,7 @@ export class MovieCard extends React.Component {
             {movie.Description.substring(0, 35)} ...{" "}
           </Card.Text>
           <Link to={`/movies/${movie._id}`}>
-            <Button type="button" className="btn btn-secondary">
+            <Button type="button" variant="secondary" size="sm">
               Open
             </Button>
           </Link>
