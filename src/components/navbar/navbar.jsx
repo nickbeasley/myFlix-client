@@ -10,7 +10,6 @@ function Menubar({ user }) {
     localStorage.clear();
     window.open("/", "_self");
   };
-  console.log("user from menubar: ", user);
   let navigate = useNavigate();
 
   const isAuth = () => {

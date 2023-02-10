@@ -27,6 +27,8 @@ function ProfileView(props) {
   const [usernameErr, setUsernameErr] = useState("");
   const [emailErr, setEmailErr] = useState("");
   const [birthdayErr, setBirthdayErr] = useState("");
+  const [password, setPassword] = useState("");
+  const [passwordErr, setPasswordErr] = useState("");
 
   // Validate user inputs
   const validate = () => {
@@ -86,6 +88,42 @@ function ProfileView(props) {
           console.log(e);
         });
     }
+  };
+
+  const handleUpdate = (e) => {
+    e.preventDefault();
+    const token = localStorage.getItem("token");
+    const user = localStorage.getItem("user");
+    const payload = {};
+    if (username) payload.Username = username;
+    if (username === undefined) payload.Username = user.Username;
+    if (email) payload.Email = email;
+    if (email === undefined) payload.Email = user.Email;
+    if (birthday) payload.Birthday = birthday;
+    if (birthday === undefined) payload.Birthday = user.Birthday;
+    if (password) payload.Password = password;
+    if (password === undefined) payload.Password = user.Password;
+
+    console.log("payload: ", payload);
+    axios
+      .put(`${MOVIE_API_URL}/users/${username}`, payload, {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      .then((response) => {
+        const data = response.data;
+        console.log(data);
+        alert("Profile successfully updated");
+        window.location.pathname = `/users/${username}`;
+      })
+      .catch((error) => {
+        if (error.response) {
+          const errors = error.response.data.errors;
+          console.log(errors);
+          alert(
+            "Failed to update profile, make sure all fields are filled out correctly."
+          );
+        }
+      });
   };
 
   return (
@@ -162,21 +200,23 @@ function ProfileView(props) {
                   placeholder="Enter your birthday"
                 />
                 {birthdayErr && <p>{birthdayErr}</p>}
+                <Form.Control
+                  type="password"
+                  onChange={(e) => setPassword(e.target.value)}
+                  placeholder="Enter your password"
+                />
+                {passwordErr && <p>{passwordErr}</p>}
+
+                <Button
+                  className="button-profile-view-update"
+                  variant="secondary"
+                  type="submit"
+                  onClick={handleUpdate}
+                >
+                  Update
+                </Button>
               </Form.Group>
             </Form>
-          </Card>
-          <Card
-            className="submit-button-card"
-            style={{ backgroundColor: "lightgray" }}
-          >
-            <Button
-              className="button-profile-view-update"
-              variant="secondary"
-              type="submit"
-              // onClick={handleUpdate}
-            >
-              Update
-            </Button>
           </Card>
         </Card.Body>
 
