@@ -13,7 +13,7 @@ import {
   Col,
   Row,
 } from "react-bootstrap";
-
+import Utils from "../../utils";
 export function RegistrationView(props) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -68,7 +68,10 @@ export function RegistrationView(props) {
           Birthday: birthday,
         })
         .then((response) => {
-          const data = response.data;
+          const data = JSON.stringify(
+            Utils.circularReference,
+            Utils.getCircularReplacer(response.data)
+          );
           console.log(data);
           alert("Registration successful, please login");
           window.open("/", "_self"); // the second argument '_self' is necessary so that the page will open in the current tab
@@ -101,7 +104,7 @@ export function RegistrationView(props) {
                 <Form.Label>Password: </Form.Label>
                 <Form.Control
                   type="password"
-                  onChange={(e) => setPassword(e)}
+                  onChange={(e) => setPassword(e.target.value)}
                   required
                   placeholder="enter a password"
                 />
