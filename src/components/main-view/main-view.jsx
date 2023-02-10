@@ -65,6 +65,7 @@ class MainView extends React.Component {
       user: authData.user,
     });
     this.getMovies(token);
+    window.location.reload();
   }
 
   getMovies(token) {
