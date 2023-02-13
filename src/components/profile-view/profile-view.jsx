@@ -8,6 +8,7 @@ import { MiniCard } from "../mini-card/mini-card";
 import { MovieCard } from "../movie-card/movie-card";
 import { MOVIE_API_URL } from "../../config";
 import { connect, useDispatch } from "react-redux";
+import Utils from "../../utils";
 
 function ProfileView(props) {
   let navigate = useNavigate();
@@ -21,13 +22,13 @@ function ProfileView(props) {
 
   // Declare hook for each input
   const { user, movies } = props;
-  const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
-  const [birthday, setBirthday] = useState("");
+  const [username, setUsername] = useState(user.Username);
+  const [email, setEmail] = useState(user.Email);
+  const [birthday, setBirthday] = useState(user.Birthday);
   const [usernameErr, setUsernameErr] = useState("");
   const [emailErr, setEmailErr] = useState("");
   const [birthdayErr, setBirthdayErr] = useState("");
-  const [password, setPassword] = useState("");
+  const [password, setPassword] = useState(user.Password);
   const [passwordErr, setPasswordErr] = useState("");
 
   // Validate user inputs
@@ -94,19 +95,24 @@ function ProfileView(props) {
     e.preventDefault();
     const token = localStorage.getItem("token");
     const user = localStorage.getItem("user");
-    const payload = {};
-    if (username) payload.Username = username;
-    if (username === undefined) payload.Username = user.Username;
-    if (email) payload.Email = email;
-    if (email === undefined) payload.Email = user.Email;
-    if (birthday) payload.Birthday = birthday;
-    if (birthday === undefined) payload.Birthday = user.Birthday;
-    if (password) payload.Password = password;
-    if (password === undefined) payload.Password = user.Password;
-
-    console.log("payload: ", payload);
+    const payload = {
+      Username: username,
+      Email: email,
+      Birthday: birthday,
+      Password: password,
+    };
+    // if (username) payload.Username = username;
+    // if (username === undefined) payload.Username = user.Username;
+    // if (email) payload.Email = email;
+    // if (email === undefined) payload.Email = user.Email;
+    // if (birthday) payload.Birthday = birthday;
+    // if (birthday === undefined) payload.Birthday = user.Birthday;
+    // if (password) payload.Password = password;
+    // if (password === undefined) payload.Password = user.Password;
+    let userObject = JSON.parse(user);
+    console.log("payload: ", payload, user);
     axios
-      .put(`${MOVIE_API_URL}/users/${username}`, payload, {
+      .put(`${MOVIE_API_URL}/users/${userObject.Username}`, payload, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => {
@@ -183,6 +189,7 @@ function ProfileView(props) {
                 <Form.Label>Email:</Form.Label>
                 <Form.Control
                   type="email"
+                  value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="Enter your email"
                   required
@@ -200,12 +207,12 @@ function ProfileView(props) {
                   placeholder="Enter your birthday"
                 />
                 {birthdayErr && <p>{birthdayErr}</p>}
-                <Form.Control
+                {/* <Form.Control
                   type="password"
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="Enter your password"
                 />
-                {passwordErr && <p>{passwordErr}</p>}
+                {passwordErr && <p>{passwordErr}</p>} */}
 
                 <Button
                   className="button-profile-view-update"

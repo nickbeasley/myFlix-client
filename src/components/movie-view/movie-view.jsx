@@ -15,10 +15,12 @@ export function MovieView(props) {
   const username = userInfo.Username;
 
   const dispatch = useDispatch();
+  const { FavoriteMovies } = userInfo;
   const { movieId } = useParams();
   let navigate = useNavigate();
 
   let [movie, setMovie] = useState({});
+  let [isFavorite, setIsFavorite] = useState(FavoriteMovies.includes(movieId));
 
   // refreshes user after adding or removing a movie from favorites so it'll be refliected in the profile view
   function refreshUser() {
@@ -47,6 +49,7 @@ export function MovieView(props) {
       )
       .then((response) => {
         console.log(response);
+        setIsFavorite(true);
         alert("Movie added");
         dispatch(setFaves(response.data.FavoriteMovies));
         refreshUser();
@@ -62,6 +65,7 @@ export function MovieView(props) {
       })
       .then((response) => {
         console.log(response);
+        setIsFavorite(false);
         alert("Movie removed");
         dispatch(setFaves(response.data.FavoriteMovies));
         refreshUser();
@@ -148,24 +152,28 @@ export function MovieView(props) {
         </Col>
       </Row>
       <ButtonGroup size="sm" vertical className="btn-group">
-        <Button
-          type="button"
-          variant="secondary"
-          size="sm"
-          className="mr-2 ml-2"
-          onClick={() => addFavorite(movieId)}
-        >
-          Add favorite
-        </Button>
-        <Button
-          type="button"
-          variant="secondary"
-          size="sm"
-          className="mr-2 ml-2"
-          onClick={() => removeFavorite(movieId)}
-        >
-          Remove Favorite
-        </Button>
+        {!isFavorite && (
+          <Button
+            type="button"
+            variant="secondary"
+            size="sm"
+            className="mr-2 ml-2"
+            onClick={() => addFavorite(movieId)}
+          >
+            Add favorite
+          </Button>
+        )}
+        {isFavorite && (
+          <Button
+            type="button"
+            variant="secondary"
+            size="sm"
+            className="mr-2 ml-2"
+            onClick={() => removeFavorite(movieId)}
+          >
+            Remove Favorite
+          </Button>
+        )}
         <Button
           type="button"
           variant="secondary"
