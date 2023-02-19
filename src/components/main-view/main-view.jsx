@@ -24,6 +24,7 @@ import { GenreView } from "../genre-view/genre-view";
 import "./main-view.scss";
 import { MOVIE_API_URL } from "../../config";
 import Utils from "../../utils";
+import VisibilityFilterInput from "../visablity-filter-input/visability-filter-input";
 
 class MainView extends React.Component {
   constructor() {
@@ -147,6 +148,7 @@ class MainView extends React.Component {
 
   render() {
     const { movies, movie, user, selectedMovie } = this.state;
+    const { visibilityFilter } = this.props;
     return (
       <Router>
         <Menubar />
@@ -169,11 +171,20 @@ class MainView extends React.Component {
                   ) : !movies.length ? (
                     <div>No movies</div>
                   ) : (
-                    movies.map((m) => (
-                      <Col key={m._id} className="movie-card">
-                        <MovieCard movie={m} />
-                      </Col>
-                    ))
+                    <>
+                      <VisibilityFilterInput />
+                      {movies
+                        .filter((m) =>
+                          m.Title.toLowerCase().includes(
+                            visibilityFilter.toLowerCase()
+                          )
+                        )
+                        .map((m) => (
+                          <Col key={m._id} className="movie-card">
+                            <MovieCard movie={m} />
+                          </Col>
+                        ))}
+                    </>
                   )
                 }
               />
@@ -273,6 +284,7 @@ function mapStateToProps(state) {
     movies: state.movies,
     user: state.user,
     favorites: state.favorites,
+    visibilityFilter: state.visibilityFilter,
   };
 }
 

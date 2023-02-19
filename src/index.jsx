@@ -10,7 +10,7 @@ class MyFlixApplication extends React.Component {
   render() {
     return (
       <Provider store={store}>
-        <Container>
+        <Container style={{ minHeight: "100vh" }}>
           <MainView />
         </Container>
       </Provider>

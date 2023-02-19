@@ -118,6 +118,7 @@ function ProfileView(props) {
       .then((response) => {
         const data = response.data;
         console.log(data);
+        localStorage.setItem("user", JSON.stringify(data));
         alert("Profile successfully updated");
         window.location.pathname = `/users/${username}`;
       })
@@ -156,8 +157,8 @@ function ProfileView(props) {
           <Card.Body>
             {props.movies
               .filter((movie) => user.FavoriteMovies.includes(movie._id))
-              .map((movie) => (
-                <MiniCard movie={movie} />
+              .map((movie, key) => (
+                <MiniCard key={key} movie={movie} />
               ))}
           </Card.Body>
         </Card>
